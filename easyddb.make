@@ -108,7 +108,7 @@ projects[ding_reservation_settings][download][tag]  = "7.x-2.2.0+easy"
 projects[ting_extended_search][type]           = "module"
 projects[ting_extended_search][download][type] = "git"
 projects[ting_extended_search][download][url]  = "git@github.com:easyddb/ting_extended_search.git"
-projects[ting_extended_search][download][tag]  = "7.x-2.3.1+easy"
+projects[ting_extended_search][download][tag]  = "7.x-2.4.4+easy"
 
 projects[ting_covers_plus][type]           = "module"
 projects[ting_covers_plus][download][type] = "git"
