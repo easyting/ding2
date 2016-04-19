@@ -9,11 +9,25 @@
  * Return the URL for the cover of an object.
  */
 function ting_covers_objects() {
+  // Return all image information.
+  drupal_json_output(ting_covers_get_objects());
+}
+
+/**
+ * Return the URL for the cover of an object.
+ *
+ * @param array $cover_data
+ *
+ * @return array of cover objects.
+ */
+function ting_covers_get_objects(array $cover_data = array()) {
   $covers = array();
   $image_styles = array();
   $missing_images_local_ids = array();
 
-  foreach ($_POST['coverData'] as $cover_info) {
+  $cover_data = (empty($cover_data) ? $_POST['coverData'] : $cover_data);
+
+  foreach ($cover_data as $cover_info) {
     // Determine if the local id is a known negative.
     if (cache_get('ting_covers:' . $cover_info['local_id'], FALSE)) {
       break;
@@ -80,8 +94,7 @@ function ting_covers_objects() {
     watchdog('ting_covers', 'Unable to retrieve covers from ADDI: %message', array('%message' => $e->getMessage()), WATCHDOG_ERROR);
   }
 
-  // Return all image information.
-  drupal_json_output($covers);
+  return $covers;
 }
 
 /**
