@@ -4,6 +4,9 @@ api = 2
 ; Include ding2 make file
 includes[ding2] = "ding2.make"
 
+; Make file for KulturRummet
+includes[kulturrummet] = "kulturrummet.make"
+
 ; easyOPAC modules
 projects[ding_library_opening_hours][type]           = "module"
 projects[ding_library_opening_hours][subdir]         = ""
