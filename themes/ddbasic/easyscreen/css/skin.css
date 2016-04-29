@@ -83,6 +83,10 @@
   background: #37a19d; /* Blue color */
 }
 
+.carousel-tpl p.readMore {
+  display: none;
+}
+
 .count-down-bar-bg,
 .text-and-image .title,
 .simple-tpl .header p.category,
@@ -99,10 +103,7 @@
 }
 
 body {
-  background: url("../img/baggrund_easyscreen2.jpg") no-repeat;
-  font-family: 'ApexMedium', Arial, Helvetica, sans-serif;
-  -webkit-background-size: cover;
-  background-size: cover;
+  background: #deded4;
 }
 
 .filter-overlay {
@@ -110,6 +111,7 @@ body {
   height: 100%;
   width: 100%;
   z-index: 1;
+  display: none;
 }
 
 .sliders-div {
@@ -169,14 +171,13 @@ body,
 }
 
 #Header .text {
-  display: inline-block;
-  font-family: 'ApexBold', Arial, Helvetica, sans-serif;
-  font-size: 32px;
-  height: 95px;
-  letter-spacing: 0.1px;
-  line-height: 80px;
+  color: #006666 !important;
   margin-left: 7%;
-  width: 400px;
+  text-indent: -9000px;
+  display: block;
+  width: 250px;
+  height: 49px;
+  background: url('../img/varbib-logo.png');
 }
 
 .nodelist-title,
