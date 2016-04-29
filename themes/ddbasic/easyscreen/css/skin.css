@@ -183,6 +183,7 @@ body,
 .carousel-ct-container .title {
   font-family: 'ApexBold', Arial, Helvetica, sans-serif;
   letter-spacing: 0.05px;
+  margin-top: 0;
 }
 
 .nodelist-title {
@@ -477,7 +478,7 @@ body,
 
 .single-ct-container .teaser {
   display: block;
-  height: 160px;
+  height: 240px;
   font-size: 26px;
   font-weight: bold;
   line-height: 32px;
@@ -931,6 +932,40 @@ ul.newsticker {
 .c4 .location,
 .c4 .organizer {
   margin-left: -4px;
+}
+
+.fullscreen .textandimage-ct-container {
+  background: #000;
+  height: 100%;
+  margin: 0;
+  left: 0;
+  top: 0;
+  position: absolute !important;
+  width: 100%;
+  z-index: 100;
+}
+
+.fullscreen #SlidersDiv .textandimage-ct-container .text-and-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.fullscreen #SlidersDiv .textandimage-ct-container {
+  padding: 0;
+}
+
+.fullscreen #SlidersDiv .textandimage-ct-container .image {
+  height: auto;
+  width: auto;
+  margin: 0;
+  max-width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  left: 50%;
 }
 
 /* Temporary content */
