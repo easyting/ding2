@@ -1,6 +1,9 @@
 core = 7.x
 api = 2
 
+; Make file for DAB
+includes[kulturrummet] = "dab.make"
+
 ; Include ding2 make file
 includes[ding2] = "ding2.make"
 
