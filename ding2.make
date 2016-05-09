@@ -25,6 +25,9 @@ projects[block_access][version] = "1.5"
 projects[cache_actions][subdir] = "contrib"
 projects[cache_actions][version] = "2.0-alpha5"
 
+projects[ckeditor_link][subdir] = "contrib"
+projects[ckeditor_link][version] = "2.4"
+
 projects[conditional_styles][subdir] = "contrib"
 projects[conditional_styles][version] = "2.2"
 
@@ -46,6 +49,18 @@ projects[dibs][patch][] = "http://drupal.org/files/dibs-2107389-2.patch"
 
 projects[diff][subdir] = "contrib"
 projects[diff][version] = "3.2"
+
+projects[domain][subdir] = "contrib"
+projects[domain][version] = "3.12"
+
+projects[domain_ctools][subdir] = "contrib"
+projects[domain_ctools][version] = "1.3"
+
+projects[domain_menu_access][subdir] = "contrib"
+projects[domain_menu_access][version] = "1.2"
+
+projects[domain_variable][subdir] = "contrib"
+projects[domain_variable][version] = "1.1"
 
 ; The patch ensures that file upload patch is created on file upload. It normally
 ; created on settings form save, but as we use feature this do not work.
@@ -186,7 +201,7 @@ projects[media_youtube][download][revision] = "ca46aba"
 projects[media_youtube][patch][] = "http://drupal.org/files/issues/provide-access-wrapper-1823376-6.patch"
 
 projects[memcache][subdir] = "contrib"
-projects[memcache][version] = "1.0"
+projects[memcache][version] = "1.5"
 
 ; Get a this special version that has support for features export.
 projects[menu_block][type] = "module"
@@ -303,15 +318,6 @@ projects[secure_permissions][download][url] = "http://git.drupal.org/project/sec
 projects[secure_permissions][download][revision] = "ef5eec5"
 projects[secure_permissions][patch][] = "http://drupal.org/files/issues/2188491-features-multilingual-2.patch"
 projects[secure_permissions][patch][] = "http://drupal.org/files/issues/secure_permissions-dont_disable_all_permissions-2499607-3.patch"
-
-projects[search_api][subdir] = "contrib"
-projects[search_api][version] = "1.16"
-
-projects[search_api_multi][subdir] = "contrib"
-projects[search_api_multi][version] = "1.3"
-
-projects[search_api_db][subdir] = "contrib"
-projects[search_api_db][version] = "1.5"
 
 projects[similarterms][subdir] = "contrib"
 projects[similarterms][version] = "2.3"
