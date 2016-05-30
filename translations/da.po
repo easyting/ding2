@@ -48531,7 +48531,6 @@ msgstr "Af @author"
 #: templates/ding-item-list_item.tpl.php:22
 msgid "reviews"
 msgstr ""
-
 #: profiles/ding2/modules/ding_nodelist/ding_nodelist.admin.inc:14
 msgid "No content types were found, please add one first."
 msgstr "Der blev ikke fundet nogen indholdstyper."
