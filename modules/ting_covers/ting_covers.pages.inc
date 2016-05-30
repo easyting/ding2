@@ -12,7 +12,7 @@ function ting_covers_objects($http_request = TRUE, $cover_data = array()) {
   $covers = array();
   $image_styles = array();
   $missing_images_local_ids = array();
-
+  
   if ($http_request) {
     $cover_data = $_POST['coverData'];
   }
