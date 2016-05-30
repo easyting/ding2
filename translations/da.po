@@ -48367,7 +48367,7 @@ msgstr "Pinkoden skal bestå af %number cifre."
 msgid "You are not allowed to automatically be created because of the age limit (!limit years). Please go to your local library to registry."
 msgstr "Du kan ikke oprette dig som bruger via NemID på grund af aldersbegrænsningen (!limit år). Du kan blive oprettet som bruger ved personlig henvendelse på biblioteket."
 
-#: ding_item_list.module:342
+
 #: modules/ding_item_list_field/ding_item_list_field.module:14
 #: plugins/content_types/ding_item_list.inc:11
 msgid "Ding item list"
@@ -48887,3 +48887,27 @@ msgstr ""
 #: profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.vaccordion.tpl.php:44
 msgid "Time:"
 msgstr "Tid"
+
+#: ding_item_cache.module:35
+msgid "Select those modules which cache has to be cleared"
+msgstr "Vælg hvilke moduler der skal renses for mellemlagring"
+
+#: ding_item_cache.module:42
+msgid "Clear caches"
+msgstr "Ryd mellemlagring"
+#: ding_item_list.module:342
+#: ding_item_cache.module:57
+msgid "Ding item cache has been cleared"
+msgstr "Mellemlagringen for materialer er blevet renset"
+
+#: ding_item_cache.module:15
+msgid "Ding item cache"
+msgstr "Materiale mellemlagring"
+
+#: ding_item_cache.module:16
+msgid "Clear caches of certain modules relying on Ding item caching."
+msgstr "Tømmer mellemlagringen af de moduler som anvender denne cache."
+
+#: ding_item_cache.info:0
+msgid "Provides caching bin for ding items that contain extended information from external services."
+msgstr "Tilbyder special mellemlagring for brønd-materialer"
