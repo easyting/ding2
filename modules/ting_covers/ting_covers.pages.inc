@@ -20,6 +20,13 @@ function ting_covers_objects($http_request = TRUE, $cover_data = array()) {
     return $covers;
   }
 
+  if ($http_request) {
+    $cover_data = $_POST['coverData'];
+  }
+  elseif (!$http_request && empty($cover_data)) {
+    return $covers;
+  }
+
   foreach ($cover_data as $cover_info) {
     // Determine if the local id is a known negative.
     if (cache_get('ting_covers:' . $cover_info['local_id'], FALSE)) {
