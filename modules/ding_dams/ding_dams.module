@@ -57,7 +57,7 @@ function ding_dams_menu() {
 /**
  * Implements hook_permission().
  */
-function ding_dams_media_browser_permission() {
+function ding_dams_permission() {
   return array(
     'use ding dams' => array(
       'title' => t('Use ding dams.'),
