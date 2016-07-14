@@ -12,11 +12,10 @@
  * group_audience
  */
 
-$items = $variables['item'];
-$item = new stdClass();
+$item = $variables['item'];
 if ($variables['conf']['sorting'] == 'event_date') {
   // Get the object from the array in the case we are sorting by date.
-  foreach ($items as $k => $v) {
+  foreach ($item as $k => $v) {
     $item = $v;
   }
 }
