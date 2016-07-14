@@ -1926,7 +1926,7 @@ function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
   $query = db_select('node', 'n', array('target' => 'slave'))->fields('n', array('nid'));
   if (!empty($conf['taxonomy_filters'])) {
     $ti_l = 'ti';
-    $query->join('taxonomy_index', $ti_l, "n.nid = $ti_l.nid");
+    $query->leftJoin('taxonomy_index', $ti_l, "n.nid = $ti_l.nid");
     $i = 1;
     foreach ($conf['taxonomy_filters'] as $filter) {
       $filter['filter_terms'] = is_array($filter['filter_terms']) ? $filter['filter_terms'] : array($filter['filter_terms']);
@@ -1985,7 +1985,6 @@ function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
   }
 
   $nodes = $query->execute()->fetchCol();
-
   return $nodes;
 }
 
@@ -2379,14 +2378,15 @@ function _ding_nodelist_trim_body($nodes = array(), $conf = array()) {
  */
 function _ding_nodelist_striptags($nodes) {
   foreach ($nodes as $n => $node) {
-    $body_field = 'field_' . $node->type . '_body';
     if (!is_array($node)) {
+      $body_field = 'field_' . $node->type . '_body';
       foreach ($node->{$body_field} as $lng => $body) {
         $nodes[$n]->{$body_field}[$lng][0]['safe_value'] = preg_replace('/<[^>]+>/i', '', $body[0]['safe_value']);
       }
     }
     else {
       foreach ($node as $event_date => $event_node) {
+        $body_field = 'field_' . $event_node->type . '_body';
         foreach ($event_node->{$body_field} as $lng => $body) {
           $nodes[$n][$event_date]->{$body_field}[$lng][0]['safe_value'] = preg_replace('/<[^>]+>/i', '', $body[0]['safe_value']);
         }
