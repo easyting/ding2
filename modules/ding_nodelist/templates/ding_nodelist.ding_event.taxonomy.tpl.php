@@ -7,7 +7,7 @@
 
 if ($variables['conf']['sorting'] == 'event_date') {
   // Get the object from the array in the case we are sorting by date.
-  $item = array_shift(array_values($item));
+  $item = array_shift($item);
 }
 $title = $item->title;
 $category = field_view_field('node', $item, 'field_ding_event_category', 'default');
