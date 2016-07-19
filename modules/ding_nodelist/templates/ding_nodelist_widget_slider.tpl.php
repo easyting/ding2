@@ -16,21 +16,18 @@
       <?php if (!empty($conf['title'])): ?>
         <h2 class="ding_nodelist-title"><?php print $conf['title']; ?></h2>
       <?php endif; ?>
-      <?php foreach ($links as $key => $bottom) : ?>
-        <span>
-          <?php print l(t($bottom['text']), $bottom['links']); ?>
-        </span>
-      <?php endforeach; ?>
+      <?php if (!empty($links)): ?>
+        <?php foreach ($links as $key => $bottom) : ?>
+          <span>
+            <?php print l(t($bottom['text']), $bottom['links']); ?>
+          </span>
+        <?php endforeach; ?>
+      <?php endif; ?>
     </div>
     <ul class="ding_nodelist-items">
       <?php
       foreach ($items as $node) {
-        if ($conf['sorting'] == 'event_date') {
-          print theme($template, array('item' => array_shift($node)));
-        }
-        else {
-          print theme($template, array('item' => $node));
-        }
+        print theme($node->item_template, array('item' => $node));
       }
       ?>
     </ul>

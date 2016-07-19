@@ -21,7 +21,7 @@ function ding_nodelist_settings_form() {
     '#default_value' => variable_get('ding_nodelist_node_types', array()),
     '#description' => t('Choose content types avaialable for display'),
   );
-
+  
   // Options as defined by panels/plugins/cache/simple.inc
   $options = drupal_map_assoc(
     array(

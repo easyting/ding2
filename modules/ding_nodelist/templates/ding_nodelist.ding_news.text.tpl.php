@@ -12,9 +12,7 @@
  * group_audience
  */
 $edbase = field_view_field('node', $item, 'field_editorial_base_n', 'teaser');
-$body = field_view_field('node', $item, 'field_ding_body', 'teaser');
 ?>
-
 <div class="item">
   <span class="date-created">
     <?php print format_date($item->created, 'custom', 'd/m/Y');?>
@@ -24,7 +22,10 @@ $body = field_view_field('node', $item, 'field_ding_body', 'teaser');
   </span>
   <h3 class="node-title"><a href="<?php print url('node/' . $item->nid);?>"><?php	print $item->title;?></a></h3>
   <div class="node">
-    <?php print drupal_render($body); ?>
+    <?php
+      $body = field_view_field('node', $item, 'field_ding_body', 'teaser');
+      print drupal_render($body);
+    ?>
   </div>
   <div class="more"><?php print l(t('More'), 'node/' . $item->nid);?></div>
 </div>
