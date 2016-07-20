@@ -78,8 +78,7 @@
           if (video.videoWidth > width) {
             $(this).width(width * 0.9);
           }
-
-          Drupal.ding_popup.dialogs[response.name].dialog('option', {'width': video.videoWidth * 1.03});
+          Drupal.ding_popup.dialogs[response.name].dialog('option', {'width': video.videoWidth * 1.07});
 
           Drupal.ding_popup.dialogs[response.name].dialog("option", "position", {
             my: "center",
