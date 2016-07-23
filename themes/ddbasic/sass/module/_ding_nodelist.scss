@@ -706,6 +706,11 @@ $label-bg: url('../images/p.png');
       width: 100%;
       height: 100%;
     }
+
+    img {
+      display: block;
+      width: 100%;
+    }
   }
 
   // Item
@@ -716,7 +721,7 @@ $label-bg: url('../images/p.png');
 
     // Media from-small
 
-    @include medium() {
+    @include from-small() {
       height: 381px;
     }
 
