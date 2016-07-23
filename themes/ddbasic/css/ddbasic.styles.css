@@ -8878,10 +8878,14 @@ input#edit-search-block-form--2.spinner {
     background-size: cover;
     width: 100%;
     height: 100%; }
+  .ding_nodelist-single .article_image img,
+  .ding_nodelist-single .event-image img {
+    display: block;
+    width: 100%; }
   .ding_nodelist-single .item {
     position: relative;
     overflow: hidden; }
-    @media only screen and (min-width: 481px) and (max-width: 768px) {
+    @media only screen and (min-width: 481px) {
       .ding_nodelist-single .item {
         height: 381px; } }
     @media only screen and (max-width: 480px) {
