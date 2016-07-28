@@ -99,7 +99,7 @@ projects[fences][version] = "1.0"
 projects[fences][patch][0] = "http://drupal.org/files/field_for_wrapper_css_class-1679684-3.patch"
 
 projects[field_group][subdir] = "contrib"
-projects[field_group][version] = "1.5"
+projects[field_group][version] = "1.1"
 
 projects[file_entity][subdir] = "contrib"
 projects[file_entity][version] = "2.0-beta3"
@@ -177,8 +177,12 @@ projects[media_youtube][version] = "3.0"
 projects[memcache][subdir] = "contrib"
 projects[memcache][version] = "1.0"
 
+projects[menu_block][type] = "module"
 projects[menu_block][subdir] = "contrib"
-projects[menu_block][version] = "2.7"
+projects[menu_block][download][type] = "git"
+projects[menu_block][download][url] = "http://git.drupal.org/project/menu_block.git"
+projects[menu_block][download][revision] = "32ab1cf08b729c93302455d67dd05f64ad2fc056"
+projects[menu_block][patch][0] = "http://drupal.org/files/menu_block-ctools-693302-96.patch"
 
 projects[menu_breadcrumb][subdir] = "contrib"
 projects[menu_breadcrumb][version] = "1.6"
@@ -289,7 +293,7 @@ projects[transliteration][subdir] = "contrib"
 projects[transliteration][version] = "3.2"
 
 projects[uuid][subdir] = "contrib"
-projects[uuid][subdir] = "1.0-beta1"
+projects[uuid][version] = "1.0-beta1"
 
 projects[variable][subdir] = "contrib"
 projects[variable][version] = "2.5"
