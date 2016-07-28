@@ -110,11 +110,8 @@ projects[flag][version] = "2.2"
 projects[fontyourface][subdir] = "contrib"
 projects[fontyourface][version] = "2.7"
 
-projects[formblock][type] = "module"
 projects[formblock][subdir] = "contrib"
-projects[formblock][download][type] = "git"
-projects[formblock][download][url] = "http://git.drupal.org/project/formblock.git"
-projects[formblock][download][revision] = "2d94c83"
+projects[formblock][version] = "1.0-alpha1"
 
 projects[geocoder][subdir] = "contrib"
 projects[geocoder][version] = "1.3"
