@@ -123,7 +123,7 @@ function ding_nodelist_install() {
     ),
     'ding_nodelist.ding_page.taxonomy' => array(
       'widget' => 'taxonomy',
-      'content_type' => 'ding_news',
+      'content_type' => 'ding_page',
     ),
     'ding_nodelist.ding_event.rolltab' => array(
       'widget' => 'rolltab',
@@ -349,6 +349,19 @@ function ding_nodelist_update_7003() {
     );
     db_insert('ding_nodelist_templates')->fields($fields)->execute();
   }
+}
+
+/**
+ * Fixing CT for page taxonomy like display.
+ */
+function ding_nodelist_update_7004() {
+  db_update('ding_nodelist_templates')
+    ->fields(array(
+      'content_type' => 'ding_page',
+    ))
+    ->condition('filename', 'ding_nodelist.ding_page.taxonomy', '=')
+    ->condition('content_type', 'ding_news', '=')
+    ->execute();
 }
 
 /**
