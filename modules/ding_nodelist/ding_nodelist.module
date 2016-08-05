@@ -2119,6 +2119,10 @@ function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
     }
   }
 
+  // This is temporary fix for multiple content types.
+  if (empty($conf['content_types']) && !empty($conf['content_type'])) {
+    $conf['content_types'] = array($conf['content_type']);
+  }
   // Filter by content type/node settings.
   $query->condition('n.type', $conf['content_types'], 'IN')
     ->condition('n.status', NODE_PUBLISHED)
