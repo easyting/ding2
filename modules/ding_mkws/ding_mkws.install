@@ -1,0 +1,39 @@
+<?php
+/**
+ * @file
+ * Represents all logic related to (un)installing and DB scheme definition.
+ */
+
+/**
+ * Implements hook_field_schema().
+ */
+function ding_mkws_field_schema($field) {
+  $schema = array();
+
+  switch ($field['type']) {
+    case 'ding_mkws_node':
+      $schema['columns'] = array(
+        'term' => array(
+          'type' => 'varchar',
+          'length' => '255',
+          'not null' => TRUE,
+          'default' => '',
+        ),
+        'resources' => array(
+          'type' => 'varchar',
+          'length' => '255',
+          'not null' => TRUE,
+          'default' => '',
+        ),
+        'amount' => array(
+          'type' => 'int',
+          'not null' => TRUE,
+          'default' => 0,
+        ),
+      );
+      break;
+
+  }
+
+  return $schema;
+}
