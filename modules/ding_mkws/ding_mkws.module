@@ -4,6 +4,8 @@
  * Represents main hooks implementations and other common functions.
  */
 
+include_once 'ding_mkws.fields.inc';
+
 /**
  * Implements hook_libraries_info().
  */
@@ -24,7 +26,7 @@ function ding_mkws_libraries_info() {
 }
 
 /**
- * Support function for detecting verions of library.
+ * Support function for detecting versions of library.
  *
  * @return bool
  *   Status of version detection.
@@ -181,4 +183,26 @@ function ding_mkws_include_all() {
  */
 function ding_mkws_init() {
   ding_mkws_include_all();
+}
+
+
+/**
+ * Helper function for getting and processing resources.
+ */
+function _ding_mkws_process_resources() {
+  $settings = variable_get('ding_mkws_settings', array());
+  try {
+    $result = _ding_mkws_request('categories', $settings);
+    $resources = array();
+    foreach ($result->category as $resource) {
+      $name = (string) $resource->categoryName;
+      $resources[drupal_strtolower($name)] = $name;
+    }
+    return $resources;
+  }
+  catch (Exception $ex) {
+    watchdog_exception('ding mkws', $ex);
+    drupal_set_message(t('Something goes wrong. Check reports for details.'));
+    return array();
+  }
 }

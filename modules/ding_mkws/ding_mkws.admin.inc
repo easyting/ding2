@@ -142,24 +142,3 @@ function ding_mkws_widget_settings_form($form, $form_state) {
 
   return $form;
 }
-
-
-/**
- * Helper function for getting and processing resources.
- */
-function _ding_mkws_process_resources() {
-  $settings = variable_get('ding_mkws_settings', array());
-  try {
-    $result = _ding_mkws_request('categories', $settings);
-    $facets = array();
-    foreach ($result->category as $facet) {
-      $facets[] = (string) $facet->categoryName;
-    }
-    return $facets;
-  }
-  catch (Exception $ex) {
-    watchdog_exception('ding mkws', $ex);
-    drupal_set_message(t('Something goes wrong. Check reports for details.'));
-    return array();
-  }
-}
