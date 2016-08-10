@@ -97,6 +97,7 @@ function ding_mkws_permission() {
  * @throws Exception.
  */
 function _ding_mkws_request($command, $settings, $action = NULL) {
+  $sid = &drupal_static(__FUNCTION__);
   if (empty($settings['user']) || empty($settings['password']) || empty($settings['url'])) {
     throw new Exception(t('Please configure mkdru !settings first.', array('!settings' => l(t('settings'), 'admin/config/ding/mkws'))));
   }
@@ -116,18 +117,13 @@ function _ding_mkws_request($command, $settings, $action = NULL) {
       }
       else {
         $sid = (string) $result['jsessionId'][0];
-        cache_set('ding_mkws_sid', $sid, 'cache', time() + 60 * 60);
         return $sid;
       }
       break;
 
     default:
-      $sid = cache_get('ding_mkws_sid');
       if (empty($sid)) {
         $sid = _ding_mkws_request('auth', $settings, 'login');
-      }
-      else {
-        $sid = $sid->data;
       }
 
       $data = array(
@@ -192,11 +188,11 @@ function ding_mkws_init() {
 function _ding_mkws_process_resources() {
   $settings = variable_get('ding_mkws_settings', array());
   try {
-    $result = _ding_mkws_request('categories', $settings);
+    $result = _ding_mkws_request('targets', $settings);
     $resources = array();
-    foreach ($result->category as $resource) {
-      $name = (string) $resource->categoryName;
-      $resources[drupal_strtolower($name)] = $name;
+    foreach ($result->target as $resource) {
+      $id = (string) $resource->id;
+      $resources[$id] = (string) $resource->displayName;
     }
     return $resources;
   }

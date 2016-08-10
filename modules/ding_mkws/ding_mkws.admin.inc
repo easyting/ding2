@@ -87,6 +87,8 @@ function ding_mkws_service_settings_form_submit($form, &$form_state) {
  */
 function ding_mkws_widget_settings_form($form, $form_state) {
   $form['#tree'] = TRUE;
+  $settings = variable_get('ding_mkws_global', array());
+
   $resources = _ding_mkws_process_resources();
   $form['resources'] = array(
     '#type' => 'fieldset',
@@ -96,6 +98,7 @@ function ding_mkws_widget_settings_form($form, $form_state) {
   $form['resources']['values'] = array(
     '#type' => 'checkboxes',
     '#options' => $resources,
+    '#default_value' => !empty($settings['resources']['values']) ? $settings['resources']['values'] : array(),
   );
 
   $form['opac'] = array(
@@ -117,28 +120,39 @@ function ding_mkws_widget_settings_form($form, $form_state) {
       '#title' => $title,
     );
 
-    $name = "ding_mkws_opac_{$key}_show";
     $form['opac'][$key]['show'] = array(
       '#type' => 'checkbox',
       '#title' => t('Show the widget on @item', array('@item' => drupal_strtolower($title))),
-      '#default_value' => variable_get($name, NULL),
+      '#default_value' => !empty($settings['opac'][$key]['show']) ? $settings['opac'][$key]['show'] : NULL,
     );
 
-    $name = "ding_mkws_opac_{$key}_amount";
     $form['opac'][$key]['amount'] = array(
       '#type' => 'textfield',
       '#title' => t('Amount items in the widget'),
-      '#default_value' => variable_get($name, NULL),
+      '#default_value' => !empty($settings['opac'][$key]['amount']) ? $settings['opac'][$key]['amount'] : 10,
+      '#element_validate' => array('element_validate_integer_positive'),
     );
 
-    $name = "ding_mkws_opac_{$key}_resources";
     $form['opac'][$key]['resources'] = array(
       '#type' => 'select',
+      '#multiple' => TRUE,
       '#options' => $resources,
       '#title' => t("LBR's to search for this widget"),
-      '#default_value' => variable_get($name, NULL),
+      '#default_value' => !empty($settings['opac'][$key]['resources']) ? $settings['opac'][$key]['resources'] : NULL,
     );
   }
 
+  $form['save'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save'),
+  );
   return $form;
+}
+
+/**
+ * Submit handler of widget configuration.
+ */
+function ding_mkws_widget_settings_form_submit($form, $form_state) {
+  $values = $form_state['values'];
+  variable_set('ding_mkws_global', $values);
 }

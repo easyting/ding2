@@ -138,15 +138,22 @@ function ding_mkws_field_formatter_view($entity_type, $entity, $field, $instance
   $element = array();
   switch ($display['type']) {
     case 'ding_mkws_node_formatter_default':
-      list($term, $resources, $amount) = array_values(reset($items));
+      $item = reset($items);
+      $hash = md5(implode('', $item));
       $element[0] = array(
-        '#markup' => "<div data-term='{$term}' data-resources='{$resources}' data-amount='{$amount}' class='ding-mkws-node-widget'></div>",
+        '#markup' => "<div data-hash='{$hash}' class='ding-mkws-node-widget'></div>",
         '#attached' => array(
           'css' => array(
             drupal_get_path('module', 'ding_mkws') . '/css/ding_mkws.css',
           ),
           'js' => array(
-            drupal_get_path('module', 'ding_mkws') . '/js/ding_mkws.js',
+            array(drupal_get_path('module', 'ding_mkws') . '/js/ding_mkws.js'),
+            array(
+              'type' => 'setting',
+              'data' => array(
+                $hash => $item,
+              ),
+            ),
           ),
         ),
       );
@@ -154,4 +161,3 @@ function ding_mkws_field_formatter_view($entity_type, $entity, $field, $instance
   }
   return $element;
 }
-
