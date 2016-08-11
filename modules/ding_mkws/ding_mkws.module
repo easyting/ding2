@@ -92,6 +92,15 @@ function ding_mkws_permission() {
 }
 
 /**
+ * Implements hook_ctools_plugin_directory().
+ */
+function ding_mkws_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools' && $plugin == 'content_types') {
+    return 'plugins/content_types';
+  }
+}
+
+/**
  * Represents a wrapper for making backend request to service.
  *
  * @param string $command

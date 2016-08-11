@@ -6,7 +6,7 @@ var ding_mkws_process = {};
 (function ($) {
 
   ding_mkws_process.ProcessDataForNodeWidget = function(data) {
-    var variables = {title: "Test title", items: {left: [], right: []}};
+    var variables = {title: "", items: {left: [], right: []}};
     for (var i = 0; i < data.hits.length; i++) {
       var idx = (i % 2) ? 'left' : 'right';
       try {
