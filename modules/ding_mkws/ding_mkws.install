@@ -66,7 +66,7 @@ function _ding_mkws_create_pane() {
   $task_names = array('search', 'ting_collection', 'ting_object');
   foreach ($task_names as $task_name) {
     $panel_id = 'new-ding_mkws_' . $task_name;
-    $pane = ding_mkws_get_items_pane($panel_id);
+    $pane = ding_mkws_get_items_pane($panel_id, $task_name);
 
     $task = page_manager_get_task($task_name);
     $handlers = page_manager_load_task_handlers($task);
@@ -90,12 +90,12 @@ function _ding_mkws_create_pane() {
 /**
  * Create mkws pane object.
  */
-function ding_mkws_get_items_pane($panel_id) {
+function ding_mkws_get_items_pane($panel_id, $subtype) {
   $pane = new stdClass();
   $pane->pid = $panel_id;
   $pane->panel = 'left_sidebar';
   $pane->type = 'mkws_item_list';
-  $pane->subtype = 'mkws_item_list';
+  $pane->subtype = $subtype;
   // By default pane is hidden.
   $pane->shown = FALSE;
   $pane->access = array();
