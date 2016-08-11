@@ -107,10 +107,16 @@ function ding_mkws_widget_settings_form($form, $form_state) {
     '#title' => t('OPAC'),
   );
 
+  /**
+   * Keys of the array $items represent name of the page manager tasks
+   *
+   * They are created during module install.
+   * @see _ding_mkws_create_pane.
+   */
   $items = array(
     'search' => t('Search result'),
-    'collection' => t('Collection view'),
-    'item' => t('Item page'),
+    'ting_collection' => t('Collection view'),
+    'ting_object' => t('Item page'),
   );
 
   foreach ($items as $key => $title) {
@@ -155,4 +161,31 @@ function ding_mkws_widget_settings_form($form, $form_state) {
 function ding_mkws_widget_settings_form_submit($form, $form_state) {
   $values = $form_state['values'];
   variable_set('ding_mkws_global', $values);
+
+  ctools_include('plugins');
+  ctools_get_plugins('page_manager', 'task_handlers', 'panel_context');
+
+  foreach ($values['opac'] as $key => $variable) {
+    $task = page_manager_get_task($key);
+    $handlers = page_manager_load_task_handlers($task);
+    foreach ($handlers as $handler_name => &$handler) {
+      if (strpos($handler_name, $key . '_panel_context') !== FALSE) {
+        $display = panels_panel_context_get_display($handler);
+        foreach ($display->content as &$pane) {
+          if ($pane->type == 'mkws_item_list') {
+            // Enable panes.
+            if ($values['opac'][$key]['show'] && !$pane->shown) {
+              $pane->shown = TRUE;
+              panels_save_display($display);
+            }
+            // Disable panes.
+            elseif (!$values['opac'][$key]['show'] && $pane->shown) {
+              $pane->shown = FALSE;
+              panels_save_display($display);
+            }
+          }
+        }
+      }
+    }
+  }
 }
