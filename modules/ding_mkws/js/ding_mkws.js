@@ -1,21 +1,19 @@
-// Set up namespace and some state.
+/**
+ * @file
+ * Represents core and access point of ding_mkws.
+ */
+
+/**
+ * Default config.
+ */
 var ding_mkws = {
-  // Variables
   active: false,
+  sort: 'relevance',
   settings: {},
-  defaultState: {
-    page: 1,
-    perpage: 10,
-    sort: 'relevance',
-    recid: null
-  },
-  state: {},
 };
 
-// Wrapper for jQuery
 (function ($) {
-  ding_mkws.search = function (query, amount) {
-    var filter = null;
+  ding_mkws.search = function (query, amount, filter) {
     ding_mkws.pz2.search(query, amount, ding_mkws.sort, filter, null, {limit: null});
     ding_mkws.active = true;
   };
@@ -63,21 +61,32 @@ var ding_mkws = {
     ding_mkws.pz2 = new pz2(pz2Params);
     ding_mkws.pz2.showFastCount = 1;
 
-    ding_mkws.state = $.extend({}, ding_mkws.defaultState, Drupal.settings.ding_mkws.state);
     ding_mkws.auth(function () {
-      var settings = Drupal.settings[hash];
-        ding_mkws.search(settings.term, settings.amount)
-    },
-    function () {
-      //@todo Add some logic in case when failing.
-    });
+        var settings = Drupal.settings[hash];
+        ding_mkws.search(settings.term, settings.amount, settings.resources)
+      },
+      function () {
+        //@todo Add some logic in case when failing.
+      });
   };
 
   Drupal.behaviors.ding_mkws = {
     attach: function (context) {
       $('.ding-mkws-node-widget', context).each(function () {
-        var hash = $(this).data('hash');
+        var $this = $(this, context);
+        var hash = $this.data('hash');
         ding_mkws.init(hash, function (data) {
+          if (data.activeclients == 0) {
+
+            /**
+             * Process data from service and render template.
+             *
+             * @see ding_mkws.theme.js
+             */
+            var variables = ding_mkws_process.ProcessDataForNodeWidget(data);
+            var html = $.templates.dingMkwsNodeWidget(variables);
+            $this.html(html);
+          }
         });
       });
     }

@@ -22,6 +22,16 @@ function ding_mkws_libraries_info() {
     ),
   );
 
+  $libraries['jsrender'] = array(
+    'name' => 'JS Render',
+    'vendor url' => 'https://github.com//BorisMoore/jsrender',
+    'download url' => 'https://github.com//BorisMoore/jsrender/archive/master.zip',
+    'version callback' => 'ding_mkws_version_callback',
+    'files' => array(
+      'js' => array('jsrender.min.js'),
+    ),
+  );
+
   return $libraries;
 }
 
@@ -145,23 +155,26 @@ function _ding_mkws_request($command, $settings, $action = NULL) {
  * Helper function for including all libraries and settings.
  */
 function ding_mkws_include_all() {
+  $sid = &drupal_static(__FUNCTION__);
   libraries_load('pz2');
+  libraries_load('jsrender');
   $settings = variable_get('ding_mkws_settings', array());
-  $sid = cache_get('ding_mkws_sid');
-  if (empty($sid)) {
-    try {
-      $sid = _ding_mkws_request('auth', $settings, 'login');
-    }
-    catch (Exception $ex) {
-      watchdog_exception('ding mkws', $ex);
-      drupal_set_message(t('Something goes wrong. Check reports for details.'));
-    }
+
+  try {
+    $sid = _ding_mkws_request('auth', $settings, 'login');
   }
-  else {
-    $sid = $sid->data;
+  catch (Exception $ex) {
+    watchdog_exception('ding mkws', $ex);
+    drupal_set_message(t('Something goes wrong. Check reports for details.'));
   }
 
   $path = drupal_get_path('module', 'ding_mkws');
+  drupal_add_js($path . '/js/ding_mkws.theme.js', array(
+    'type' => 'file',
+    'scope' => 'footer',
+    'defer' => FALSE,
+    'preprocess' => TRUE,
+  ));
   drupal_add_js($path . '/js/ding_mkws.js', array(
     'type' => 'file',
     'scope' => 'footer',
