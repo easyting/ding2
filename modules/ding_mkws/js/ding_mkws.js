@@ -76,14 +76,14 @@ var ding_mkws = {
     ding_mkws.pz2.showFastCount = 1;
 
     ding_mkws.auth(function () {
-          ding_mkws.search(settings.term, settings.amount, settings.resources)
+        ding_mkws.search(settings.term, settings.amount, settings.resources)
       },
       failCallback
     );
-
+  }
   Drupal.behaviors.ding_mkws = {
     attach: function (context) {
-        $('.ding-mkws-widget', context).each(function () {
+      $('.ding-mkws-widget', context).each(function () {
         var $this = $(this, context);
         $this.html(ding_mkws.spinner);
         // Gets settings.
@@ -92,25 +92,25 @@ var ding_mkws = {
         var template = $this.data('template');
         var settings = Drupal.settings[hash];
         /**
-         * if ($this.hasClass('ding-mkws-collection-pane)) {
-         *   var additional = Drupal.settings.ding_mkws_ting_data.
-         * }
+          * if ($this.hasClass('ding-mkws-collection-pane)) {
+          *   var additional = Drupal.settings.ding_mkws_ting_data.
+          * }
          */
         ding_mkws.init(settings, function (data) {
-          if (data.activeclients == 0) {
-            /**
-             * Process data from service and render template.
-             *
-             * @see ding_mkws.theme.js
-             */
-            var variables = ding_mkws_process[process](data);
-            var html = $.templates[template](variables);
-            $this.html(html);
-          }
-        },
-        function() {
-          $this.html(Drupal.t("Sorry, something goes wrong. Can't connect to server."))
-        });
+            if (data.activeclients == 0) {
+              /**
+               * Process data from service and render template.
+               *
+               * @see ding_mkws.theme.js
+               */
+              var variables = ding_mkws_process[process](data);
+              var html = $.templates[template](variables);
+              $this.html(html);
+            }
+          },
+          function () {
+            $this.html(Drupal.t("Sorry, something goes wrong. Can't connect to server."));
+          });
       });
     }
   };
