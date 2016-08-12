@@ -10,6 +10,20 @@ var ding_mkws = {
   active: false,
   sort: 'relevance',
   settings: {},
+  spinner: '<div class="ispinner large gray animating">' +
+  '<div class="ispinner-blade"></div>' +
+  '<div class="ispinner-blade"></div>' +
+  '<div class="ispinner-blade"></div>' +
+  '<div class="ispinner-blade"></div>' +
+  '<div class="ispinner-blade"></div>' +
+  '<div class="ispinner-blade"></div>' +
+  '<div class="ispinner-blade"></div>' +
+  '<div class="ispinner-blade"></div>' +
+  '<div class="ispinner-blade"></div>' +
+  '<div class="ispinner-blade"></div>' +
+  '<div class="ispinner-blade"></div>' +
+  '<div class="ispinner-blade"></div>' +
+  '</div>',
 };
 
 (function ($) {
@@ -71,13 +85,14 @@ var ding_mkws = {
 
   Drupal.behaviors.ding_mkws = {
     attach: function (context) {
-      $('.ding-mkws-widget', context).each(function () {
+        $('.ding-mkws-widget', context).each(function () {
         var $this = $(this, context);
+        $this.html(ding_mkws.spinner);
+        // Gets settings.
         var hash = $this.data('hash');
         var process = $this.data('process');
         var template = $this.data('template');
         var settings = Drupal.settings[hash];
-
         /**
          * if ($this.hasClass('ding-mkws-collection-pane)) {
          *   var additional = Drupal.settings.ding_mkws_ting_data.
@@ -100,6 +115,7 @@ var ding_mkws = {
 
       $('.ding-mkws-panel-widget', context).each(function () {
         var $this = $(this, context);
+        $this.html('<span class="throbber">Loading...</span>');
         var hash = $this.data('hash');
         ding_mkws.init(hash, function (data) {
           if (data.activeclients == 0) {
