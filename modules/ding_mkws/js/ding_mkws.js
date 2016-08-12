@@ -109,7 +109,7 @@ var ding_mkws = {
             }
           },
           function () {
-            $this.html(Drupal.t("Sorry, something goes wrong. Can't connect to server."));
+            $this.html(Drupal.t("<p>Sorry, something goes wrong. Can't connect to server.</p>"));
           });
       });
     }

@@ -189,3 +189,111 @@ function ding_mkws_widget_settings_form_submit($form, $form_state) {
     }
   }
 }
+
+/**
+ * Form handler of content types configuration page.
+ */
+function ding_mkws_types_settings_form($form, &$form_state) {
+  $settings = variable_get('ding_mkws_types', array());
+  $types = array('ding_page', 'ding_news', 'ding_event');
+  $form['types'] = array(
+    '#type' => 'checkboxes',
+    '#options' => array_combine($types, $types),
+    '#default_value' => $settings,
+    '#title' => t('Choose content types.'),
+    '#description' => t('Content types which should have MKWS node widget.'),
+  );
+
+  $form['save'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save'),
+  );
+  return $form;
+}
+
+/**
+ * Submit handler for  content types configuration page.
+ */
+function ding_mkws_types_settings_form_submit($form, &$form_state) {
+  $values = $form_state['values'];
+  $base = field_info_field('field_mkws_node_widget');
+  if (!$base) {
+    $base = array(
+      'active' => 1,
+      'cardinality' => 1,
+      'deleted' => 0,
+      'entity_types' => array(),
+      'field_name' => 'field_mkws_node_widget',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => 0,
+      'module' => 'ding_mkws',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => 0,
+      'type' => 'ding_mkws_node',
+    );
+    field_create_field($base);
+  }
+
+  foreach ($values['types'] as $type => $value) {
+    $instance = field_info_instance('node', 'field_mkws_node_widget', $type);
+    if ($value) {
+      if (!$instance) {
+        $instance = array(
+          'bundle' => $type,
+          'deleted' => 0,
+          'description' => '',
+          'display' => array(
+            'default' => array(
+              'label' => 'hidden',
+              'module' => 'ding_mkws',
+              'settings' => array(),
+              'type' => 'ding_mkws_node_formatter_default',
+              'weight' => 11,
+            ),
+            'search_result' => array(
+              'label' => 'hidden',
+              'settings' => array(),
+              'type' => 'hidden',
+              'weight' => 0,
+            ),
+            'teaser' => array(
+              'label' => 'hidden',
+              'settings' => array(),
+              'type' => 'hidden',
+              'weight' => 0,
+            ),
+            'teaser_highlight' => array(
+              'label' => 'hidden',
+              'settings' => array(),
+              'type' => 'hidden',
+              'weight' => 0,
+            ),
+          ),
+          'entity_type' => 'node',
+          'field_name' => 'field_mkws_node_widget',
+          'label' => 'MKWS node widget',
+          'required' => 0,
+          'settings' => array(
+            'user_register_form' => FALSE,
+          ),
+          'widget' => array(
+            'active' => 0,
+            'module' => 'ding_mkws',
+            'settings' => array(),
+            'type' => 'ding_mkws_node_widget_default',
+            'weight' => 41,
+          ),
+        );
+        field_create_instance($instance);
+      }
+    }
+    elseif($instance) {
+      field_delete_instance($instance);
+    }
+  }
+  variable_set('ding_mkws_types', $values['types']);
+  $form_state['rebuild'] = TRUE;
+}

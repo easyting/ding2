@@ -17,7 +17,10 @@ function ding_mkws_install() {
  */
 function ding_mkws_uninstall() {
   _ding_mkws_delete_pane();
-
+  $base = field_info_field('field_mkws_node_widget');
+  if (!$base) {
+    field_delete_field('field_mkws_node_widget');
+  }
   variable_del('ding_mkws_global');
 }
 

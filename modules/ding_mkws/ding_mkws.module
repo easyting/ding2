@@ -76,6 +76,16 @@ function ding_mkws_menu() {
     'file' => 'ding_mkws.admin.inc',
   );
 
+  $items['admin/config/ding/mkws/types'] = array(
+    'title' => 'MKWS content types',
+    'description' => 'Represents form for adding fields to content types.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ding_mkws_types_settings_form'),
+    'access arguments' => array('administer MKWS settings'),
+    'type' => MENU_LOCAL_TASK,
+    'file' => 'ding_mkws.admin.inc',
+  );
+
   return $items;
 }
 
