@@ -195,10 +195,22 @@ function ding_mkws_widget_settings_form_submit($form, $form_state) {
  */
 function ding_mkws_types_settings_form($form, &$form_state) {
   $settings = variable_get('ding_mkws_types', array());
-  $types = array('ding_page', 'ding_news', 'ding_event');
+  $allowed = array(
+    'ding_page',
+    'ding_news',
+    'ding_event',
+    'ding_campaign',
+  );
+  $options = array();
+  $types = node_type_get_types();
+  foreach ($types as $key => $type) {
+    if (in_array($key, $allowed)) {
+      $options[$key] = $type->name;
+    }
+  }
   $form['types'] = array(
     '#type' => 'checkboxes',
-    '#options' => array_combine($types, $types),
+    '#options' => $options,
     '#default_value' => $settings,
     '#title' => t('Choose content types.'),
     '#description' => t('Content types which should have MKWS node widget.'),
@@ -290,7 +302,7 @@ function ding_mkws_types_settings_form_submit($form, &$form_state) {
         field_create_instance($instance);
       }
     }
-    elseif($instance) {
+    elseif ($instance) {
       field_delete_instance($instance);
     }
   }
