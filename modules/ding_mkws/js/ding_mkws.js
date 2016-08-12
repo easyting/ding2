@@ -97,19 +97,6 @@ var ding_mkws = {
           }
         });
       });
-
-      $('.ding-mkws-panel-widget', context).each(function () {
-        var $this = $(this, context);
-        var hash = $this.data('hash');
-        ding_mkws.init(hash, function (data) {
-          if (data.activeclients == 0) {
-            debugger;
-            var variables = ding_mkws_process.ProcessDataForNodeWidget(data);
-            // var html = $.templates.dingMkwsNodeWidget(variables);
-            // $this.html(html);
-          }
-        });
-      });
     }
   };
 })(jQuery);
