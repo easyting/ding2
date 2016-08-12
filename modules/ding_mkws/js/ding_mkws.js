@@ -42,7 +42,7 @@ var ding_mkws = {
     );
   };
 
-  ding_mkws.init = function (hash, callback) {
+  ding_mkws.init = function (settings, callback) {
     ding_mkws.settings = Drupal.settings.ding_mkws;
 
     var pz2Params = {
@@ -62,8 +62,7 @@ var ding_mkws = {
     ding_mkws.pz2.showFastCount = 1;
 
     ding_mkws.auth(function () {
-        var settings = Drupal.settings[hash];
-        ding_mkws.search(settings.term, settings.amount, settings.resources)
+          ding_mkws.search(settings.term, settings.amount, settings.resources)
       },
       function () {
         //@todo Add some logic in case when failing.
@@ -72,10 +71,19 @@ var ding_mkws = {
 
   Drupal.behaviors.ding_mkws = {
     attach: function (context) {
-      $('.ding-mkws-node-widget', context).each(function () {
+      $('.ding-mkws-widget', context).each(function () {
         var $this = $(this, context);
         var hash = $this.data('hash');
-        ding_mkws.init(hash, function (data) {
+        var process = $this.data('process');
+        var template = $this.data('template');
+        var settings = Drupal.settings[hash];
+
+        /**
+         * if ($this.hasClass('ding-mkws-collection-pane)) {
+         *   var additional = Drupal.settings.ding_mkws_ting_data.
+         * }
+         */
+        ding_mkws.init(settings, function (data) {
           if (data.activeclients == 0) {
 
             /**
@@ -83,8 +91,8 @@ var ding_mkws = {
              *
              * @see ding_mkws.theme.js
              */
-            var variables = ding_mkws_process.ProcessDataForNodeWidget(data);
-            var html = $.templates.dingMkwsNodeWidget(variables);
+            var variables = ding_mkws_process[process](data);
+            var html = $.templates[template](variables);
             $this.html(html);
           }
         });
