@@ -56,7 +56,7 @@ var ding_mkws = {
     );
   };
 
-  ding_mkws.init = function (settings, callback) {
+  ding_mkws.init = function (settings, onShowCallback, failCallback) {
     ding_mkws.settings = Drupal.settings.ding_mkws;
 
     var pz2Params = {
@@ -64,7 +64,7 @@ var ding_mkws = {
       "usesessions": false,
       "autoInit": false,
       "showtime": 500,
-      "onshow": callback,
+      "onshow": onShowCallback,
       "onstat": function (data) {
       },
       "onterm": function (data) {
@@ -78,10 +78,8 @@ var ding_mkws = {
     ding_mkws.auth(function () {
           ding_mkws.search(settings.term, settings.amount, settings.resources)
       },
-      function () {
-        //@todo Add some logic in case when failing.
-      });
-  };
+      failCallback
+    );
 
   Drupal.behaviors.ding_mkws = {
     attach: function (context) {
@@ -100,7 +98,6 @@ var ding_mkws = {
          */
         ding_mkws.init(settings, function (data) {
           if (data.activeclients == 0) {
-
             /**
              * Process data from service and render template.
              *
@@ -110,6 +107,9 @@ var ding_mkws = {
             var html = $.templates[template](variables);
             $this.html(html);
           }
+        },
+        function() {
+          $this.html(Drupal.t("Sorry, something goes wrong. Can't connect to server."))
         });
       });
     }
