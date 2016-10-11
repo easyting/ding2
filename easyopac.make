@@ -305,6 +305,13 @@ projects[ding_event_calendar][download][type] = "git"
 projects[ding_event_calendar][download][url]  = "git@github.com:easySuite/ding_event_calendar.git"
 projects[ding_event_calendar][download][branch]  = "development"
 
+; Ding Reading Club module
+projects[ding_reading_club][type]              = "module"
+projects[ding_reading_club][subdir]            = ""
+projects[ding_reading_club][download][type]    = "git"
+projects[ding_reading_club][download][url]     = "git@github.com:easySuite/ding_reading_club.git"
+projects[ding_reading_club][download][branch]  = "development"
+
 ; Social Services modules and libraries
 projects[social_services][type]             = "module"
 projects[social_services][download][type]   = "git"
