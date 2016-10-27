@@ -239,7 +239,7 @@ function bpi_form_node_form_alter(&$form, &$form_state, $form_id) {
     return;
   }
 
-  $bpi_id = isset($_GET['bpi_id']) ? (string) $_GET['bpi_id'] : FALSE;
+    $bpi_id = isset($_GET['bpi_id']) ? (string) $_GET['bpi_id'] : FALSE;
   $form_state['node']->bpi_id = $bpi_id;
 
   // Checking is_new to see if it's a create node form, not edit.
@@ -334,6 +334,8 @@ function bpi_form_node_form_alter(&$form, &$form_state, $form_id) {
       drupal_add_css(drupal_get_path('module', 'bpi') . '/css/bpi-admin.styles.css', 'file');
       $_SESSION['bpi']['assets'] = $bpi_assets;
     }
+
+    drupal_alter('bpi_syndicate_data', $form, $bpi_content);
   }
 
   // Add BPI fields.
