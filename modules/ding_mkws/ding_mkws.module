@@ -348,5 +348,6 @@ function ding_mkws_bpi_syndicate_data_alter(&$form, &$data) {
         $form['field_mkws_node_widget'][LANGUAGE_NONE][0]['wrapper']['maxrecs'] = $value['maxrecs'];
       }
     }
+    preg_replace('/{{[^}]+}}/', '', $data['body']);
   }
 }
