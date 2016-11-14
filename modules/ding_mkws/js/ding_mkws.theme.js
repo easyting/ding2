@@ -68,9 +68,17 @@ function ting_proxy(data, target) {
         out = {
           target: data.hits[i].location[0]['@name'],
           title: data.hits[i]['md-title'],
-          author: data.hits[i]['md-author'],
           date: data.hits[i]['md-date']
         };
+
+        // Concatenate author names if more than one.
+        if (data.hits[i]['md-author'].length > 1) {
+          out.author = data.hits[i]['md-author'].join(', ');
+        }
+        else {
+          out.author = data.hits[i]['md-author'];
+        }
+
         if (data.hits[i]['md-electronic-url'] !== undefined) {
           url = data.hits[i]['md-electronic-url'][0];
         }
@@ -111,9 +119,17 @@ function ting_proxy(data, target) {
         out = {
           target: data.hits[i].location[0]['@name'],
           title: data.hits[i]['md-title'][0],
-          author: data.hits[i]['md-author'],
           date: data.hits[i]['md-date']
         };
+
+        // Concatenate author names if more than one.
+        if (data.hits[i]['md-author'].length > 1) {
+          out.author = data.hits[i]['md-author'].join(', ');
+        }
+        else {
+          out.author = data.hits[i]['md-author'];
+        }
+
         if (data.hits[i]['md-electronic-url'] !== undefined) {
           url = data.hits[i]['md-electronic-url'][0];
         }
