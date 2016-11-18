@@ -407,8 +407,8 @@ function ding_christmas_get_question_id($input) {
 function ding_christmas_calendar_menu_alter(&$items) {
   $items['node/%quiz_menu/take']['access arguments'][] = $items['node/%quiz_menu/take']['access callback'];
   $items['node/%quiz_menu/take']['access callback'] = 'ding_christmas_calendar_access_callback';
-  $items['node/%quiz_menu/quiz']['access arguments'][] = $items['node/%quiz_menu/quiz']['access callback'];
-  $items['node/%quiz_menu/quiz']['access callback'] = 'ding_christmas_calendar_access_callback';
+  $items['node/%/quiz']['access arguments'][] = $items['node/%/quiz']['access callback'];
+  $items['node/%/quiz']['access callback'] = 'ding_christmas_calendar_access_callback';
 }
 
 /**
