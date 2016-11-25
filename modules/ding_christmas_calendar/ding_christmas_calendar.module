@@ -357,6 +357,9 @@ function ding_christmas_calendar_node_view($node, $view_mode, $langcode) {
 function ding_christmas_calendar_form_alter(&$form, &$form_state, $form_id) {
   switch ($form_id) {
     case 'quiz_question_answering_form':
+      end($form['question']);
+      $key = key($form['question']);
+      $form['question'][$key]['header']['#markup'] = '<h2>' . $form['question'][$key]['question']['#node']->title . '</h2>  ';
       $form['navigation']['submit']['#value'] = t('Save');
       $form['navigation']['skip']['#value'] = t('Back to calendar');
       $form['navigation']['skip']['#submit'] = array('ding_christmas_calendar_back_submit');
