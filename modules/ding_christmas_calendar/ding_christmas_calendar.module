@@ -218,7 +218,7 @@ function ding_christmas_calendar_generate_content($quiz_id, $mobile = FALSE) {
 /**
  * Support function for generating content of Christmas calendar.
  *
- * @param obect $quiz
+ * @param object $quiz
  *   Object of quiz.
  * @param DateTime $current
  *   Represents current date.
@@ -379,6 +379,17 @@ function ding_christmas_calendar_form_alter(&$form, &$form_state, $form_id) {
       $form['navigation']['submit']['#value'] = t('Save');
       $form['navigation']['skip']['#value'] = t('Back to calendar');
       $form['navigation']['skip']['#submit'] = array('ding_christmas_calendar_back_submit');
+
+      // If user already answered to question, disable changing.
+      foreach ($form['question'] as &$item) {
+        $answer = &$item['answer'];
+        $condition1 = $answer['#theme'] == 'multichoice_alternative';
+        $condition2 = $answer['user_answer']['#default_value'] != NULL;
+        if ($condition1 && $condition2) {
+          $answer['user_answer']['#attributes']['disabled'] = 'disabled';
+          $form['navigation']['submit']['#access'] = FALSE;
+        }
+      }
       break;
 
     case 'quiz_take_question_feedback_form':
