@@ -383,11 +383,12 @@ function ding_christmas_calendar_form_alter(&$form, &$form_state, $form_id) {
       // If user already answered to question, disable changing.
       foreach ($form['question'] as &$item) {
         $answer = &$item['answer'];
-        $condition1 = $answer['#theme'] == 'multichoice_alternative';
-        $condition2 = $answer['user_answer']['#default_value'] != NULL;
+        $condition1 = isset($answer['#theme']) && $answer['#theme'] == 'multichoice_alternative';
+        $condition2 = isset($answer['user_answer']) && $answer['user_answer']['#default_value'] != NULL;
         if ($condition1 && $condition2) {
           $answer['user_answer']['#attributes']['disabled'] = 'disabled';
           $form['navigation']['submit']['#access'] = FALSE;
+          $form['#validate'][] = 'ding_christmas_calendar_validate_question';
         }
       }
       break;
@@ -408,6 +409,23 @@ function ding_christmas_calendar_form_alter(&$form, &$form_state, $form_id) {
  */
 function ding_christmas_calendar_back_submit($form, &$form_state) {
   $form_state['redirect'] = 'ding-christmas-calendar';
+}
+
+/**
+ * Validate handler for preventing changing already answered question.
+ */
+function ding_christmas_calendar_validate_question($form, &$form_state) {
+  $element = $form_state['triggering_element'];
+  if ($element['#id'] == 'edit-navigation-submit') {
+    foreach ($form['question'] as &$item) {
+      $answer = &$item['answer'];
+      $condition1 = isset($answer['#theme']) && $answer['#theme'] == 'multichoice_alternative';
+      $condition2 = isset($answer['user_answer']) && $answer['user_answer']['#default_value'] != NULL;
+      if ($condition1 && $condition2) {
+        drupal_set_message(t('Sorry you already answered to question.'), 'warning');
+      }
+    }
+  }
 }
 
 /**
