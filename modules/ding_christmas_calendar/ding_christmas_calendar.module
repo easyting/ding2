@@ -483,3 +483,17 @@ function ding_christmas_calendar_node_access($node, $op, $account) {
     return NODE_ACCESS_DENY;
   }
 }
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function ding_christmas_calendar_views_data_alter(&$data) {
+  $data['quiz_node_results']['answer'] = array(
+    'title' => t('Answer'),
+    'help' => t('When rendered, this field will be replaced by a requested answer.'),
+    'field' => array(
+      'title' => 'Answer',
+      'handler' => 'ding_christmas_calendar_views_handler_field_quiz_question_result_answer',
+    ),
+  );
+}
