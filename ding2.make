@@ -44,6 +44,10 @@ projects[ctools][patch][] = "https://www.drupal.org/files/issues/ctools-readd_ac
 ; Fix PHP7 errors - PHP 4 style constructors - https://www.drupal.org/node/2528736
 projects[ctools][patch][] = "https://www.drupal.org/files/issues/deprecating_php4_style-2528736-23.patch"
 
+projects[customerror][subdir] = "contrib"
+projects[customerror][version] = "1.4"
+projects[customerror][patch][] = "https://www.drupal.org/files/issues/customerror-2836107-switch_between_text_formats.patch"
+
 projects[date][subdir] = "contrib"
 projects[date][version] = "2.8"
 
