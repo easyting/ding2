@@ -497,3 +497,14 @@ function ding_christmas_calendar_views_data_alter(&$data) {
     ),
   );
 }
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function ding_christmas_calendar_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'views_data_alter') {
+    $data = $implementations['ding_christmas_calendar'];
+    unset($implementations['ding_christmas_calendar']);
+    $implementations['ding_christmas_calendar'] = $data;
+  }
+}
