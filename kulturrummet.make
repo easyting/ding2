@@ -4,28 +4,28 @@ api = 2
 ; Thisted theme
 projects[thisted][type] = "theme"
 projects[thisted][download][type] = "git"
-projects[thisted][download][url] = "git@github.com:easyddb/thisted_theme.git"
+projects[thisted][download][url] = "git@github.com:easySuite/thisted_theme.git"
 projects[thisted][download][branch] = "develop"
 
 ; Projects
 projects[thisted_header_image][type] = "module"
 projects[thisted_header_image][download][type] = "git"
-projects[thisted_header_image][download][url] = "git@github.com:easyddb/thisted_header_image.git"
+projects[thisted_header_image][download][url] = "git@github.com:easySuite/thisted_header_image.git"
 projects[thisted_header_image][download][branch] = "develop"
 
 projects[thisted_library_variants][type] = "module"
 projects[thisted_library_variants][download][type] = "git"
-projects[thisted_library_variants][download][url] = "git@github.com:easyddb/thisted_library_variants.git"
+projects[thisted_library_variants][download][url] = "git@github.com:easySuite/thisted_library_variants.git"
 projects[thisted_library_variants][download][branch] = "develop"
 
 projects[thisted_permissions][type] = "module"
 projects[thisted_permissions][download][type] = "git"
-projects[thisted_permissions][download][url] = "git@github.com:easyddb/thisted_permissions.git"
+projects[thisted_permissions][download][url] = "git@github.com:easySuite/thisted_permissions.git"
 projects[thisted_permissions][download][branch] = "develop"
 
 projects[thisted_event_import][type] = "module"
 projects[thisted_event_import][download][type] = "git"
-projects[thisted_event_import][download][url] = "git@github.com:easyddb/thisted_event_import.git"
+projects[thisted_event_import][download][url] = "git@github.com:easySuite/thisted_event_import.git"
 projects[thisted_event_import][download][branch] = "develop"
 
 ; Libraries
