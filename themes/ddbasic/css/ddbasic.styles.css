@@ -8417,8 +8417,6 @@ input#edit-search-block-form--2.spinner {
       background: linear-gradient(#f5cd2e, #e4b90b);
       background-color: #f4c715; }
 
-/* Colors variables
-   ========================================================================== */
 /* Widgets
    ========================================================================== */
 .ding_nodelist-simple,
@@ -8678,7 +8676,8 @@ input#edit-search-block-form--2.spinner {
 
 .ding_nodelist-carousel {
   position: relative;
-  height: 391px; }
+  height: 391px;
+  overflow: inherit; }
   .ding_nodelist-carousel .item {
     position: relative;
     height: 391px; }
@@ -8770,6 +8769,7 @@ input#edit-search-block-form--2.spinner {
     margin: 0 auto; }
   .ding_nodelist-carousel .article_image img,
   .ding_nodelist-carousel .event-image img {
+    display: none;
     margin: 0 auto;
     width: 100%;
     height: auto; }
@@ -8880,8 +8880,7 @@ input#edit-search-block-form--2.spinner {
     height: 100%; }
   .ding_nodelist-single .article_image img,
   .ding_nodelist-single .event-image img {
-    display: block;
-    width: 100%; }
+    display: none; }
   .ding_nodelist-single .item {
     position: relative;
     overflow: hidden; }
@@ -9037,12 +9036,53 @@ fieldset legend {
 .ding_nodelist-taxonomy .item:nth-child(odd) {
   background-color: #efefef; }
 
+.ding_nodelist-taxonomy .event-list-leaf + .item .item-list-image {
+  display: none; }
+
+.ding_nodelist-taxonomy .event-list-leaf + .item .item-details {
+  display: block;
+  padding: 10px;
+  width: calc(100% - 20px);
+  position: relative; }
+
+.ding_nodelist-taxonomy .event-list-leaf + .item .item-title {
+  font-size: 110%;
+  margin-right: 25px; }
+
+.ding_nodelist-taxonomy .event-list-leaf + .item .item-body {
+  display: none; }
+
+.ding_nodelist-taxonomy .event-list-leaf + .item .item-library,
+.ding_nodelist-taxonomy .event-list-leaf + .item .item-date,
+.ding_nodelist-taxonomy .event-list-leaf + .item .item-price {
+  color: rgba(0, 0, 0, 0.7);
+  display: inline-block;
+  margin-right: 5px; }
+
+.ding_nodelist-taxonomy .event-list-leaf + .item .event-arrow-link {
+  display: inline-block;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  margin-top: -10px; }
+
 .ding_nodelist-taxonomy .item {
   background-color: #fbfbfb;
   margin-bottom: 10px;
   overflow: hidden;
   padding: 0;
   width: 100%; }
+  .ding_nodelist-taxonomy .item .item-details {
+    overflow: hidden; }
+  .ding_nodelist-taxonomy .item .date {
+    color: rgba(76, 76, 76, 0.5);
+    display: inline-block;
+    float: none;
+    background: none;
+    padding-left: 0;
+    position: relative;
+    top: 2px;
+    margin-right: 2px; }
   .ding_nodelist-taxonomy .item:first-of-type {
     border-top: 0; }
   .ding_nodelist-taxonomy .item .item-title {
@@ -9053,10 +9093,30 @@ fieldset legend {
     color: #959595; }
   .ding_nodelist-taxonomy .item .item-author {
     display: none; }
-  .ding_nodelist-taxonomy .item .label, .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference a, .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item a, .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference a, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item a, .ding_nodelist-taxonomy .item .subjects .subject, .subjects .ding_nodelist-taxonomy .item .subject, .ding_nodelist-taxonomy .item .news-list .news-label, .news-list .ding_nodelist-taxonomy .item .news-label, .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .field-item, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .field-item {
-    margin-left: 0; }
+  .ding_nodelist-taxonomy .item .author {
+    display: inline-block;
+    position: relative;
+    top: 2px; }
+  .ding_nodelist-taxonomy .item .item-byline > .label, .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > a, .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > a, .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > a, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > a, .ding_nodelist-taxonomy .item .subjects .item-byline > .subject, .subjects .ding_nodelist-taxonomy .item .item-byline > .subject, .ding_nodelist-taxonomy .item .news-list .item-byline > .news-label, .news-list .ding_nodelist-taxonomy .item .item-byline > .news-label, .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .item-byline > .field-item, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .item-byline > .field-item {
+    margin: 0;
+    display: inline-block; }
+    .ding_nodelist-taxonomy .item .item-byline > .label > .label, .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > a > .label, .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > a > .label, .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > a > .label, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > a > .label, .ding_nodelist-taxonomy .item .subjects .item-byline > .subject > .label, .subjects .ding_nodelist-taxonomy .item .item-byline > .subject > .label, .ding_nodelist-taxonomy .item .news-list .item-byline > .news-label > .label, .news-list .ding_nodelist-taxonomy .item .item-byline > .news-label > .label, .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .item-byline > .field-item > .label, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .item-byline > .field-item > .label, .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > .label > a, .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > .label > a, .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > a > a, .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > a > a, .ding_nodelist-taxonomy .item .subjects .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > .subject > a, .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .subjects .item-byline > .subject > a, .subjects .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > .subject > a, .view-node-search-result .list-item .field-type-taxonomy-term-reference .subjects .ding_nodelist-taxonomy .item .item-byline > .subject > a, .ding_nodelist-taxonomy .item .news-list .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > .news-label > a, .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .news-list .item-byline > .news-label > a, .news-list .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > .news-label > a, .view-node-search-result .list-item .field-type-taxonomy-term-reference .news-list .ding_nodelist-taxonomy .item .item-byline > .news-label > a, .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > .field-item > a, .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .item-byline > .field-item > a, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > .field-item > a, .view-node-search-result .list-item .field-type-taxonomy-term-reference .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .item-byline > .field-item > a, .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > .label > a, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > .label > a, .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > a > a, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > a > a, .ding_nodelist-taxonomy .item .subjects .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > .subject > a, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .subjects .item-byline > .subject > a, .subjects .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > .subject > a, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .subjects .ding_nodelist-taxonomy .item .item-byline > .subject > a, .ding_nodelist-taxonomy .item .news-list .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > .news-label > a, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .news-list .item-byline > .news-label > a, .news-list .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > .news-label > a, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .news-list .ding_nodelist-taxonomy .item .item-byline > .news-label > a, .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > .field-item > a, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .item-byline > .field-item > a, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > .field-item > a, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .item-byline > .field-item > a, .ding_nodelist-taxonomy .item .subjects .item-byline > .label > .subject, .subjects .ding_nodelist-taxonomy .item .item-byline > .label > .subject, .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .subjects .item-byline > a > .subject, .subjects .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > a > .subject, .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .subjects .item-byline > a > .subject, .subjects .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > a > .subject, .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .subjects .item-byline > a > .subject, .subjects .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > a > .subject, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .subjects .item-byline > a > .subject, .subjects .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > a > .subject, .ding_nodelist-taxonomy .item .subjects .item-byline > .subject > .subject, .subjects .ding_nodelist-taxonomy .item .item-byline > .subject > .subject, .ding_nodelist-taxonomy .item .news-list .subjects .item-byline > .news-label > .subject, .subjects .ding_nodelist-taxonomy .item .news-list .item-byline > .news-label > .subject, .news-list .ding_nodelist-taxonomy .item .subjects .item-byline > .news-label > .subject, .subjects .news-list .ding_nodelist-taxonomy .item .item-byline > .news-label > .subject, .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .subjects .item-byline > .field-item > .subject, .subjects .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .item-byline > .field-item > .subject, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .subjects .item-byline > .field-item > .subject, .subjects .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .item-byline > .field-item > .subject, .ding_nodelist-taxonomy .item .news-list .item-byline > .label > .news-label, .news-list .ding_nodelist-taxonomy .item .item-byline > .label > .news-label, .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .news-list .item-byline > a > .news-label, .news-list .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > a > .news-label, .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .news-list .item-byline > a > .news-label, .news-list .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > a > .news-label, .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .news-list .item-byline > a > .news-label, .news-list .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > a > .news-label, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .news-list .item-byline > a > .news-label, .news-list .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > a > .news-label, .ding_nodelist-taxonomy .item .subjects .news-list .item-byline > .subject > .news-label, .news-list .ding_nodelist-taxonomy .item .subjects .item-byline > .subject > .news-label, .subjects .ding_nodelist-taxonomy .item .news-list .item-byline > .subject > .news-label, .news-list .subjects .ding_nodelist-taxonomy .item .item-byline > .subject > .news-label, .ding_nodelist-taxonomy .item .news-list .item-byline > .news-label > .news-label, .news-list .ding_nodelist-taxonomy .item .item-byline > .news-label > .news-label, .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .news-list .item-byline > .field-item > .news-label, .news-list .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .item-byline > .field-item > .news-label, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .news-list .item-byline > .field-item > .news-label, .news-list .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .item-byline > .field-item > .news-label, .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .item-byline > .label > .field-item, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .item-byline > .label > .field-item, .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .super-heading .field-name-field-ding-news-library .item-byline > a > .field-item, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > a > .field-item, .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .item-byline > a > .field-item, .super-heading .field-name-field-ding-news-library .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > a > .field-item, .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .super-heading .field-name-field-ding-news-library .item-byline > a > .field-item, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > a > .field-item, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .item-byline > a > .field-item, .super-heading .field-name-field-ding-news-library .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > a > .field-item, .ding_nodelist-taxonomy .item .subjects .super-heading .field-name-field-ding-news-library .item-byline > .subject > .field-item, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .subjects .item-byline > .subject > .field-item, .subjects .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .item-byline > .subject > .field-item, .super-heading .field-name-field-ding-news-library .subjects .ding_nodelist-taxonomy .item .item-byline > .subject > .field-item, .ding_nodelist-taxonomy .item .news-list .super-heading .field-name-field-ding-news-library .item-byline > .news-label > .field-item, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .news-list .item-byline > .news-label > .field-item, .news-list .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .item-byline > .news-label > .field-item, .super-heading .field-name-field-ding-news-library .news-list .ding_nodelist-taxonomy .item .item-byline > .news-label > .field-item, .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .item-byline > .field-item > .field-item, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .item-byline > .field-item > .field-item {
+      display: inline-block;
+      font-size: 100%;
+      margin: 0; }
+      .ding_nodelist-taxonomy .item .item-byline > .label > .label a, .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > a > .label a, .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > a > .label a, .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > a > .label a, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > a > .label a, .ding_nodelist-taxonomy .item .subjects .item-byline > .subject > .label a, .subjects .ding_nodelist-taxonomy .item .item-byline > .subject > .label a, .ding_nodelist-taxonomy .item .news-list .item-byline > .news-label > .label a, .news-list .ding_nodelist-taxonomy .item .item-byline > .news-label > .label a, .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .item-byline > .field-item > .label a, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .item-byline > .field-item > .label a, .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > .label > a a, .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > .label > a a, .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > a > a a, .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > a > a a, .ding_nodelist-taxonomy .item .subjects .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > .subject > a a, .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .subjects .item-byline > .subject > a a, .subjects .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > .subject > a a, .view-node-search-result .list-item .field-type-taxonomy-term-reference .subjects .ding_nodelist-taxonomy .item .item-byline > .subject > a a, .ding_nodelist-taxonomy .item .news-list .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > .news-label > a a, .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .news-list .item-byline > .news-label > a a, .news-list .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > .news-label > a a, .view-node-search-result .list-item .field-type-taxonomy-term-reference .news-list .ding_nodelist-taxonomy .item .item-byline > .news-label > a a, .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > .field-item > a a, .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .item-byline > .field-item > a a, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > .field-item > a a, .view-node-search-result .list-item .field-type-taxonomy-term-reference .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .item-byline > .field-item > a a, .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > .label > a a, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > .label > a a, .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > a > a a, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > a > a a, .ding_nodelist-taxonomy .item .subjects .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > .subject > a a, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .subjects .item-byline > .subject > a a, .subjects .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > .subject > a a, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .subjects .ding_nodelist-taxonomy .item .item-byline > .subject > a a, .ding_nodelist-taxonomy .item .news-list .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > .news-label > a a, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .news-list .item-byline > .news-label > a a, .news-list .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > .news-label > a a, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .news-list .ding_nodelist-taxonomy .item .item-byline > .news-label > a a, .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > .field-item > a a, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .item-byline > .field-item > a a, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > .field-item > a a, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .item-byline > .field-item > a a, .ding_nodelist-taxonomy .item .subjects .item-byline > .label > .subject a, .subjects .ding_nodelist-taxonomy .item .item-byline > .label > .subject a, .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .subjects .item-byline > a > .subject a, .subjects .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > a > .subject a, .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .subjects .item-byline > a > .subject a, .subjects .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > a > .subject a, .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .subjects .item-byline > a > .subject a, .subjects .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > a > .subject a, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .subjects .item-byline > a > .subject a, .subjects .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > a > .subject a, .ding_nodelist-taxonomy .item .subjects .item-byline > .subject > .subject a, .subjects .ding_nodelist-taxonomy .item .item-byline > .subject > .subject a, .ding_nodelist-taxonomy .item .news-list .subjects .item-byline > .news-label > .subject a, .subjects .ding_nodelist-taxonomy .item .news-list .item-byline > .news-label > .subject a, .news-list .ding_nodelist-taxonomy .item .subjects .item-byline > .news-label > .subject a, .subjects .news-list .ding_nodelist-taxonomy .item .item-byline > .news-label > .subject a, .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .subjects .item-byline > .field-item > .subject a, .subjects .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .item-byline > .field-item > .subject a, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .subjects .item-byline > .field-item > .subject a, .subjects .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .item-byline > .field-item > .subject a, .ding_nodelist-taxonomy .item .news-list .item-byline > .label > .news-label a, .news-list .ding_nodelist-taxonomy .item .item-byline > .label > .news-label a, .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .news-list .item-byline > a > .news-label a, .news-list .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > a > .news-label a, .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .news-list .item-byline > a > .news-label a, .news-list .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > a > .news-label a, .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .news-list .item-byline > a > .news-label a, .news-list .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > a > .news-label a, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .news-list .item-byline > a > .news-label a, .news-list .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > a > .news-label a, .ding_nodelist-taxonomy .item .subjects .news-list .item-byline > .subject > .news-label a, .news-list .ding_nodelist-taxonomy .item .subjects .item-byline > .subject > .news-label a, .subjects .ding_nodelist-taxonomy .item .news-list .item-byline > .subject > .news-label a, .news-list .subjects .ding_nodelist-taxonomy .item .item-byline > .subject > .news-label a, .ding_nodelist-taxonomy .item .news-list .item-byline > .news-label > .news-label a, .news-list .ding_nodelist-taxonomy .item .item-byline > .news-label > .news-label a, .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .news-list .item-byline > .field-item > .news-label a, .news-list .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .item-byline > .field-item > .news-label a, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .news-list .item-byline > .field-item > .news-label a, .news-list .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .item-byline > .field-item > .news-label a, .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .item-byline > .label > .field-item a, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .item-byline > .label > .field-item a, .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .super-heading .field-name-field-ding-news-library .item-byline > a > .field-item a, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .view-node-search-result .list-item .field-type-taxonomy-term-reference .item-byline > a > .field-item a, .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .item-byline > a > .field-item a, .super-heading .field-name-field-ding-news-library .view-node-search-result .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > a > .field-item a, .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .super-heading .field-name-field-ding-news-library .item-byline > a > .field-item a, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .item-byline > a > .field-item a, .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .item-byline > a > .field-item a, .super-heading .field-name-field-ding-news-library .ting-reference-reverse-list .list-item .field-type-taxonomy-term-reference .ding_nodelist-taxonomy .item .item-byline > a > .field-item a, .ding_nodelist-taxonomy .item .subjects .super-heading .field-name-field-ding-news-library .item-byline > .subject > .field-item a, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .subjects .item-byline > .subject > .field-item a, .subjects .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .item-byline > .subject > .field-item a, .super-heading .field-name-field-ding-news-library .subjects .ding_nodelist-taxonomy .item .item-byline > .subject > .field-item a, .ding_nodelist-taxonomy .item .news-list .super-heading .field-name-field-ding-news-library .item-byline > .news-label > .field-item a, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .news-list .item-byline > .news-label > .field-item a, .news-list .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .item-byline > .news-label > .field-item a, .super-heading .field-name-field-ding-news-library .news-list .ding_nodelist-taxonomy .item .item-byline > .news-label > .field-item a, .ding_nodelist-taxonomy .item .super-heading .field-name-field-ding-news-library .item-byline > .field-item > .field-item a, .super-heading .field-name-field-ding-news-library .ding_nodelist-taxonomy .item .item-byline > .field-item > .field-item a {
+        margin: 0 2px 0 0; }
+  @media only screen and (max-width: 768px) {
+    .ding_nodelist-taxonomy .item .item-byline {
+      display: none; } }
+  .ding_nodelist-taxonomy .item .news-link {
+    float: right; }
   .ding_nodelist-taxonomy .item .item-body {
-    margin-top: 10px; }
+    margin-top: 1em;
+    margin-bottom: 1em; }
+    @media only screen and (max-width: 768px) {
+      .ding_nodelist-taxonomy .item .item-body {
+        color: rgba(0, 0, 0, 0.7); } }
   @media only screen and (max-width: 768px) {
     .ding_nodelist-taxonomy .item .item-list-image {
       display: none; } }
@@ -9077,6 +9137,899 @@ fieldset legend {
           width: 159px;
           height: auto;
           min-width: 159px; } }
+
+/**
+ * Rolltab
+ */
+/* Spacing variables
+   ========================================================================== */
+/* Variables
+   ========================================================================== */
+/* Wrapper, load and inner
+   ========================================================================== */
+@media only screen and (max-width: 768px) {
+  .ding_nodelist-rolltab-wrapper {
+    background-color: #a32e10;
+    padding: 20px; }
+    .ding_nodelist-rolltab-wrapper .ui-tabs .ui-tabs-panel {
+      width: 100% !important; }
+    .ding_nodelist-rolltab-wrapper .image img {
+      left: 0 !important;
+      transform: translate(0, 0) !important;
+      height: auto !important;
+      width: 100% !important; }
+    .ding_nodelist-rolltab-wrapper span.no-image:before {
+      top: 60% !important; } }
+
+/* Tabroll tabs navigation
+   ========================================================================== */
+.ding_nodelist-rolltab-select-tabs {
+  display: none; }
+
+@media only screen and (max-width: 768px) {
+  .ding_nodelist-rolltab-select-tabs {
+    display: block; } }
+
+/* Tabroll tabs
+   ========================================================================== */
+.ding_nodelist-rolltab-wrapper {
+  position: relative;
+  overflow: hidden; }
+  .ding_nodelist-rolltab-wrapper span.no-image {
+    min-height: 295px;
+    background: #ddd;
+    display: block;
+    position: relative; }
+    .ding_nodelist-rolltab-wrapper span.no-image:before {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      line-height: 32px;
+      color: #fff;
+      content: '\f016';
+      text-align: center;
+      font-family: 'FontAwesome';
+      font-size: 60px;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -150%); }
+  .ding_nodelist-rolltab-wrapper .image img {
+    max-width: none;
+    width: auto;
+    position: relative;
+    left: 50%;
+    height: 295px;
+    transform: translate(-50%, 0%); }
+  .ding_nodelist-rolltab-wrapper .ui-tabs {
+    overflow: hidden; }
+    .ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav {
+      float: left;
+      width: 25%;
+      margin-left: 0%;
+      margin-right: -25%;
+      padding-left: 10px;
+      padding-right: 10px;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      box-sizing: border-box;
+      word-wrap: break-word;
+      *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+      _display: inline;
+      _overflow: hidden;
+      _overflow-y: visible;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      z-index: 1;
+      width: 25%;
+      height: 100%;
+      position: absolute;
+      top: 0; }
+      .ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li {
+        background: #fff;
+        display: block;
+        overflow: hidden;
+        float: none;
+        white-space: normal;
+        margin: 0px;
+        padding: 0px;
+        height: 20%;
+        border-top: 1px solid #ccc; }
+        .ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li:hover {
+          border-top: 1px solid #00caff; }
+        .ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li a {
+          cursor: pointer; }
+          .ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li a:hover {
+            background: #00caff; }
+            .ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li a:hover span {
+              color: #fff; }
+        .ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li:first-child {
+          border-top: none; }
+        .ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li.ui-tabs-selected {
+          background: rgba(0, 0, 0, 0.6); }
+          .ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li.ui-tabs-selected a {
+            color: #fff; }
+      .ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav a {
+        height: 100%;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        text-align: center; }
+        .ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav a:before {
+          content: "";
+          display: inline-block;
+          height: 100%;
+          vertical-align: middle; }
+    .ding_nodelist-rolltab-wrapper .ui-tabs .ui-tabs-panel {
+      float: right;
+      width: 75%;
+      margin-right: 0%;
+      margin-left: -75%;
+      padding-left: 10px;
+      padding-right: 10px;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      box-sizing: border-box;
+      word-wrap: break-word;
+      *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+      _display: inline;
+      _overflow: hidden;
+      _overflow-y: visible;
+      position: relative;
+      margin: 0;
+      padding: 0;
+      width: 75%; }
+      .ding_nodelist-rolltab-wrapper .ui-tabs .ui-tabs-panel .info {
+        z-index: 1;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        padding: 10px;
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        height: auto;
+        width: 93%; }
+        .ding_nodelist-rolltab-wrapper .ui-tabs .ui-tabs-panel .info h3 a {
+          color: #fff; }
+  @media only screen and (max-width: 768px) {
+    .ding_nodelist-rolltab-wrapper .ui-tabs-nav {
+      display: none; }
+    .ding_nodelist-rolltab-wrapper .ui-tabs .ui-tabs-panel {
+      float: left;
+      width: 100%;
+      margin-left: 0%;
+      margin-right: -100%;
+      padding-left: 10px;
+      padding-right: 10px;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      box-sizing: border-box;
+      word-wrap: break-word;
+      *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+      _display: inline;
+      _overflow: hidden;
+      _overflow-y: visible;
+      margin: 0 0 20px 0;
+      padding: 0; }
+      .ding_nodelist-rolltab-wrapper .ui-tabs .ui-tabs-panel .info {
+        position: relative;
+        width: auto;
+        right: 0;
+        bottom: 0; } }
+
+/* Variables
+   ========================================================================== */
+.ding_nodelist-promoted_nodes {
+  width: inherit; }
+  .ding_nodelist-promoted_nodes .first-row,
+  .ding_nodelist-promoted_nodes .last-row {
+    display: block;
+    height: 420px; }
+  .ding_nodelist-promoted_nodes .first-row {
+    margin-bottom: 20px; }
+  .ding_nodelist-promoted_nodes .ding_nodelist-pn-item {
+    padding: 25px;
+    position: relative;
+    box-sizing: border-box; }
+    .ding_nodelist-promoted_nodes .ding_nodelist-pn-item h3 {
+      font-size: 180%;
+      line-height: 120%; }
+      @media only screen and (max-width: 768px) {
+        .ding_nodelist-promoted_nodes .ding_nodelist-pn-item h3 {
+          font-size: 100%; } }
+      .ding_nodelist-promoted_nodes .ding_nodelist-pn-item h3 a {
+        opacity: 1;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        transition: opacity 0.2s; }
+        .ding_nodelist-promoted_nodes .ding_nodelist-pn-item h3 a:hover {
+          opacity: 0.8; }
+    .ding_nodelist-promoted_nodes .ding_nodelist-pn-item .item-body,
+    .ding_nodelist-promoted_nodes .ding_nodelist-pn-item .item-date,
+    .ding_nodelist-promoted_nodes .ding_nodelist-pn-item .item-price,
+    .ding_nodelist-promoted_nodes .ding_nodelist-pn-item .library {
+      font-size: 150%;
+      line-height: 120%; }
+      @media only screen and (max-width: 768px) {
+        .ding_nodelist-promoted_nodes .ding_nodelist-pn-item .item-body,
+        .ding_nodelist-promoted_nodes .ding_nodelist-pn-item .item-date,
+        .ding_nodelist-promoted_nodes .ding_nodelist-pn-item .item-price,
+        .ding_nodelist-promoted_nodes .ding_nodelist-pn-item .library {
+          font-size: 100%; } }
+    .ding_nodelist-promoted_nodes .ding_nodelist-pn-item .item-body {
+      max-height: 86px;
+      overflow: hidden; }
+    .ding_nodelist-promoted_nodes .ding_nodelist-pn-item .library a {
+      text-decoration: underline;
+      opacity: 0.8;
+      transition: opacity 0.2s; }
+      .ding_nodelist-promoted_nodes .ding_nodelist-pn-item .library a:hover {
+        opacity: 1; }
+    .ding_nodelist-promoted_nodes .ding_nodelist-pn-item .read-more {
+      position: absolute;
+      bottom: 20px; }
+      .ding_nodelist-promoted_nodes .ding_nodelist-pn-item .read-more a {
+        font-size: 16px;
+        opacity: 1;
+        transition: opacity 0.2s; }
+        .ding_nodelist-promoted_nodes .ding_nodelist-pn-item .read-more a:hover {
+          opacity: 0.8; }
+  .ding_nodelist-promoted_nodes .read-more a {
+    display: inline-block;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 45px; }
+    .ding_nodelist-promoted_nodes .read-more a:hover {
+      text-decoration: none; }
+  .ding_nodelist-promoted_nodes .first-left-block {
+    color: #fff;
+    height: 420px;
+    float: left;
+    width: 66.66667%;
+    margin-left: 0%;
+    margin-right: -66.66667%;
+    padding-left: 10px;
+    padding-right: 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+    _display: inline;
+    _overflow: hidden;
+    _overflow-y: visible;
+    padding-left: 0;
+    padding-right: 20px; }
+    .ding_nodelist-promoted_nodes .first-left-block a {
+      color: #fff; }
+    .ding_nodelist-promoted_nodes .first-left-block .read-more a {
+      background: #009fe0;
+      color: #fff; }
+    @media only screen and (max-width: 768px) {
+      .ding_nodelist-promoted_nodes .first-left-block {
+        float: left;
+        width: 100%;
+        margin-left: 0%;
+        margin-right: -100%;
+        padding-left: 10px;
+        padding-right: 10px;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        box-sizing: border-box;
+        word-wrap: break-word;
+        *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+        _display: inline;
+        _overflow: hidden;
+        _overflow-y: visible;
+        clear: both;
+        height: 360px;
+        margin-bottom: 10px;
+        padding: 0; } }
+  .ding_nodelist-promoted_nodes .first-right-block {
+    background: #cdda6b;
+    color: #000;
+    height: 420px;
+    float: right;
+    width: 33.33333%;
+    margin-right: 0%;
+    margin-left: -33.33333%;
+    padding-left: 10px;
+    padding-right: 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+    _display: inline;
+    _overflow: hidden;
+    _overflow-y: visible; }
+    .ding_nodelist-promoted_nodes .first-right-block a {
+      color: #000; }
+    .ding_nodelist-promoted_nodes .first-right-block .read-more a {
+      background: #009fe0;
+      color: #fff; }
+    @media only screen and (max-width: 768px) {
+      .ding_nodelist-promoted_nodes .first-right-block {
+        float: left;
+        width: 100%;
+        margin-left: 0%;
+        margin-right: -100%;
+        padding-left: 10px;
+        padding-right: 10px;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        box-sizing: border-box;
+        word-wrap: break-word;
+        *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+        _display: inline;
+        _overflow: hidden;
+        _overflow-y: visible;
+        clear: both;
+        height: 360px;
+        margin-bottom: 10px; } }
+  .ding_nodelist-promoted_nodes .last-left-block {
+    background: #6a7ebc;
+    color: #fff;
+    height: 420px;
+    float: left;
+    float: left;
+    width: 33.33333%;
+    margin-left: 0%;
+    margin-right: -33.33333%;
+    padding-left: 10px;
+    padding-right: 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+    _display: inline;
+    _overflow: hidden;
+    _overflow-y: visible; }
+    .ding_nodelist-promoted_nodes .last-left-block a {
+      color: #fff; }
+    .ding_nodelist-promoted_nodes .last-left-block .read-more a {
+      background: #fff;
+      color: #009fe0; }
+    @media only screen and (max-width: 768px) {
+      .ding_nodelist-promoted_nodes .last-left-block {
+        float: left;
+        width: 100%;
+        margin-left: 0%;
+        margin-right: -100%;
+        padding-left: 10px;
+        padding-right: 10px;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        box-sizing: border-box;
+        word-wrap: break-word;
+        *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+        _display: inline;
+        _overflow: hidden;
+        _overflow-y: visible;
+        clear: both;
+        height: 360px;
+        margin-bottom: 10px; } }
+  .ding_nodelist-promoted_nodes .last-right-block {
+    color: #fff;
+    float: right;
+    width: 66.66667%;
+    margin-right: 0%;
+    margin-left: -66.66667%;
+    padding-left: 10px;
+    padding-right: 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+    _display: inline;
+    _overflow: hidden;
+    _overflow-y: visible;
+    height: 420px;
+    padding-left: 20px;
+    padding-right: 0; }
+    .ding_nodelist-promoted_nodes .last-right-block a {
+      color: #fff; }
+    .ding_nodelist-promoted_nodes .last-right-block .read-more a {
+      background: #009fe0;
+      color: #fff; }
+    @media only screen and (max-width: 768px) {
+      .ding_nodelist-promoted_nodes .last-right-block {
+        float: left;
+        width: 100%;
+        margin-left: 0%;
+        margin-right: -100%;
+        padding-left: 10px;
+        padding-right: 10px;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        box-sizing: border-box;
+        word-wrap: break-word;
+        *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+        _display: inline;
+        _overflow: hidden;
+        _overflow-y: visible;
+        clear: both;
+        height: 360px;
+        margin-bottom: 10px;
+        padding: 0; } }
+  .ding_nodelist-promoted_nodes .ding_nodelist-pn-item {
+    height: 100%; }
+
+.ding_nodelist-node_blocks {
+  margin-left: -10px;
+  margin-right: -10px;
+  width: inherit; }
+  .ding_nodelist-node_blocks .ding_nodelist-items .nb-item {
+    height: 250px;
+    margin-bottom: 10px;
+    color: #fff;
+    /* text-shadow: 0 0 1px rgba(0,0,0,0.3); */
+    *position: relative;
+    *zoom: 1; }
+    .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:before, .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:after {
+      content: "";
+      display: table; }
+    .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:after {
+      clear: both; }
+    .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(1) {
+      float: left;
+      width: 25%;
+      margin-left: 0%;
+      margin-right: -25%;
+      padding-left: 10px;
+      padding-right: 10px;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      box-sizing: border-box;
+      word-wrap: break-word;
+      *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+      _display: inline;
+      _overflow: hidden;
+      _overflow-y: visible; }
+    .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(2) {
+      float: left;
+      width: 25%;
+      margin-left: 25%;
+      margin-right: -50%;
+      padding-left: 10px;
+      padding-right: 10px;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      box-sizing: border-box;
+      word-wrap: break-word;
+      *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+      _display: inline;
+      _overflow: hidden;
+      _overflow-y: visible; }
+    .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(3) {
+      float: left;
+      width: 25%;
+      margin-left: 50%;
+      margin-right: -75%;
+      padding-left: 10px;
+      padding-right: 10px;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      box-sizing: border-box;
+      word-wrap: break-word;
+      *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+      _display: inline;
+      _overflow: hidden;
+      _overflow-y: visible; }
+    .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(4) {
+      float: right;
+      width: 25%;
+      margin-right: 0%;
+      margin-left: -25%;
+      padding-left: 10px;
+      padding-right: 10px;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      box-sizing: border-box;
+      word-wrap: break-word;
+      *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+      _display: inline;
+      _overflow: hidden;
+      _overflow-y: visible; }
+    .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(5) {
+      float: left;
+      width: 25%;
+      margin-left: 0%;
+      margin-right: -25%;
+      padding-left: 10px;
+      padding-right: 10px;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      box-sizing: border-box;
+      word-wrap: break-word;
+      *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+      _display: inline;
+      _overflow: hidden;
+      _overflow-y: visible;
+      margin-top: 270px; }
+    .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(6) {
+      float: left;
+      width: 25%;
+      margin-left: 25%;
+      margin-right: -50%;
+      padding-left: 10px;
+      padding-right: 10px;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      box-sizing: border-box;
+      word-wrap: break-word;
+      *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+      _display: inline;
+      _overflow: hidden;
+      _overflow-y: visible;
+      margin-top: 270px; }
+    .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(7) {
+      float: left;
+      width: 25%;
+      margin-left: 50%;
+      margin-right: -75%;
+      padding-left: 10px;
+      padding-right: 10px;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      box-sizing: border-box;
+      word-wrap: break-word;
+      *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+      _display: inline;
+      _overflow: hidden;
+      _overflow-y: visible;
+      margin-top: 270px; }
+    .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(8) {
+      float: right;
+      width: 25%;
+      margin-right: 0%;
+      margin-left: -25%;
+      padding-left: 10px;
+      padding-right: 10px;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      box-sizing: border-box;
+      word-wrap: break-word;
+      *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+      _display: inline;
+      _overflow: hidden;
+      _overflow-y: visible;
+      margin-top: 270px; }
+    .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .nb-inner {
+      padding: 10px;
+      height: 230px; }
+    .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .nb-library a {
+      color: #fff;
+      opacity: 0.7;
+      text-decoration: underline;
+      text-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+      transition: opacity 0.2s; }
+      .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .nb-library a:hover {
+        opacity: 1; }
+    .ding_nodelist-node_blocks .ding_nodelist-items .nb-item h3 a {
+      color: #fff;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+      opacity: 1;
+      transition: opacity 0.2s; }
+      .ding_nodelist-node_blocks .ding_nodelist-items .nb-item h3 a:hover {
+        opacity: 0.7; }
+    .ding_nodelist-node_blocks .ding_nodelist-items .nb-item.ding_event h3 a:before {
+      display: inline-block;
+      font-size: 21px;
+      padding-right: 6px;
+      color: #fff;
+      content: '\f073';
+      font-family: 'FontAwesome'; }
+    .ding_nodelist-node_blocks .ding_nodelist-items .nb-item.ding_news h3 a:before {
+      display: inline-block;
+      font-size: 21px;
+      padding-right: 6px;
+      color: #fff;
+      content: '\f036';
+      font-family: 'FontAwesome'; }
+    .ding_nodelist-node_blocks .ding_nodelist-items .nb-item.ding_event .nb-inner {
+      background: #0093ba;
+      color: #fff; }
+    .ding_nodelist-node_blocks .ding_nodelist-items .nb-item.ding_news .nb-inner {
+      background: #ea6621;
+      color: #fff; }
+    @media only screen and (max-width: 768px) {
+      .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(1), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(2), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(3), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(4), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(5), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(6), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(7), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(8) {
+        float: left;
+        width: 100%;
+        margin-left: 0%;
+        margin-right: -100%;
+        padding-left: 10px;
+        padding-right: 10px;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        box-sizing: border-box;
+        word-wrap: break-word;
+        *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+        _display: inline;
+        _overflow: hidden;
+        _overflow-y: visible;
+        clear: both;
+        margin-top: 10px; } }
+
+.secondary-content .ding_nodelist-items .nb-item:nth-child(1),
+.col9 .ding_nodelist-items .nb-item:nth-child(1) {
+  float: left;
+  width: 33.33333%;
+  margin-left: 0%;
+  margin-right: -33.33333%;
+  padding-left: 10px;
+  padding-right: 10px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible; }
+
+.secondary-content .ding_nodelist-items .nb-item:nth-child(2),
+.col9 .ding_nodelist-items .nb-item:nth-child(2) {
+  float: left;
+  width: 33.33333%;
+  margin-left: 33.33333%;
+  margin-right: -66.66667%;
+  padding-left: 10px;
+  padding-right: 10px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible; }
+
+.secondary-content .ding_nodelist-items .nb-item:nth-child(3),
+.col9 .ding_nodelist-items .nb-item:nth-child(3) {
+  float: right;
+  width: 33.33333%;
+  margin-right: 0%;
+  margin-left: -33.33333%;
+  padding-left: 10px;
+  padding-right: 10px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible; }
+
+.secondary-content .ding_nodelist-items .nb-item:nth-child(4),
+.col9 .ding_nodelist-items .nb-item:nth-child(4) {
+  float: left;
+  width: 33.33333%;
+  margin-left: 0%;
+  margin-right: -33.33333%;
+  padding-left: 10px;
+  padding-right: 10px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+  margin-top: 270px; }
+
+.secondary-content .ding_nodelist-items .nb-item:nth-child(5),
+.col9 .ding_nodelist-items .nb-item:nth-child(5) {
+  float: left;
+  width: 33.33333%;
+  margin-left: 33.33333%;
+  margin-right: -66.66667%;
+  padding-left: 10px;
+  padding-right: 10px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+  margin-top: 270px; }
+
+.secondary-content .ding_nodelist-items .nb-item:nth-child(6),
+.col9 .ding_nodelist-items .nb-item:nth-child(6) {
+  float: right;
+  width: 33.33333%;
+  margin-right: 0%;
+  margin-left: -33.33333%;
+  padding-left: 10px;
+  padding-right: 10px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+  margin-top: 270px; }
+
+.secondary-content .ding_nodelist-items .nb-item:nth-child(7), .secondary-content .ding_nodelist-items .nb-item:nth-child(8),
+.col9 .ding_nodelist-items .nb-item:nth-child(7),
+.col9 .ding_nodelist-items .nb-item:nth-child(8) {
+  display: none; }
+
+/* More links styles */
+.ding_nodelist .more-links {
+  background: #ccc;
+  display: block;
+  clear: both;
+  padding: 5px 10px; }
+  .ding_nodelist .more-links ul {
+    margin: 0;
+    padding: 0; }
+    .ding_nodelist .more-links ul li {
+      display: inline-block;
+      font-size: 90%;
+      margin: 0 10px 0 0; }
+      .ding_nodelist .more-links ul li a {
+        color: #333; }
+        .ding_nodelist .more-links ul li a:before {
+          color: #333;
+          content: "\f0c1";
+          display: inline-block;
+          font: normal normal normal 14px/1 FontAwesome;
+          font-size: inherit;
+          margin-right: 5px;
+          text-rendering: auto;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale; }
+
+.ding_nodelist-promoted_nodes .more-links {
+  margin-top: 20px; }
+
+.ding_nodelist-node_blocks .more-links {
+  margin: 10px 10px 0; }
+
+/* Video preview styles */
+.ding_nodelist .has-video .media-container {
+  position: absolute;
+  left: -10px;
+  right: -10px;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%; }
+  .ding_nodelist .has-video .media-container .media-content {
+    width: 100%;
+    height: 100%; }
+    .ding_nodelist .has-video .media-container .media-content iframe {
+      width: calc(100% + 21px);
+      height: 100%; }
+    .ding_nodelist .has-video .media-container .media-content:empty {
+      display: none; }
+  .ding_nodelist .has-video .media-container .close-media {
+    position: absolute;
+    z-index: 100;
+    color: #fff;
+    top: 10px;
+    left: 20px;
+    display: none;
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    border-radius: 100px;
+    cursor: pointer;
+    text-align: center; }
+    .ding_nodelist .has-video .media-container .close-media i {
+      color: #00caff;
+      line-height: 30px; }
+      .ding_nodelist .has-video .media-container .close-media i:before {
+        content: "\f00d";
+        font-size: 100%;
+        line-height: 120%; }
+
+.ding_nodelist .media-play {
+  font-size: 180%;
+  position: absolute;
+  right: 10px;
+  bottom: 22px;
+  background: #fff;
+  border-radius: 100px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  cursor: pointer;
+  z-index: 50; }
+  .ding_nodelist .media-play i {
+    line-height: 40px;
+    color: #00caff; }
+    .ding_nodelist .media-play i:before {
+      content: "\f144"; }
+
+.ding_nodelist.ding_nodelist-promoted_nodes .last-right-block .media-container {
+  left: 0; }
+
+.ding_nodelist.ding_nodelist-minimal_display {
+  padding: 15px 15px 3px 15px;
+  background: #fff;
+  clear: both;
+  width: auto !important;
+  overflow: hidden; }
+  .ding_nodelist.ding_nodelist-minimal_display .ding_nodelist-title {
+    font-size: 160%; }
+  .ding_nodelist.ding_nodelist-minimal_display .more-links {
+    background: #fff;
+    float: right;
+    padding: 0; }
+    .ding_nodelist.ding_nodelist-minimal_display .more-links ul li {
+      margin: 0; }
+      .ding_nodelist.ding_nodelist-minimal_display .more-links ul li a {
+        font-size: 16px;
+        color: #00b7e7; }
+        .ding_nodelist.ding_nodelist-minimal_display .more-links ul li a:before {
+          content: ""; }
+
+.ding_nodelist-minimal-items .minimal-item {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: -.46em; }
+  .ding_nodelist-minimal-items .minimal-item .minimal-title {
+    float: left;
+    padding: 6px 10px 0 10px; }
+    .ding_nodelist-minimal-items .minimal-item .minimal-title a {
+      display: inline-block;
+      font-weight: bold;
+      color: #000; }
+  .ding_nodelist-minimal-items .minimal-item .minimal-date {
+    float: right;
+    padding: 10px 20px 0 0;
+    color: rgba(0, 0, 0, 0.87); }
+
+.ding_nodelist-minimal-items .even {
+  background: #f2f2f2; }
+
+.ding_nodelist-minimal-items .odd {
+  background: #e8e8e8; }
+
+.tertiary-content .pane-ding-nodelist
+.ding_nodelist-minimal_display
+.minimal-item .minimal-title a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 240px !important; }
 
 /* Base tables
    ========================================================================== */
