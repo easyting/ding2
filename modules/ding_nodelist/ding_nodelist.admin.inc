@@ -32,7 +32,7 @@ function ding_nodelist_settings_form() {
     '#type' => 'select',
     '#options' => $options,
     '#title' => t('Default cache life time'),
-    '#default_value' => variable_get('ding_nodelist_cache_default_time', NL_CACHE_LIFETIME),
+    '#default_value' => variable_get('ding_nodelist_cache_default_time', DING_NODELIST_CACHE_LIFETIME),
     '#description' => t('Lists will be cached by default for this period of time (seconds)'),
   );
 
@@ -44,8 +44,8 @@ function ding_nodelist_settings_form() {
   );
 
   $autoscrolling_widgets = array(
-    NL_WIDGET_CAROUSEL => array('Carousel', 3000),
-    NL_WIDGET_HOR_ACCORDION => array('Horizontal accordion', 3000),
+    DING_NODELIST_WIDGET_CAROUSEL => array('Carousel', 3000),
+    DING_NODELIST_WIDGET_HOR_ACCORDION => array('Horizontal accordion', 3000),
   );
 
   foreach ($autoscrolling_widgets as $widget => $conf) {
@@ -105,7 +105,7 @@ function ding_nodelist_templates_form($form, &$form_state) {
     // Visible in list of templates?
     $form['templates'][$template_name]['visible'] = array(
       '#type' => 'checkbox',
-      '#default_value' => $template['status'] == NL_TPL_ACTIVE ? TRUE : FALSE,
+      '#default_value' => $template['status'] == DING_NODELIST_TPL_ACTIVE ? TRUE : FALSE,
     );
   }
 
@@ -124,7 +124,7 @@ function ding_nodelist_templates_form_submit($form, &$form_state) {
   foreach ($form_state['values']['templates'] as $template) {
     $tpl_record = array(
       'title' => $template['title'],
-      'status' => $template['visible'] ? NL_TPL_ACTIVE : NL_TPL_HIDDEN,
+      'status' => $template['visible'] ? DING_NODELIST_TPL_ACTIVE : DING_NODELIST_TPL_HIDDEN,
       'widget' => $template['widget'],
     );
     db_update('ding_nodelist_templates')->fields($tpl_record)
@@ -156,13 +156,13 @@ function ding_nodelist_trim_content($form, &$form_state) {
     $form['trim_content'][$widget]['title_trim'] = array(
       '#type' => 'textfield',
       '#size' => 3,
-      '#default_value' => variable_get('ding_nodelist_' . $widget . '_title_trim', NL_TITLE_SIZE),
+      '#default_value' => variable_get('ding_nodelist_' . $widget . '_title_trim', DING_NODELIST_TITLE_SIZE),
     );
 
     $form['trim_content'][$widget]['teaser_trim'] = array(
       '#type' => 'textfield',
       '#size' => '3',
-      '#default_value' => variable_get('ding_nodelist_' . $widget . '_teaser_trim', NL_BODY_SIZE),
+      '#default_value' => variable_get('ding_nodelist_' . $widget . '_teaser_trim', DING_NODELIST_BODY_SIZE),
     );
   }
 
