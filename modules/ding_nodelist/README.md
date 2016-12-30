@@ -1,7 +1,7 @@
 Ding nodelist
 ===========
 
-Nodelist module for Alpha project. Allows to build customizeable lists
+Nodelist module allows to build customizable lists
 of content using different widgets.
 
 Information for developers:
