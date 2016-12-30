@@ -17,10 +17,38 @@
     <?php endif; ?>
     <div class="ding_nodelist-items">
       <?php
+      $groups = array();
       foreach ($items as $node) {
-        print theme($template, array('item' => $node, 'conf' => $conf));
+        $ed = date('d-m-Y', _ding_nodelist_get_event_date($node));
+        if (!isset($groups[$ed])) {
+          $groups[$ed] = array($node);
+        }
+        else {
+          $groups[$ed][] = $node;
+        }
+      }
+
+      foreach ($groups as $group) {
+        $group[0]->has_header = TRUE;
+        foreach ($group as $k => $v) {
+          print theme($group[$k]->item_template, array(
+            'item' => $group[$k],
+            'conf' => $conf,
+          ));
+        }
       }
       ?>
     </div>
+    <?php if (!empty($links)): ?>
+      <div class="more-links">
+        <ul>
+          <?php foreach ($links as $key => $bottom) : ?>
+            <li>
+              <?php print l(t($bottom['text']), $bottom['links']); ?>
+            </li>
+          <?php endforeach; ?>
+        </ul>
+      </div>
+    <?php endif; ?>
   </div>
 <?php endif; ?>
