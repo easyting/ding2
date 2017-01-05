@@ -9036,30 +9036,30 @@ fieldset legend {
 .ding_nodelist-taxonomy .item:nth-child(odd) {
   background-color: #efefef; }
 
-.ding_nodelist-taxonomy .event-list-leaf + .item .item-list-image {
+.ding_nodelist-taxonomy .event-list-leaf ~ .item .item-list-image {
   display: none; }
 
-.ding_nodelist-taxonomy .event-list-leaf + .item .item-details {
+.ding_nodelist-taxonomy .event-list-leaf ~ .item .item-details {
   display: block;
   padding: 10px;
   width: calc(100% - 20px);
   position: relative; }
 
-.ding_nodelist-taxonomy .event-list-leaf + .item .item-title {
+.ding_nodelist-taxonomy .event-list-leaf ~ .item .item-title {
   font-size: 110%;
   margin-right: 25px; }
 
-.ding_nodelist-taxonomy .event-list-leaf + .item .item-body {
+.ding_nodelist-taxonomy .event-list-leaf ~ .item .item-body {
   display: none; }
 
-.ding_nodelist-taxonomy .event-list-leaf + .item .item-library,
-.ding_nodelist-taxonomy .event-list-leaf + .item .item-date,
-.ding_nodelist-taxonomy .event-list-leaf + .item .item-price {
+.ding_nodelist-taxonomy .event-list-leaf ~ .item .item-library,
+.ding_nodelist-taxonomy .event-list-leaf ~ .item .item-date,
+.ding_nodelist-taxonomy .event-list-leaf ~ .item .item-price {
   color: rgba(0, 0, 0, 0.7);
   display: inline-block;
   margin-right: 5px; }
 
-.ding_nodelist-taxonomy .event-list-leaf + .item .event-arrow-link {
+.ding_nodelist-taxonomy .event-list-leaf ~ .item .event-arrow-link {
   display: inline-block;
   position: absolute;
   right: 15px;
