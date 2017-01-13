@@ -1966,7 +1966,7 @@ button.button {
   border-radius: 8px;
   background: #00cafd;
   min-width: 450px;
-  max-width: inherit;
+  max-width: 450px;
   /* Media queries */ }
   @media only screen and (max-width: 768px) {
     .ui-dialog {
