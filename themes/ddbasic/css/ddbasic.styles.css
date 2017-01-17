@@ -604,7 +604,7 @@ legend {
 /**
  * Framework
  *
- * Shared framework styling 
+ * Shared framework styling
  *
  * @author magnify
  */
@@ -1995,7 +1995,6 @@ button.button {
     float: right;
     right: 5px;
     padding: 0;
-    top: 10px;
     width: auto;
     background: none;
     border: none; }
