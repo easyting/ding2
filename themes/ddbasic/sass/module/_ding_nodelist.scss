@@ -1026,7 +1026,7 @@ fieldset {
     background-color: $gray-light;
   }
 
-  .event-list-leaf + .item {
+  .event-list-leaf ~ .item {
     .item-list-image {
       display: none;
     }
