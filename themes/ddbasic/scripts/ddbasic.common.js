@@ -87,11 +87,11 @@
     $('.primary-content video, .primary-content audio').on('loadedmetadata', function (i) {
       // If video size bigger then window size, it should be resized.
       var video = i.currentTarget;
-      var width = $(this).parent().width() * 0.8;
+      var width = $(this).parent().width();
 
 
       if (video.videoWidth > width) {
-        $(this).width(width * 0.9);
+        $(this).width(width);
       }
     });
 

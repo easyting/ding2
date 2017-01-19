@@ -32,7 +32,7 @@
     setState: function (response) {
       var self = this;
       if (this.dialogs[response.name] == undefined) {
-        this.dialogs[response.name] = $('<div style="display: inline-block;" class="ding-popup-content"></div>').dialog({
+        this.dialogs[response.name] = $('<div class="ding-popup-content"></div>').dialog({
           autoOpen: false,
           modal: true,
           width: 'auto',
@@ -74,16 +74,16 @@
         $('.ding-popup-content video, .ding-popup-content audio').on('loadedmetadata', function (i) {
           // If video size bigger then window size, it should be resized.
           var video = i.currentTarget;
-          var width = $(window).width() * 0.8;
+          var width = $(window).width();
           if (video.videoWidth > width) {
-            $(this).width(width * 0.9);
+            $(this).width(width);
           }
-          Drupal.ding_popup.dialogs[response.name].dialog('option', {'width': video.videoWidth * 1.07});
+          Drupal.ding_popup.dialogs[response.name].dialog('option', {'width': video.videoWidth});
 
           Drupal.ding_popup.dialogs[response.name].dialog("option", "position", {
             my: "center",
             at: "center",
-            of: window,
+            of: window
           });
         });
       }
