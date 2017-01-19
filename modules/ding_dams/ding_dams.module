@@ -88,7 +88,7 @@ function ding_dams_popup_callback($ajax, $fid) {
       $element = file_entity_file_formatter_file_field_view($file, $display, LANGUAGE_NONE);
       $output = render($element);
       $commands = array();
-      $commands[] = ajax_command_ding_popup("easddb_dams_popup_{$fid}", $file->filename, $output, array(
+      $commands[] = ajax_command_ding_popup("ding_dams_popup_{$fid}", $file->filename, $output, array(
         'extra_data' => array(
           'fit_popup' => TRUE,
         ),
@@ -126,6 +126,7 @@ function ding_dams_page_alter(&$page) {
   ctools_modal_add_js();
 
   if ($media_page) {
+    // Use media page for the dams theming.
     $page['#theme'] = 'media_dialog_page';
   }
 }
@@ -164,7 +165,7 @@ function ding_dams_form_alter(&$form, &$form_state, $form_id) {
  */
 function ding_dams_add_upload_submit($form, $form_state) {
   // If file uploaded form DAMS page redirect to it, not to default page.
-  $_GET['destination'] = 'admin/ding_dams_media_manager';
+  $form_state['redirect'] = 'admin/ding_dams_media_manager';
 }
 
 /**
@@ -431,12 +432,16 @@ function theme_ding_dams_popup(&$variables) {
       $classes .= implode(' ', $file->override['attributes']['class']);
     }
 
-    $output = '<a href="/ding-dams/nojs/popup/' . $file->fid . '" ' .
-      'alt="' . $file->alt . '" ' .
-      'title="' . $file->title . '" ' .
-      'class="' . $classes . '">' .
-      '<img src="' . $doctype_icon . '"/>' .
-    '</a>';
+    $image = array(
+      'path' => $doctype_icon,
+      'alt' => $file->alt,
+      'title' => $file->title,
+    );
+    $output = l(
+      theme('image', $image),
+      '/ding-dams/nojs/popup/' . $file->fid,
+      array('attributes' => array('class' => $classes), 'html' => TRUE)
+    );
   }
   return $output;
 }
@@ -455,13 +460,22 @@ function theme_ding_dams_download_icon(&$variables) {
     }
 
     $url = file_create_url($file->uri);
-    $output = '<a href="' . $url . '" ' .
-      'alt="' . $file->alt . '" ' .
-      'title="' . $file->title . '" ' .
-      'target="_blank" ' .
-      'class="' . $classes . '">' .
-      '<img src="' . $doctype_icon . '"/>' .
-    '</a>';
+    $image = array(
+      'path' => $doctype_icon,
+      'alt' => $file->alt,
+      'title' => $file->title,
+    );
+    $output = l(
+      theme('image', $image),
+      $url,
+      array(
+        'attributes' => array(
+          'class' => $classes,
+          'target'=>'_blank',
+        ),
+        'html' => TRUE,
+      )
+    );
   }
   return $output;
 }
@@ -479,13 +493,18 @@ function theme_ding_dams_download_link($variables) {
     }
     $url = file_create_url($file->uri);
     $title = !empty($file->title) ? $file->title : $file->filename;
-    $output = '<a href="' . $url . '" ' .
-      'alt="' . $file->alt . '" ' .
-      'title="' . $file->title . '" ' .
-      'target="_blank" ' .
-      'class="' . $classes . '">' .
-      $title .
-      '</a>';
+
+    $output = l(
+      $title,
+      $url,
+      array(
+        'attributes' => array(
+          'class' => $classes,
+          'target'=>'_blank',
+        ),
+      )
+    );
   }
+
   return $output;
 }
