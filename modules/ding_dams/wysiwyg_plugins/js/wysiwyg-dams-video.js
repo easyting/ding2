@@ -107,32 +107,44 @@
       switch (formatted_media.type) {
         case 'ding_dams_download_link':
           var name = $(formatted_media.html).children('a').html();
-          markup = '<a href="' + element[0].src + '" ' +
-            'target="_blank" ' +
-            'data-file_info="' + element.attr('data-file_info') + '" ' +
-            'class="' + element[0].className + '">' +
-            name +
-            '</a>';
+
+          markup = document.createElement('a');
+          markup.href = element[0].src;
+          markup.target = '_blank';
+          markup.className = element[0].className;
+          markup.setAttribute('data-file_info', element.attr('data-file_info'));
+          markup.appendChild(name);
+
           break;
         case 'ding_dams_inline':
           markup = Drupal.media.filter.getWysiwygHTML(element);
+
           break;
         case 'ding_dams_popup':
           var data = JSON.parse(decodeURI(element.attr('data-file_info')));
-          markup = '<a href="ding-dams/nojs/popup/"' + data.fid +
-            'target="_blank" ' +
-            'data-file_info="' + element.attr('data-file_info') + '" ' +
-            'class="' + element[0].className + ' edams-popup use-ajax">' +
-            '<img src="' + Drupal.settings.ding_dams.icon_path + '/doc_flv.png"/>' +
-            '</a>';
+
+          markup = document.createElement('a');
+          markup.href = "ding-dams/nojs/popup/" + data.fid;
+          markup.target = '_blank';
+          markup.className = element[0].className + ' use-ajax';
+          markup.setAttribute('data-file_info', element.attr('data-file_info'));
+
+          var image = document.createElement('img');
+          image.src = Drupal.settings.ding_dams.icon_path + '/doc_flv.png';
+          markup.appendChild(image);
+
           break;
         case 'ding_dams_download_icon':
-          markup = '<a href="' + element[0].src + '" ' +
-            'target="_blank" ' +
-            'data-file_info="' + element.attr('data-file_info') + '" ' +
-            'class="' + element[0].className + '">' +
-            '<img src="' + Drupal.settings.ding_dams.icon_path + '/doc_flv.png"/>' +
-            '</a>';
+          markup = document.createElement('a');
+          markup.href = element[0].src;
+          markup.target = '_blank';
+          markup.className = element[0].className;
+          markup.setAttribute('data-file_info', element.attr('data-file_info'));
+
+          var image = document.createElement('img');
+          image.src = Drupal.settings.ding_dams.icon_path + '/doc_flv.png';
+          markup.appendChild(image);
+
           break;
       }
       Drupal.settings.tagmap[macro] = markup;

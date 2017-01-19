@@ -109,11 +109,15 @@ Drupal.wysiwyg.plugins.dams_image = {
         else {
           name = element[0].src.split('/').pop().split('.')[0];
         }
-        markup = '<a href="' + element[0].src + '" ' +
-        'title="' + element[0].title + '" ' +
-        'target="_blank" ' +
-        'data-file_info="' + element.attr('data-file_info') +  '" ' +
-        'class="' + element[0].className + '">' + element[0].title + name + '</a>';
+
+          markup = document.createElement('a');
+          markup.href = element[0].src;
+          markup.target = '_blank';
+          markup.title = element[0].title;
+          markup.className = element[0].className;
+          markup.setAttribute('data-file_info', element.attr('data-file_info'));
+
+          markup.appendChild(element[0].title + name);
       }
       else {
         // Get the markup and register it for the macro / placeholder handling.
