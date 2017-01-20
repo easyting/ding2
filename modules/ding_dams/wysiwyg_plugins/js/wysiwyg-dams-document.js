@@ -125,12 +125,16 @@
               break;
           }
 
-          markup = '<a href="' + element[0].src + '" ' +
-              'target="_blank" ' +
-              'data-file_info="' + element.attr('data-file_info') +  '" ' +
-              'class="' + element[0].className + '">' +
-              '<img src="' + Drupal.settings.ding_dams.icon_path + doctype_icon + '"/>' +
-              '</a>';
+          markup = document.createElement('a');
+          markup.href = element[0].src;
+          markup.target = '_blank';
+          markup.className = element[0].className;
+          markup.setAttribute('data-file_info', element.attr('data-file_info'));
+
+          var image = document.createElement('img');
+          image.src = Drupal.settings.ding_dams.icon_path + doctype_icon;
+          markup.appendChild(image);
+
           break;
       }
       Drupal.settings.tagmap[macro] = markup;
