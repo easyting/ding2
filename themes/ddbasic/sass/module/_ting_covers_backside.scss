@@ -59,6 +59,7 @@
 
     a {
       color: $gray-dark;
+      background-color: inherit;
 
       &.active {
         color: $link-color;
@@ -72,7 +73,7 @@
       width: 30px;
 
       &:before {
-        content: "\f02d";
+        content: "\f030";
         display: inline-block;
         font-family: FontAwesome;
         font-size: 30px;
@@ -88,7 +89,7 @@
       width: 30px;
 
       &:before {
-        content: "\f030";
+        content: "\f02d";
         display: inline-block;
         font-family: FontAwesome;
         font-size: 30px;
@@ -97,18 +98,35 @@
         -moz-osx-font-smoothing: grayscale;
       }
     }
+
+    @include small-medium() {
+      .cover-front:before {
+        font-size: 20px;
+      }
+
+      .cover-back:before {
+        font-size: 20px;
+      }
+    }
   }
 }
 
 .reveal-cover-large-image {
   text-align: center;
+  height: 100%;
+
+  img {
+    height: 100%;
+    width: auto;
+    max-height: 100%;
+  }
 }
 
 .reveal-modal.reveal-cover-back,
 .reveal-modal.reveal-cover-large {
   top: 10% !important;
   position: fixed;
-
+  height: 80%;
   overflow: hidden;
 
   @include small-medium() {

@@ -13,45 +13,21 @@
  * @param array $tids
  *   Array of ting object ids.
  */
-function ting_reference_set_relation($nid, $tids) {
+function ting_reference_set_relation($nid, $field_name, $tids) {
   // Delete all records for current nid.
-  db_delete('ting_reference')->condition('nid', $nid)->execute();
+  db_delete('ting_reference')
+    ->condition('nid', $nid)
+    ->condition('field_name', $field_name)
+    ->execute();
 
-  $query = db_insert('ting_reference')->fields(array('nid', 'ting_object_id'));
+  $query = db_insert('ting_reference')->fields(array('nid', 'field_name', 'ting_object_id'));
   foreach ($tids as $tid) {
     if (!empty($tid['ting_object_id'])) {
       // Insert new record.
-      $query->values(array('nid' => $nid, 'ting_object_id' => $tid['ting_object_id']));
+      $query->values(array('nid' => $nid, 'field_name' => $field_name,'ting_object_id' => $tid['ting_object_id']));
     }
   }
   $query->execute();
-}
-
-/**
- * Utility function to get relations for an entity.
- *
- * @param string $field
- *   Name of the ting reference field related to entity.
- *
- * @param array $entity_id
- *   Unique Id of the entity(node) related to field.
- *
- * @return array
- *   With loaded relation entities.
- */
-function ting_reference_get_search_references($field, $entity_id) {
-  $result = array();
-  if (!empty($entity_id)) {
-    // For some unknown reason EntityFieldQuery fails and loads both endpoint
-    // types, resulting in false relations. So we are forced to use a db_select.
-    $result = db_select('field_data_' . $field['field_name'], 'material')
-      ->fields('material')
-      ->condition('entity_id', $entity_id)
-      ->execute()
-      ->fetchAssoc();
-  }
-
-  return $result;
 }
 
 /**
@@ -59,12 +35,16 @@ function ting_reference_get_search_references($field, $entity_id) {
  *
  * @param int $nid
  *   Node id.
+ *
+ * @return array
+ *   Array of ting object ids.
  */
-function ting_reference_get_relation($nid) {
+function ting_reference_get_relation($nid, $field_name) {
   $tids = array();
   $results = db_select('ting_reference', 'tr')
     ->fields('tr', array('ting_object_id'))
     ->condition('nid', $nid)
+    ->condition('field_name', $field_name)
     ->execute();
 
   foreach ($results as $result) {
@@ -238,4 +218,39 @@ function ting_reference_markup_content($view_mode, $objects) {
  */
 function ting_reference_generate_cache_id($keywords) {
   return 'ting_reference-' . md5(implode('',$keywords));
+}
+
+/**
+ * Get materials from widget formatter.
+ *
+ * @param string $entity_id
+ *   Type of the saved entity.
+ * @param string $widget_type
+ *   Type of the processed widget.
+ * @param array $items
+ *   Items got from the widget form.
+ *
+ * @return array
+ *   Array of the ting objects.
+ */
+function ting_reference_get_materials($entity_id, $widget_type, &$items) {
+  $tids = array();
+
+  if ($widget_type == 'ting_reference_search') {
+    foreach ($items as $item) {
+      $tid = reset($item['materials']);
+      if (!empty($tid)) {
+        $tids[] = $tid;
+      }
+    }
+  }
+  else {
+    $settings = reset($items);
+    if (!empty($settings['materials']) && is_array($settings['materials']) && $entity_id) {
+      unset($settings['materials']['add']);
+      $tids = $settings['materials'];
+    }
+  }
+
+  return $tids;
 }

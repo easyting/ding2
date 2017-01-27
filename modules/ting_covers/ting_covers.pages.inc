@@ -27,11 +27,10 @@ function ting_covers_objects($http_request = TRUE, $cover_data = array()) {
     $urls = array(
       'detail',
       'thumbnail',
-      'backpage',
     );
 
     foreach ($urls as $type) {
-      $path = ting_covers_object_path($cover_info['local_id'], $type);
+      $path = ting_covers_object_path($cover_info['local_id']);
       if (file_exists($path)) {
         $covers[$cover_info['local_id']] = array(
           'local_id' => $cover_info['local_id'],
@@ -64,7 +63,6 @@ function ting_covers_objects($http_request = TRUE, $cover_data = array()) {
         $urls = array(
           'detail' => $ai->detailUrl,
           'thumbnail' => $ai->thumbnailUrl,
-          'backpage' => $ai->backPageUrl,
         );
         $urls = array_filter($urls);
 
@@ -78,7 +76,7 @@ function ting_covers_objects($http_request = TRUE, $cover_data = array()) {
         );
         foreach ($urls as $type => $uri) {
           // Try to download the image locally.
-          if ($file = _ting_covers_pages_fetch_image(ting_covers_object_path($local_id->localIdentifier, $type), $uri)) {
+          if ($file = _ting_covers_pages_fetch_image(ting_covers_object_path($local_id->localIdentifier), $uri)) {
             // Generate a path corresponding to the downloaded image, styled.
             $covers[$local_id->localIdentifier]['urls'][$type] = image_style_url($image_styles[$cover_info['local_id']], $file);
           }
@@ -102,8 +100,6 @@ function ting_covers_objects($http_request = TRUE, $cover_data = array()) {
 /**
  * Helper function to fetch and save a cover image file.
  *
- * @see image_style_create_derivative()
- *
  * @param string $filename
  *   File name, including its path within Drupal's file folder.
  * @param string $image_url
@@ -111,6 +107,8 @@ function ting_covers_objects($http_request = TRUE, $cover_data = array()) {
  *
  * @return mixed
  *   A file object or FALSE on error.
+ *
+ * @see image_style_create_derivative()
  */
 function _ting_covers_pages_fetch_image($filename, $image_url) {
   $result = drupal_http_request($image_url);

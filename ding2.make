@@ -37,6 +37,8 @@ projects[cs_adaptive_image][version] = "1.0"
 projects[ctools][subdir] = "contrib"
 projects[ctools][version] = "1.9"
 projects[ctools][patch][] = "https://www.drupal.org/files/issues/ctools-require_once_fatal_error-1032054-74.patch"
+; Fix regression. See https://www.drupal.org/node/2209775
+projects[ctools][patch][] = "https://www.drupal.org/files/issues/ctools-readd_access_callback_params-2209775-24.patch"
 
 projects[date][subdir] = "contrib"
 projects[date][version] = "2.9"
@@ -58,6 +60,9 @@ projects[domain_menu_access][version] = "1.2"
 
 projects[domain_variable][subdir] = "contrib"
 projects[domain_variable][version] = "1.1"
+
+projects[domain_views][subdir] = "contrib"
+projects[domain_views][version] = "1.5"
 
 ; The patch ensures that file upload patch is created on file upload. It normally
 ; created on settings form save, but as we use feature this do not work.
@@ -132,6 +137,9 @@ projects[google_analytics][version] = "1.3"
 projects[imagemagick][subdir] = "contrib"
 projects[imagemagick][version] = "1.0"
 
+projects[honeypot][subdir] = "contrib"
+projects[honeypot][version] = "1.21"
+
 projects[image_resize_filter][subdir] = "contrib"
 projects[image_resize_filter][version] = "1.16"
 
@@ -159,6 +167,9 @@ projects[l10n_update][version] = "1.1"
 projects[i18n][subdir] = "contrib"
 projects[i18n][version] = "1.13"
 
+projects[manualcrop][subdir] = "contrib"
+projects[manualcrop][version] = "1.5"
+
 projects[maintenance_mode_api][subdir] = "contrib"
 projects[maintenance_mode_api][version] = "1.0-beta1"
 
@@ -172,7 +183,7 @@ projects[media_youtube][subdir] = "contrib"
 projects[media_youtube][version] = "3.0"
 
 projects[memcache][subdir] = "contrib"
-projects[memcache][version] = "1.0"
+projects[memcache][version] = "1.5"
 
 projects[menu_block][type] = "module"
 projects[menu_block][subdir] = "contrib"
@@ -226,6 +237,9 @@ projects[opening_hours][patch][] = "http://drupal.org/files/issues/is-string-che
 projects[opening_hours][patch][] = "http://drupal.org/files/issues/change-path-2270935-2.patch"
 projects[opening_hours][patch][] = "http://www.drupal.org/files/issues/Issue620-single-minute-opening-hours.patch"
 projects[opening_hours][patch][] = "https://www.drupal.org/files/issues/opening_hours-2194867-D7.patch"
+
+projects[pagepreview][subdir] = "contrib"
+projects[pagepreview][version] = "1.0-alpha1"
 
 projects[panels][subdir] = "contrib"
 projects[panels][version] = "3.5"
@@ -374,6 +388,16 @@ libraries[zen-grids][download][url] = "https://github.com/JohnAlbin/zen-grids.gi
 libraries[zen-grids][download][tag] = "1.4"
 libraries[zen-grids][destination] = "libraries"
 
+libraries[jquery.imgareaselect][download][type] = "get"
+libraries[jquery.imgareaselect][download][url] =  http://odyniec.net/projects/imgareaselect/jquery.imgareaselect-0.9.10.zip
+libraries[jquery.imgareaselect][directory_name] = "jquery.imgareaselect"
+libraries[jquery.imgareaselect][destination] = "libraries"
+
+libraries[jquery.imagesloaded][download][type] = "get"
+libraries[jquery.imagesloaded][download][url] = https://github.com/desandro/imagesloaded/archive/v2.1.2.tar.gz
+libraries[jquery.imagesloaded][directory_name] = "jquery.imagesloaded"
+libraries[jquery.imagesloaded][destination] = "libraries"
+
 ; easyDDB contribution modules
 projects[extlink][version]                  = "1.18"
 projects[extlink][subdir]                   = "contrib"
@@ -398,12 +422,6 @@ projects[xmlsitemap][subdir]                = "contrib"
 
 projects[references][version]               = "2.1"
 projects[references][subdir]                = "contrib"
-
-projects[search_api][version]               = "1.14"
-projects[search_api][subdir]                = "contrib"
-
-projects[search_api_db][version]            = "1.4"
-projects[search_api_db][subdir]             = "contrib"
 
 projects[taxonomy_menu][version]            = "1.4"
 projects[taxonomy_menu][subdir]             = "contrib"
