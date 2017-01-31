@@ -45,6 +45,7 @@
      *
      */
     attach: function (content, settings, instanceId) {
+      if (!content.match(/dams_type"\:"document/g)) return content;
       return Drupal.wysiwyg.plugins.media.attach(content, settings, instanceId);
     },
 
@@ -52,6 +53,7 @@
      * Detach function, called when a rich text editor detaches
      */
     detach: function (content, settings, instanceId) {
+      if (!content.match(/dams_type"\:"document/g)) return content;
       return Drupal.wysiwyg.plugins.media.detach(content, settings, instanceId);
     },
   };
@@ -87,24 +89,22 @@
      */
     insert: function (formatted_media) {
       var html = jQuery(formatted_media.html).children('a');
+      formatted_media.options.dams_type = 'document';
       var element = Drupal.media.filter.create_element(html, {
         fid: this.mediaFile.fid,
         view_mode: formatted_media.type,
         attributes: formatted_media.options,
-        fields: formatted_media.options
+        fields: formatted_media.options,
+        dams_type: 'document'
       });
 
       var markup = '';
       var macro = Drupal.media.filter.create_macro(element);
-      Drupal.media.filter.ensure_tagmap();
-      var i = 1;
-      for (var key in Drupal.settings.tagmap) {
-        i++;
-      }
       switch (formatted_media.type) {
         case 'ding_dams_download_link':
           markup = Drupal.media.filter.getWysiwygHTML(element);
           break;
+
         case 'ding_dams_download_icon':
           var doc_extension = element[0].text.split('.').pop();
           switch (doc_extension) {
@@ -112,29 +112,32 @@
             case 'docx':
               doctype_icon = 'doc_doc.png';
               break;
+
             case 'xls':
             case 'xlsx':
               doctype_icon = 'doc_xls.png';
               break;
+
             case 'ppt':
             case 'pptx':
               doctype_icon = 'doc_ppt.png';
               break;
+
             case 'pdf':
               doctype_icon = 'doc_pdf.png';
               break;
           }
 
-          markup = document.createElement('a');
-          markup.href = element[0].src;
-          markup.target = '_blank';
-          markup.className = element[0].className;
-          markup.setAttribute('data-file_info', element.attr('data-file_info'));
+          var a = document.createElement('a');
+          a.href = element[0].src;
+          a.target = '_blank';
+          a.className = element[0].className;
+          a.setAttribute('data-file_info', element.attr('data-file_info'));
 
           var image = document.createElement('img');
           image.src = Drupal.settings.ding_dams.icon_path + doctype_icon;
-          markup.appendChild(image);
-
+          a.appendChild(image);
+          markup = a.outerHTML;
           break;
       }
       Drupal.settings.tagmap[macro] = markup;

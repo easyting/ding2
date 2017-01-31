@@ -44,6 +44,7 @@
      *
      */
     attach: function (content, settings, instanceId) {
+      if (!content.match(/dams_type"\:"video/g)) return content;
       return Drupal.wysiwyg.plugins.media.attach(content, settings, instanceId);
     },
 
@@ -51,6 +52,7 @@
      * Detach function, called when a rich text editor detaches
      */
     detach: function (content, settings, instanceId) {
+      if (!content.match(/dams_type"\:"video/g)) return content;
       return Drupal.wysiwyg.plugins.media.detach(content, settings, instanceId);
     },
   };
@@ -90,6 +92,7 @@
         html = $(formatted_media.html).children('source');
       }
 
+      formatted_media.options.dams_type = 'video';
       var element = Drupal.media.filter.create_element(html, {
         fid: this.mediaFile.fid,
         view_mode: formatted_media.type,
@@ -99,54 +102,53 @@
 
       var markup = '';
       var macro = Drupal.media.filter.create_macro(element);
-      Drupal.media.filter.ensure_tagmap();
-      var i = 1;
-      for (var key in Drupal.settings.tagmap) {
-        i++;
-      }
       switch (formatted_media.type) {
         case 'ding_dams_download_link':
           var name = $(formatted_media.html).children('a').html();
 
-          markup = document.createElement('a');
-          markup.href = element[0].src;
-          markup.target = '_blank';
-          markup.className = element[0].className;
-          markup.setAttribute('data-file_info', element.attr('data-file_info'));
-          markup.appendChild(name);
-
+          var a = document.createElement('a');
+          a.href = element[0].src;
+          a.target = '_blank';
+          a.className = element[0].className;
+          a.setAttribute('data-file_info', element.attr('data-file_info'));
+          a.innerHTML = name;
+          markup = a.outerHTML;
           break;
+
         case 'ding_dams_inline':
           markup = Drupal.media.filter.getWysiwygHTML(element);
-
           break;
+
         case 'ding_dams_popup':
           var data = JSON.parse(decodeURI(element.attr('data-file_info')));
 
-          markup = document.createElement('a');
-          markup.href = "ding-dams/nojs/popup/" + data.fid;
-          markup.target = '_blank';
-          markup.className = element[0].className + ' use-ajax';
-          markup.setAttribute('data-file_info', element.attr('data-file_info'));
+          var a = document.createElement('a');
+          a.href = "ding-dams/nojs/popup/" + data.fid;
+          a.target = '_blank';
+          a.className = element[0].className + ' use-ajax';
+          a.setAttribute('data-file_info', element.attr('data-file_info'));
 
           var image = document.createElement('img');
           image.src = Drupal.settings.ding_dams.icon_path + '/doc_flv.png';
-          markup.appendChild(image);
-
+          a.appendChild(image);
+          markup = a.outerHTML;
           break;
+
         case 'ding_dams_download_icon':
-          markup = document.createElement('a');
-          markup.href = element[0].src;
-          markup.target = '_blank';
-          markup.className = element[0].className;
-          markup.setAttribute('data-file_info', element.attr('data-file_info'));
+          var a = document.createElement('a');
+          a.href = element[0].src;
+          a.target = '_blank';
+          a.className = element[0].className;
+          a.setAttribute('data-file_info', element.attr('data-file_info'));
 
           var image = document.createElement('img');
           image.src = Drupal.settings.ding_dams.icon_path + '/doc_flv.png';
-          markup.appendChild(image);
-
+          a.appendChild(image);
+          markup = a.outerHTML;
           break;
       }
+      Drupal.media.filter.ensure_tagmap();
+      debugger
       Drupal.settings.tagmap[macro] = markup;
       // Insert placeholder markup into wysiwyg.
       Drupal.wysiwyg.instances[this.instanceId].insert(markup);
