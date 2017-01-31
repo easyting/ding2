@@ -45,6 +45,7 @@ Drupal.wysiwyg.plugins.dams_image = {
    *
    */
   attach: function (content, settings, instanceId) {
+    if (!content.match(/dams_type"\:"image/g)) return content;
     return Drupal.wysiwyg.plugins.media.attach(content, settings, instanceId);
   },
 
@@ -52,6 +53,7 @@ Drupal.wysiwyg.plugins.dams_image = {
    * Detach function, called when a rich text editor detaches
    */
   detach: function (content, settings, instanceId) {
+    if (!content.match(/dams_type"\:"image/g)) return content;
     return Drupal.wysiwyg.plugins.media.detach(content, settings, instanceId);
   },
 };
@@ -86,20 +88,17 @@ Drupal.wysiwyg.plugins.dams_image = {
      * tagmap.
      */
     insert: function (formatted_media) {
+      formatted_media.options.dams_type = 'image';
       var element = Drupal.media.filter.create_element(formatted_media.html, {
         fid: this.mediaFile.fid,
         view_mode: formatted_media.type,
         attributes: formatted_media.options,
-        fields: formatted_media.options
+        fields: formatted_media.options,
+        dams_type: 'image'
       });
 
       var markup = '';
       var macro = Drupal.media.filter.create_macro(element);
-      Drupal.media.filter.ensure_tagmap();
-      var i = 1;
-      for (var key in Drupal.settings.tagmap) {
-        i++;
-      }
       if (formatted_media.type == 'ding_dams_download_link') {
         var data = JSON.parse(decodeURI(element.attr('data-file_info')));
         var name = '';
@@ -109,15 +108,14 @@ Drupal.wysiwyg.plugins.dams_image = {
         else {
           name = element[0].src.split('/').pop().split('.')[0];
         }
-
-          markup = document.createElement('a');
-          markup.href = element[0].src;
-          markup.target = '_blank';
-          markup.title = element[0].title;
-          markup.className = element[0].className;
-          markup.setAttribute('data-file_info', element.attr('data-file_info'));
-
-          markup.appendChild(element[0].title + name);
+        var a = document.createElement('a');
+        a.href = element[0].src;
+        a.target = '_blank';
+        a.title = element.attr('title');
+        a.className = element[0].className;
+        a.setAttribute('data-file_info', element.attr('data-file_info'));
+        a.innerHTML = typeof element.attr('title') != 'undefined' ? element.attr('title') : name;
+        markup = a.outerHTML;
       }
       else {
         // Get the markup and register it for the macro / placeholder handling.
