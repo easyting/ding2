@@ -2041,6 +2041,9 @@ button.button {
   background: none;
   border: 0; }
 
+.ding-popup-content {
+  display: inline-block; }
+
 /*!
  *  Font Awesome 3.0.1
  *  the iconic font designed for use with Twitter Bootstrap
@@ -8768,7 +8771,6 @@ input#edit-search-block-form--2.spinner {
     margin: 0 auto; }
   .ding_nodelist-carousel .article_image img,
   .ding_nodelist-carousel .event-image img {
-    display: none;
     margin: 0 auto;
     width: 100%;
     height: auto; }
