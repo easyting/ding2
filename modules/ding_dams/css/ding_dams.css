@@ -1,3 +1,6 @@
 #media-tab-media_default--media_browser_my_files > div.form-actions.form-wrapper > a {
     display: none;
 }
+.ding-popup-content video {
+    width: 100% !important;
+}

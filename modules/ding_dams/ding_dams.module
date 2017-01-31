@@ -119,9 +119,10 @@ function ding_dams_page_alter(&$page) {
   $media_page = $args[0] == 'admin' && $args[1] == 'ding_dams_media_manager';
   $media_browser = $args[0] == 'media' && $args[1] == 'browser';
 
+  $css_file = drupal_get_path('module', 'ding_dams') . '/css/ding_dams.css';
+  drupal_add_css($css_file);
+
   if ($media_page || $media_browser) {
-    $css_file = drupal_get_path('module', 'ding_dams') . '/css/ding_dams.css';
-    drupal_add_css($css_file);
     $js_file = drupal_get_path('module', 'ding_dams') . '/js/ding_dams.scripts.js';
     drupal_add_js($js_file, array('scope' => 'footer'));
   }
