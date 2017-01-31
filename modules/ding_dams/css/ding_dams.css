@@ -1,3 +1,14 @@
 #media-tab-media_default--media_browser_my_files > div.form-actions.form-wrapper > a {
     display: none;
 }
+.ui-dialog-titlebar {
+    width: 100%;
+    overflow: hidden;
+}
+.ui-dialog .ui-dialog-titlebar span.ui-dialog-title {
+    width: 95%;
+    float: left;
+}
+.ding-popup-content video {
+    width: 100% !important;
+}
