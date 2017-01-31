@@ -131,6 +131,8 @@
           var image = document.createElement('img');
           image.src = Drupal.settings.ding_dams.icon_path + '/doc_flv.png';
           a.appendChild(image);
+
+          markup = a.outerHTML;
           markup = a.outerHTML;
           break;
 
@@ -144,11 +146,12 @@
           var image = document.createElement('img');
           image.src = Drupal.settings.ding_dams.icon_path + '/doc_flv.png';
           a.appendChild(image);
+
           markup = a.outerHTML;
           break;
       }
       Drupal.media.filter.ensure_tagmap();
-      debugger
+
       Drupal.settings.tagmap[macro] = markup;
       // Insert placeholder markup into wysiwyg.
       Drupal.wysiwyg.instances[this.instanceId].insert(markup);

@@ -84,6 +84,10 @@ function ding_dams_popup_callback($ajax, $fid) {
       $display = array(
         'status' => TRUE,
         'type' => 'file_field_file_' . $file->type,
+        'settings' => array(
+          'width' => '100%',
+          'height' => 'auto',
+        ),
       );
       $element = file_entity_file_formatter_file_field_view($file, $display, LANGUAGE_NONE);
       $output = render($element);
@@ -434,7 +438,7 @@ function theme_ding_dams_inline(&$variables) {
  * Theme function for dams_popup display mode.
  */
 function theme_ding_dams_popup(&$variables) {
-  $file = isset($variables['element']['#file']) ? $variables['element']['#file'] : $variables['element']['content']['file']['#file'];
+  $file = isset($variables['element']['#file']) ? $variables['element']['#file'] : $variables['element']['file']['#file'];
   $output = '';
   if ($file) {
     $doctype_icon = ding_dams_get_doctype_icon($file);
