@@ -84,6 +84,10 @@ function ding_dams_popup_callback($ajax, $fid) {
       $display = array(
         'status' => TRUE,
         'type' => 'file_field_file_' . $file->type,
+        'settings' => array(
+          'width' => '100%',
+          'height' => 'auto',
+        ),
       );
       $element = file_entity_file_formatter_file_field_view($file, $display, LANGUAGE_NONE);
       $output = render($element);
@@ -115,9 +119,10 @@ function ding_dams_page_alter(&$page) {
   $media_page = $args[0] == 'admin' && $args[1] == 'ding_dams_media_manager';
   $media_browser = $args[0] == 'media' && $args[1] == 'browser';
 
+  $css_file = drupal_get_path('module', 'ding_dams') . '/css/ding_dams.css';
+  drupal_add_css($css_file);
+
   if ($media_page || $media_browser) {
-    $css_file = drupal_get_path('module', 'ding_dams') . '/css/ding_dams.css';
-    drupal_add_css($css_file);
     $js_file = drupal_get_path('module', 'ding_dams') . '/js/ding_dams.scripts.js';
     drupal_add_js($js_file, array('scope' => 'footer'));
   }
@@ -434,7 +439,7 @@ function theme_ding_dams_inline(&$variables) {
  * Theme function for dams_popup display mode.
  */
 function theme_ding_dams_popup(&$variables) {
-  $file = isset($variables['element']['#file']) ? $variables['element']['#file'] : $variables['element']['content']['file']['#file'];
+  $file = isset($variables['element']['#file']) ? $variables['element']['#file'] : $variables['element']['file']['#file'];
   $output = '';
   if ($file) {
     $doctype_icon = ding_dams_get_doctype_icon($file);
