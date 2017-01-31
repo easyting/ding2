@@ -311,7 +311,12 @@ function ding_dams_media_wysiwyg_token_to_markup_alter(&$element, $tag_info, $se
         break;
 
     }
-    $element['#theme'] = $theming_function;
+    if (isset($element['content'])) {
+      $element['content']['#theme'] = $theming_function;
+    }
+    else {
+      $element['#theme'] = $theming_function;
+    }
   }
 }
 
@@ -397,7 +402,7 @@ function theme_ding_dams_inline(&$variables) {
   $output = '';
   if ($file) {
     if ($file->type == 'image') {
-      $output =  theme(
+      $output = theme(
         'image',
         array(
           'path' => $file->uri,
@@ -409,7 +414,12 @@ function theme_ding_dams_inline(&$variables) {
         'status' => TRUE,
         'type' => 'file_field_file_' . $file->type,
         'settings' => array(
-          'image_style' => 'teaser',
+          'autoplay' => FALSE,
+          'loop' => FALSE,
+          'muted' => FALSE,
+          'width' => NULL,
+          'height' => NULL,
+          'multiple_file_behavior' => NULL,
         ),
       );
       $element = file_entity_file_formatter_file_field_view($file, $display, LANGUAGE_NONE);
@@ -418,6 +428,7 @@ function theme_ding_dams_inline(&$variables) {
   }
   return $output;
 }
+
 
 /**
  * Theme function for dams_popup display mode.
@@ -471,7 +482,7 @@ function theme_ding_dams_download_icon(&$variables) {
       array(
         'attributes' => array(
           'class' => $classes,
-          'target'=>'_blank',
+          'target' => '_blank',
         ),
         'html' => TRUE,
       )
@@ -500,7 +511,7 @@ function theme_ding_dams_download_link($variables) {
       array(
         'attributes' => array(
           'class' => $classes,
-          'target'=>'_blank',
+          'target' => '_blank',
         ),
       )
     );
