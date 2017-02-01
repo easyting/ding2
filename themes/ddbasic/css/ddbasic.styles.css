@@ -10123,6 +10123,8 @@ fieldset legend {
       .ding-item-viewer .browsebar-item.active .group-data {
         float: left;
         width: 200px; }
+      .ding-item-viewer .browsebar-item.active .ting-cover:before {
+        left: 30%; }
       .ding-item-viewer .browsebar-item.active .field-type-ting-cover {
         float: left;
         margin-right: 10px;
