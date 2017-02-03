@@ -56,7 +56,10 @@
      * Detach function, called when a rich text editor detaches
      */
     detach: function (content, settings, instanceId) {
-      if (!content.match(/dams_type"\:"video/g)) return content;
+      if (!content.match(/dams_type"\:"video/g)) {
+        return content;
+      }
+
       return Drupal.wysiwyg.plugins.media.detach(content, settings, instanceId);
     }
   };

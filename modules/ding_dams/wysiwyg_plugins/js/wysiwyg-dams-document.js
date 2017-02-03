@@ -63,6 +63,7 @@
 
       return Drupal.wysiwyg.plugins.media.detach(content, settings, instanceId);
     }
+
   };
 
   var InsertMediaDamsDocument = function (instance_id) {

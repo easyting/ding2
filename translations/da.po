@@ -10129,7 +10129,7 @@ msgstr ""
 
 #: /node/26/edit?render=overlay /node/add/ding-event
 msgid "Enter a query to search for objects or collections to reference"
-msgstr ""
+msgstr "Indsæt en søgestreng for at tilføje et materiale fra databrønden"
 
 #: /node/26/edit?render=overlay /node/add/ding-event
 msgid "Format: %standard_format."
@@ -10145,7 +10145,7 @@ msgstr ""
 
 #: /node/26/edit?render=overlay /node/add/ding-event
 msgid "Attachments"
-msgstr ""
+msgstr "Vedhæft filer"
 
 #: /node/26/edit?render=overlay /node/add/ding-news?render=overlay
 msgid "Categorization"
@@ -10334,12 +10334,8 @@ msgid "Import content using <em>Node export</em>."
 msgstr ""
 
 #: /node/add/ding-event?render=overlay /node/add/ding-event
-msgid "Date, location and price"
-msgstr ""
-
-#: /node/add/ding-event?render=overlay /node/add/ding-event
 msgid "Tagging"
-msgstr ""
+msgstr "Taksonomitermer"
 
 #: /admin/people?render=overlay
 msgid "administer blocks"
@@ -13794,7 +13790,7 @@ msgstr "Blok"
 
 #: plugins/content_types/carousel.inc:20
 msgid "Ting"
-msgstr "Ting"
+msgstr "Materialer"
 
 #: ting_search_carousel.info:0 ding_ekurser.info:0 ting_oembed.info:0
 #: ting_oembed_features/ting_oembed_features.info:0
@@ -13956,7 +13952,7 @@ msgid "No style"
 msgstr "Ingen style"
 
 msgid "List"
-msgstr "Tillykke!"
+msgstr "Vis"
 
 msgid "Display the comment with standard comment view."
 msgstr "Vis kommentaren med standard kommentarvisning."
@@ -47949,8 +47945,8 @@ msgid "Create user"
 msgstr "Opret bruger"
 
 #: /gatewayf/callback?destination=ding_frontpage?eduPersonTargetedID=WAYF-DK-e767c06edaad0f8d23e785bbc470e7f37ad03e8d&mail=&logintype=nemlogin
-msgid "You do not have an user account at the public library. If you wish you can create an user account below. You are still logged in at WAYF, so you can !logout to logout of WAYF."
-msgstr "<p>Du er ikke låner ved biblioteket. Hvis du ønsker at oprette dig som låner kan du gøre det nedenfor.</p>\r<p>Du er stadig logget ind ved NemID, så du kan !logout for at logge ud.</p>"
+msgid "You do not have an user account at the public library. If you wish to create an user account !user_url . You are still logged in at WAYF, so you can !logout to logout of WAYF."
+msgstr "<p>Du er ikke låner ved biblioteket. Hvis du ønsker at oprette dig som låner kan du !user_url.</p>\r<p>Du er stadig logget ind ved NemID, så du kan !logout for at logge ud.</p>"
 
 #: /search/ting/+.net
 msgid "Best match on title"
@@ -48309,7 +48305,7 @@ msgstr "Opret en ny liste"
 
 #: /list/create?at=ting_object&av=870970-basis%3A25741420
 msgid "Create your own lists and collect books and other materials as you browse the library."
-msgstr "Du kan oprette dine egne lister og fremover gemme og inddele materialer du finder på websitet. Du kan f.eks. oprette en liste med "Bøger til sommerferien", "Mine yndlingsgysere" eller "Bøger til mit projekt"."
+msgstr "Du kan oprette dine egne lister og fremover gemme og inddele materialer du finder på websitet. Du kan f.eks. oprette en liste med \"Bøger til sommerferien\", \"Mine yndlingsgysere\" eller \"Bøger til mit projekt\"."
 
 #: /list/38
 msgid "To your lists"
@@ -53505,7 +53501,7 @@ msgstr ""
 
 #: /node/34/edit?render=overlay
 msgid "\"The image will automatically be resized. The maximum dimensions are \"%dimensions (Original: 800x600)."
-msgstr ""
+msgstr "Billedet vil automatisk blive tilpasset. De maksimale dimensioner er %dimensions (Original: 800x600)."
 
 #: /admin/config/ting/search?render=overlay
 msgid "\"Message to display when search has more than x results. The token %s \"will be substituted by the number choosen."
@@ -59233,7 +59229,7 @@ msgstr ""
 
 #: /system/ajax
 msgid "\"Please use the following link to access this list. The link is active for 7 days from today, after which it will be \"disabled for security reasons. link"
-msgstr "Følg linket for at få adgang til listen. Linket er aktivt i 7 dage fra dags dato, hvorefter det vil blive inaktivt af sikkerhedshensyn."
+msgstr "Følg linket !link for at få adgang til listen. </br> Linket er aktivt i 7 dage fra dags dato, hvorefter det vil blive inaktivt af sikkerhedshensyn."
 
 #: /admin/structure/panels
 msgid "Custom layout"
@@ -65967,7 +65963,7 @@ msgstr "\"For at anvende denne funktion, anmoder vi om tilladelse til at gemme \
 
 #: /list/create?at=ting_object&av=870970-basis%3A25741420
 msgid "\"Create your own lists and collect books and other materials as you \"browse the library."
-msgstr "\"Du kan oprette dine egne lister og fremover gemme og inddele \"materialer du finder på websitet. Du kan f.eks. oprette en liste med \""Bøger til sommerferien", "Mine yndlingsgysere" eller \""Bøger til mit projekt"."
+msgstr "\"Du kan oprette dine egne lister og fremover gemme og inddele \"materialer du finder på websitet. Du kan f.eks. oprette en liste med \"\"Bøger til sommerferien\", \"Mine yndlingsgysere\" eller \"\"Bøger til mit projekt\"."
 
 #: /list/create?at=ting_object&av=870970-basis%3A25741420
 msgid "\"An error occurred, your list wasn't created. Please contact the \"administrator if this problem persists."
@@ -66607,9 +66603,9 @@ msgid ""
 "shed</em> will often show more results than <em>bike shed</em>.</li>\n"
 "</ul>"
 msgstr ""
-"<p>Din søgning desværre ikke gav noget resultat, men vi vil gerne hjælpe dig med at komme videre!</p>""
-"<p>Spørg os på biblioteket eller få hjælp på <a href="http://biblioteksvagten.dk/">Biblioteksvagten.dk</a></p>""
-"<p>Du kan også søge videre på <a href="http://bibliotek.dk/">Bibliotek.dk</a></p>"
+"<p>Din søgning desværre ikke gav noget resultat, men vi vil gerne hjælpe dig med at komme videre!</p>\""
+"<p>Spørg os på biblioteket eller få hjælp på <a href=\"http://biblioteksvagten.dk/\">Biblioteksvagten.dk</a></p>\""
+"<p>Du kan også søge videre på <a href=\"http://bibliotek.dk/\">Bibliotek.dk</a></p>"
 
 #: /admin/config/ding/interaction
 msgid "About consent and storage of previous loans"
@@ -66630,6 +66626,25 @@ msgid ""
 msgstr ""
 "Log ind og rediger din brugerprofil for at give tilladelse til at gemme dine lån ud over 30 dage. Du kan altid fjerne tilladelsen igen hvis du fortryder. "
 "Hvis du vælger at fjerne tilladelsen vil information om lån ældre end 30 dage blive slettet permanent."
+
+msgid "Events show the value ”Free” if text field is set to 0.\nTip: Indicate different ticket prices for more than one audience group by entering a lowest – highest price in text field fx. “30 - 50”"
+msgstr "Arrangementer viser værdien \"Gratis\" hvis tekstfeltet er sat til 0. Ved flere billettyper kan det angives ved at indsætte laveste - højeste pris i tekstfeltet f. eks. \"30 - 50\""
+
+#: /node/add/ding-event?render=overlay
+msgid "Date, location and price"
+msgstr "Dato, sted og pris"
+
+#: /user/me/edit
+msgid "The old pincode confirm does not match."
+msgstr "Den indtastede gamle pinkode var ikke korrekt"
+
+#: /search/ting/hundehoved
+msgid "Search Materialer"
+msgstr "Søg i biblioteksbasen"
+
+#: /lazy-pane/ajax
+msgid "Because you have a list with materials by the author !author."
+msgstr "Fordi du har en liste med materialer af forfatteren !author"
 
 #: profiles/ding2/modules/ding_dams/ding_dams.module:31
 msgid "Use ding dams."

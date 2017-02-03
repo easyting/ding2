@@ -1,4 +1,3 @@
-
 /**
  *  @file
  *  Attach Media WYSIWYG behaviors.
@@ -59,7 +58,7 @@ Drupal.wysiwyg.plugins.dams_image = {
   detach: function (content, settings, instanceId) {
     if (!content.match(/dams_type"\:"image/g)) return content;
     return Drupal.wysiwyg.plugins.media.detach(content, settings, instanceId);
-  },
+  }
 };
 
   var InsertMediaDamsImage = function (instance_id) {
@@ -119,6 +118,7 @@ Drupal.wysiwyg.plugins.dams_image = {
         a.className = element[0].className;
         a.setAttribute('data-file_info', element.attr('data-file_info'));
         a.innerHTML = typeof element.attr('title') !== 'undefined' ? element.attr('title') : name;
+
         markup = a.outerHTML;
       }
       else {

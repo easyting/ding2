@@ -5,6 +5,7 @@
 
 (function ($) {
   "use strict";
+
   Drupal.media = Drupal.media || {};
 
   Drupal.wysiwyg.plugins.dams_audio = {
@@ -48,6 +49,7 @@
         return content;
       }
 
+
       return Drupal.wysiwyg.plugins.media.attach(content, settings, instanceId);
     },
 
@@ -66,6 +68,7 @@
 
   var InsertMediaDamsAudio = function (instance_id) {
     this.instanceId = instance_id;
+
 
     return this;
   };
