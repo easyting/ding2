@@ -8,7 +8,10 @@
 }
 
 .ui-dialog .ui-dialog-titlebar span.ui-dialog-title {
-  width: 95%;
+  width: 90%;
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;;
   float: left;
 }
 
