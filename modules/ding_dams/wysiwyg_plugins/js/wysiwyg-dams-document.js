@@ -5,6 +5,7 @@
  */
 
 (function ($) {
+  "use strict";
 
   Drupal.media = Drupal.media || {};
 
@@ -24,7 +25,7 @@
      * Execute the button.
      */
     invoke: function (data, settings, instanceId) {
-      if (data.format == 'html') {
+      if (data.format === 'html') {
         var insert = new InsertMediaDamsDocument(instanceId);
         if (this.isNode(data.node)) {
           // Change the view mode for already-inserted media.
@@ -45,7 +46,10 @@
      *
      */
     attach: function (content, settings, instanceId) {
-      if (!content.match(/dams_type"\:"document/g)) return content;
+      if (!content.match(/dams_type"\:"document/g)) {
+        return content;
+      }
+
       return Drupal.wysiwyg.plugins.media.attach(content, settings, instanceId);
     },
 
@@ -53,9 +57,12 @@
      * Detach function, called when a rich text editor detaches
      */
     detach: function (content, settings, instanceId) {
-      if (!content.match(/dams_type"\:"document/g)) return content;
+      if (!content.match(/dams_type"\:"document/g)) {
+        return content;
+      }
+
       return Drupal.wysiwyg.plugins.media.detach(content, settings, instanceId);
-    },
+    }
   };
 
   var InsertMediaDamsDocument = function (instance_id) {
@@ -107,6 +114,8 @@
 
         case 'ding_dams_download_icon':
           var doc_extension = element[0].text.split('.').pop();
+          var doctype_icon = 'doc_txt.png';
+
           switch (doc_extension) {
             case 'doc':
             case 'docx':
@@ -126,6 +135,9 @@
             case 'pdf':
               doctype_icon = 'doc_pdf.png';
               break;
+
+            default:
+              doctype_icon = 'doc_txt.png';
           }
 
           var a = document.createElement('a');

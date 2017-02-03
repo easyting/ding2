@@ -4,7 +4,7 @@
  */
 
 (function ($) {
-
+  "use strict";
   Drupal.media = Drupal.media || {};
 
   Drupal.wysiwyg.plugins.dams_audio = {
@@ -23,7 +23,7 @@
      * Execute the button.
      */
     invoke: function (data, settings, instanceId) {
-      if (data.format == 'html') {
+      if (data.format === 'html') {
         var insert = new InsertMediaDamsAudio(instanceId);
         if (this.isNode(data.node)) {
           // Change the view mode for already-inserted media.
@@ -44,7 +44,10 @@
      *
      */
     attach: function (content, settings, instanceId) {
-      if (!content.match(/dams_type"\:"audio/g)) return content;
+      if (!content.match(/dams_type"\:"audio/g)) {
+        return content;
+      }
+
       return Drupal.wysiwyg.plugins.media.attach(content, settings, instanceId);
     },
 
@@ -52,13 +55,18 @@
      * Detach function, called when a rich text editor detaches
      */
     detach: function (content, settings, instanceId) {
-      if (!content.match(/dams_type"\:"audio/g)) return content;
+      if (!content.match(/dams_type"\:"audio/g)) {
+        return content;
+      }
+
       return Drupal.wysiwyg.plugins.media.detach(content, settings, instanceId);
-    },
+    }
   };
+
 
   var InsertMediaDamsAudio = function (instance_id) {
     this.instanceId = instance_id;
+
     return this;
   };
 
@@ -88,7 +96,7 @@
      */
     insert: function (formatted_media) {
       var html = formatted_media.html;
-      if (formatted_media.type != 'ding_dams_inline') {
+      if (formatted_media.type !== 'ding_dams_inline') {
         html = $(formatted_media.html).children('source');
       }
 

@@ -5,6 +5,7 @@
  */
 
 (function ($) {
+  "use strict";
 
 Drupal.media = Drupal.media || {};
 
@@ -24,7 +25,7 @@ Drupal.wysiwyg.plugins.dams_image = {
    * Execute the button.
    */
   invoke: function (data, settings, instanceId) {
-    if (data.format == 'html') {
+    if (data.format === 'html') {
       var insert = new InsertMediaDamsImage(instanceId);
       if (this.isNode(data.node)) {
         // Change the view mode for already-inserted media.
@@ -45,7 +46,10 @@ Drupal.wysiwyg.plugins.dams_image = {
    *
    */
   attach: function (content, settings, instanceId) {
-    if (!content.match(/dams_type"\:"image/g)) return content;
+    if (!content.match(/dams_type"\:"image/g)) {
+      return content;
+    }
+
     return Drupal.wysiwyg.plugins.media.attach(content, settings, instanceId);
   },
 
@@ -99,7 +103,7 @@ Drupal.wysiwyg.plugins.dams_image = {
 
       var markup = '';
       var macro = Drupal.media.filter.create_macro(element);
-      if (formatted_media.type == 'ding_dams_download_link') {
+      if (formatted_media.type === 'ding_dams_download_link') {
         var data = JSON.parse(decodeURI(element.attr('data-file_info')));
         var name = '';
         if (data.fields['field_file_image_alt_text[und][0][value]'].length > 0) {
@@ -114,7 +118,7 @@ Drupal.wysiwyg.plugins.dams_image = {
         a.title = element.attr('title');
         a.className = element[0].className;
         a.setAttribute('data-file_info', element.attr('data-file_info'));
-        a.innerHTML = typeof element.attr('title') != 'undefined' ? element.attr('title') : name;
+        a.innerHTML = typeof element.attr('title') !== 'undefined' ? element.attr('title') : name;
         markup = a.outerHTML;
       }
       else {
