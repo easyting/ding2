@@ -41,7 +41,7 @@
           closeText: Drupal.t('close'),
           // We should stop all streaming before closing.
           beforeClose: function () {
-            $('.ding-popup-content audio, .ding-popup-content video').each(function (i) {
+            $('.ding-popup-content audio, .ding-popup-content video').each(function () {
               this.pause();
               this.currentTime = 0;
             });

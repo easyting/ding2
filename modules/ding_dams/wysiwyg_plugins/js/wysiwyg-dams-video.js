@@ -4,6 +4,7 @@
  */
 
 (function ($) {
+  "use strict";
 
   Drupal.media = Drupal.media || {};
 
@@ -23,7 +24,7 @@
      * Execute the button.
      */
     invoke: function (data, settings, instanceId) {
-      if (data.format == 'html') {
+      if (data.format === 'html') {
         var insert = new InsertMediaDamsVideo(instanceId);
         if (this.isNode(data.node)) {
           // Change the view mode for already-inserted media.
@@ -44,7 +45,10 @@
      *
      */
     attach: function (content, settings, instanceId) {
-      if (!content.match(/dams_type"\:"video/g)) return content;
+      if (!content.match(/dams_type"\:"video/g)) {
+        return content;
+      }
+
       return Drupal.wysiwyg.plugins.media.attach(content, settings, instanceId);
     },
 
@@ -54,7 +58,7 @@
     detach: function (content, settings, instanceId) {
       if (!content.match(/dams_type"\:"video/g)) return content;
       return Drupal.wysiwyg.plugins.media.detach(content, settings, instanceId);
-    },
+    }
   };
 
   var InsertMediaDamsVideo = function (instance_id) {
@@ -88,7 +92,7 @@
      */
     insert: function (formatted_media) {
       var html = formatted_media.html;
-      if (formatted_media.type != 'ding_dams_inline') {
+      if (formatted_media.type !== 'ding_dams_inline') {
         html = $(formatted_media.html).children('source');
       }
 
@@ -117,6 +121,9 @@
 
         case 'ding_dams_inline':
           markup = Drupal.media.filter.getWysiwygHTML(element);
+
+          // Open link in new tab.
+          $(markup).find('a').attr('target', '_blank');
           break;
 
         case 'ding_dams_popup':
