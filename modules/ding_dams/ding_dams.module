@@ -161,6 +161,7 @@ function ding_dams_form_alter(&$form, &$form_state, $form_id) {
     );
     drupal_add_css(drupal_get_path('module', 'ding_dams') . '/css/ding_dams.media_edit.css');
   }
+  drupal_add_css(drupal_get_path('module', 'ding_dams') . '/css/ding_dams.media_browser.css');
 }
 
 /**
@@ -358,7 +359,7 @@ function ding_dams_get_doctype_icon($file = NULL) {
   }
 
   $doctype_icon = '/' . drupal_get_path('module', 'ding_dams') . '/wysiwyg_plugins/images/';
-  // Setting icon by file type and extension
+  // Setting icon by file type and extension.
   if ($file->type == 'document') {
     $extension = explode('.', $file->uri);
     $extension = array_pop($extension);
@@ -403,7 +404,7 @@ function ding_dams_get_doctype_icon($file = NULL) {
  * Theme function for dams_inline display mode.
  */
 function theme_ding_dams_inline(&$variables) {
-  $file = isset($variables['element']['#file']) ? $variables['element']['#file'] : $variables['element']['content']['file']['#file'];
+  $file = isset($variables['element']['#file']) ? $variables['element']['#file'] : $variables['element']['file']['#file'];
   $output = '';
   if ($file) {
     if ($file->type == 'image') {
@@ -466,7 +467,7 @@ function theme_ding_dams_popup(&$variables) {
  * Theme function for dams_download_icon display mode.
  */
 function theme_ding_dams_download_icon(&$variables) {
-  $file = isset($variables['element']['#file']) ? $variables['element']['#file'] : $variables['element']['content']['file']['#file'];
+  $file = isset($variables['element']['#file']) ? $variables['element']['#file'] : $variables['element']['file']['#file'];
   $output = '';
   if ($file) {
     $doctype_icon = ding_dams_get_doctype_icon($file);
@@ -500,7 +501,7 @@ function theme_ding_dams_download_icon(&$variables) {
  * Theme function for dams_download_link display mode.
  */
 function theme_ding_dams_download_link($variables) {
-  $file = isset($variables['element']['#file']) ? $variables['element']['#file'] : $variables['element']['content']['file']['#file'];
+  $file = isset($variables['element']['#file']) ? $variables['element']['#file'] : $variables['element']['file']['#file'];
   $output = '';
   if ($file) {
     $classes = '';

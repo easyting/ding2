@@ -4,58 +4,9 @@
  */
 
 (function ($) {
+  "use strict";
 
   Drupal.media = Drupal.media || {};
-
-  Drupal.wysiwyg.plugins.dams_video = {
-
-    /**
-     * Determine whether a DOM element belongs to this plugin.
-     *
-     * @param node
-     *   A DOM element
-     */
-    isNode: function (node) {
-      return Drupal.wysiwyg.plugins.media.isNode(node);
-    },
-
-    /**
-     * Execute the button.
-     */
-    invoke: function (data, settings, instanceId) {
-      if (data.format == 'html') {
-        var insert = new InsertMediaDamsVideo(instanceId);
-        if (this.isNode(data.node)) {
-          // Change the view mode for already-inserted media.
-          var media_file = Drupal.media.filter.extract_file_info($(data.node));
-          insert.onSelect([media_file]);
-        }
-        else {
-          // Insert new media.
-          insert.prompt(settings.global);
-        }
-      }
-    },
-
-    /**
-     * Attach function, called when a rich text editor loads.
-     * This finds all [[tags]] and replaces them with the html
-     * that needs to show in the editor.
-     *
-     */
-    attach: function (content, settings, instanceId) {
-      if (!content.match(/dams_type"\:"video/g)) return content;
-      return Drupal.wysiwyg.plugins.media.attach(content, settings, instanceId);
-    },
-
-    /**
-     * Detach function, called when a rich text editor detaches
-     */
-    detach: function (content, settings, instanceId) {
-      if (!content.match(/dams_type"\:"video/g)) return content;
-      return Drupal.wysiwyg.plugins.media.detach(content, settings, instanceId);
-    },
-  };
 
   var InsertMediaDamsVideo = function (instance_id) {
     this.instanceId = instance_id;
@@ -88,7 +39,7 @@
      */
     insert: function (formatted_media) {
       var html = formatted_media.html;
-      if (formatted_media.type != 'ding_dams_inline') {
+      if (formatted_media.type !== 'ding_dams_inline') {
         html = $(formatted_media.html).children('source');
       }
 
@@ -117,6 +68,9 @@
 
         case 'ding_dams_inline':
           markup = Drupal.media.filter.getWysiwygHTML(element);
+
+          // Open link in new tab.
+          $(markup).find('a').attr('target', '_blank');
           break;
 
         case 'ding_dams_popup':
@@ -155,6 +109,62 @@
       Drupal.settings.tagmap[macro] = markup;
       // Insert placeholder markup into wysiwyg.
       Drupal.wysiwyg.instances[this.instanceId].insert(markup);
+    }
+  };
+
+  Drupal.wysiwyg.plugins.dams_video = {
+
+    /**
+     * Determine whether a DOM element belongs to this plugin.
+     *
+     * @param node
+     *   A DOM element
+     */
+    isNode: function (node) {
+      return Drupal.wysiwyg.plugins.media.isNode(node);
+    },
+
+    /**
+     * Execute the button.
+     */
+    invoke: function (data, settings, instanceId) {
+      if (data.format === 'html') {
+        var insert = new InsertMediaDamsVideo(instanceId);
+        if (this.isNode(data.node)) {
+          // Change the view mode for already-inserted media.
+          var media_file = Drupal.media.filter.extract_file_info($(data.node));
+          insert.onSelect([media_file]);
+        }
+        else {
+          // Insert new media.
+          insert.prompt(settings.global);
+        }
+      }
+    },
+
+    /**
+     * Attach function, called when a rich text editor loads.
+     * This finds all [[tags]] and replaces them with the html
+     * that needs to show in the editor.
+     *
+     */
+    attach: function (content, settings, instanceId) {
+      if (!content.match(/dams_type"\:"video/g)) {
+        return content;
+      }
+
+      return Drupal.wysiwyg.plugins.media.attach(content, settings, instanceId);
+    },
+
+    /**
+     * Detach function, called when a rich text editor detaches
+     */
+    detach: function (content, settings, instanceId) {
+      if (!content.match(/dams_type"\:"video/g)) {
+        return content;
+      }
+
+      return Drupal.wysiwyg.plugins.media.detach(content, settings, instanceId);
     }
   };
 
