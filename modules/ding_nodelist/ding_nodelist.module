@@ -473,7 +473,6 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     '#prefix' => '<div id="node_list-dynamic-content-switch">',
     '#suffix' => '</div>',
     '#default_value' => isset($conf['dynamic_switch']) ? $conf['dynamic_switch'] : 0,
-    '#disabled' => (count(array_filter($node_type)) > 1),
   );
 
   // Dynamic list settings.
