@@ -421,6 +421,7 @@ function theme_ding_dams_inline(&$variables) {
         'type' => 'file_field_file_' . $file->type,
         'settings' => array(
           'autoplay' => FALSE,
+          'controls' => TRUE,
           'loop' => FALSE,
           'muted' => FALSE,
           'width' => NULL,
@@ -434,7 +435,6 @@ function theme_ding_dams_inline(&$variables) {
   }
   return $output;
 }
-
 
 /**
  * Theme function for dams_popup display mode.
