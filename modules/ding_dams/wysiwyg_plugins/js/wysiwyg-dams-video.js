@@ -107,6 +107,12 @@
       Drupal.media.filter.ensure_tagmap();
 
       Drupal.settings.tagmap[macro] = markup;
+
+      // This hack is used because video ads empty tags, which makes webkit
+      // browsers unable to place an editable selection inside.
+      // @see https://bugs.webkit.org/show_bug.cgi?id=15256
+      markup += '&zwnj;';
+
       // Insert placeholder markup into wysiwyg.
       Drupal.wysiwyg.instances[this.instanceId].insert(markup);
     }
