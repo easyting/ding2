@@ -254,7 +254,6 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     drupal_set_message(t('No eligible content types were found, please configure a few first.'), 'error', FALSE);
   }
 
-  $node_type = array();
   if (isset($conf['content_types']) && !isset($form_state['values']['content_types'])) {
     $node_type = $conf['content_types'];
   }
@@ -520,7 +519,8 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
         foreach ($node_types_opts as $k => $v) {
 
           if ($field['bundle'] == $k) {
-            $allowed_fields[$field_machine_name] = $v . ': ' . $field['label'];
+            $allowed_fields[$field_machine_name]['title'] = $v . ': ' . $field['label'];
+            $allowed_fields[$field_machine_name]['type'] = $k;
           }
         }
 
@@ -970,6 +970,12 @@ function _ding_nodelist_chosen_ct($content_type) {
  * Builds filter form.
  */
 function _ding_nodelist_taxonomy_filter($fields, $filter, $key) {
+  $filter_fields = array_map(function ($field) {
+      return $field['title'];
+    },
+    $fields
+  );
+
   $form = array(
     '#tree' => TRUE,
     '#weight' => $key,
@@ -978,7 +984,7 @@ function _ding_nodelist_taxonomy_filter($fields, $filter, $key) {
   $form['filter_field'] = array(
     '#type' => 'select',
     '#title_display' => 'invisible',
-    '#options' => $fields,
+    '#options' => $filter_fields,
     '#default_value' => !is_null($filter) && !empty($filter['filter_field']) ? $filter['filter_field'] : '',
     '#ajax' => array(
       'wrapper' => 'ding_nodelist-taxonomy-filters',
@@ -1031,6 +1037,10 @@ function _ding_nodelist_taxonomy_filter($fields, $filter, $key) {
   $form['filter_name'] = array(
     '#type' => 'value',
     '#value' => $filter['filter_field'],
+  );
+  $form['filter_bundle'] = array(
+    '#type' => 'value',
+    '#value' => $fields[$filter['filter_field']]['type'],
   );
 
   return $form;
@@ -2100,6 +2110,7 @@ function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
 
   // Support for slave-master DB servers.
   $query = db_select('node', 'n', array('target' => 'slave'))->fields('n', array('nid'));
+  $content_types = array();
   if (!empty($conf['taxonomy_filters'])) {
     $ti_l = 'ti';
     $query->join('taxonomy_index', $ti_l, "n.nid = $ti_l.nid");
@@ -2108,6 +2119,7 @@ function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
       $filter['filter_terms'] = is_array($filter['filter_terms']) ? $filter['filter_terms'] : array($filter['filter_terms']);
       $ti_r = 'ti' . $i;
       $og = 'og' . $i;
+      $content_types[] = $filter['filter_bundle'];
       if ($filter['term_reference'] == 'taxonomy_term_reference') {
         // Use $i in argument placeholder as workaround.
         $ti_l = $query->join('taxonomy_index', $ti_r, "$ti_l.nid = $ti_r.nid AND $ti_r.tid IN (:tids$i)", array(":tids$i" => $filter['filter_terms']));
@@ -2123,6 +2135,11 @@ function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
   if (empty($conf['content_types']) && !empty($conf['content_type'])) {
     $conf['content_types'] = array($conf['content_type']);
   }
+
+  if (!empty($content_types)) {
+    $conf['content_types'] = $content_types;
+  }
+
   // Filter by content type/node settings.
   $query->condition('n.type', $conf['content_types'], 'IN')
     ->condition('n.status', NODE_PUBLISHED)
