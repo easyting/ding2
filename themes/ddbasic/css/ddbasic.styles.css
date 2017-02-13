@@ -1993,7 +1993,7 @@ button.button {
     outline: none; }
   .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close {
     float: right;
-    right: 5px;
+    right: 10%;
     padding: 0;
     width: auto;
     background: none;
