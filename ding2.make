@@ -19,6 +19,11 @@ projects[autologout][version] = "4.3"
 projects[autosave][subdir] = "contrib"
 projects[autosave][version] = "2.2"
 
+projects[ajax_pane][subdir] = "contrib"
+projects[ajax_pane][version] = "1.x-dev"
+projects[ajax_pane][patch][] = "https://www.drupal.org/files/issues/ajax_pane-undefined_function-1930628-6.patch"
+projects[ajax_pane][patch][] = "https://www.drupal.org/files/issues/ajax_pane_add_throbber-2852449-2.patch"
+
 projects[block_access][subdir] = "contrib"
 projects[block_access][version] = "1.5"
 
