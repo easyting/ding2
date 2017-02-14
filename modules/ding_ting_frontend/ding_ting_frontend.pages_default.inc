@@ -394,7 +394,7 @@ search/ting
     $pane->cache = array(
       'method' => 'ajax_pane',
       'settings' => array(
-        'lifetime' => '15',
+        'lifetime' => '86400',
       ),
     );
     $pane->style = array(
