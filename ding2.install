@@ -341,3 +341,10 @@ function ding2_update_7017() {
 function ding2_update_7018() {
   ding2_translation_update();
 }
+
+/**
+ * Enable ajax_pane module.
+ */
+function ding2_update_7019() {
+  module_enable(array('ajax_pane'));
+}

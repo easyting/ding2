@@ -391,7 +391,12 @@ search/ting
       'override_title' => 1,
       'override_title_text' => '',
     );
-    $pane->cache = array();
+    $pane->cache = array(
+      'method' => 'ajax_pane',
+      'settings' => array(
+        'lifetime' => '86400',
+      ),
+    );
     $pane->style = array(
       'settings' => NULL,
     );

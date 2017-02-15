@@ -19,6 +19,15 @@ projects[autologout][version] = "4.3"
 projects[autosave][subdir] = "contrib"
 projects[autosave][version] = "2.2"
 
+projects[ajax_pane][type] = "module"
+projects[ajax_pane][subdir] = "contrib"
+projects[ajax_pane][download][type] = "git"
+projects[ajax_pane][download][url] = "http://git.drupal.org/project/ajax_pane.git"
+; Latest revision on which module was added.
+projects[ajax_pane][download][revision] = "5487803"
+projects[ajax_pane][patch][] = "https://www.drupal.org/files/issues/ajax_pane-undefined_function-1930628-6.patch"
+projects[ajax_pane][patch][] = "https://www.drupal.org/files/issues/ajax_pane_add_throbber-2852449-2.patch"
+
 projects[block_access][subdir] = "contrib"
 projects[block_access][version] = "1.5"
 
