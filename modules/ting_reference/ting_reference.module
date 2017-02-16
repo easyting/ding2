@@ -82,8 +82,14 @@ function ting_reference_field_info() {
  */
 function ting_reference_field_is_empty($item, $field) {
   $empty = TRUE;
-  $weight = !empty($item['_weight']) ? $item['_weight'] : 0;
-  if (!empty($item['materials'][$weight]['ting_object_id']) || !empty($item['search']['query'])) {
+  $materials = $item['materials'];
+  // Remove "Add" item from materials array.
+  unset($materials['add']);
+  // Getting non empty elements from materials array.
+  $not_empty = array_map('array_filter', $materials);
+  $final = array_filter($not_empty);
+
+  if (!empty($final) || !empty($item['search']['query'])) {
     $empty = FALSE;
   }
 
@@ -101,6 +107,7 @@ function ting_reference_field_insert($entity_type, $entity, $field, $instance, $
   // Get the entity's id.
   $entity_ids = entity_extract_ids($entity_type, $entity);
   $entity_id = array_shift($entity_ids);
+  $settings = reset($items);
 
   $tids = ting_reference_get_materials($entity_id, $instance['widget']['type'], $items);
 
@@ -123,12 +130,30 @@ function ting_reference_field_insert($entity_type, $entity, $field, $instance, $
  */
 function ting_reference_field_update($entity_type, $entity, $field, $instance, $langcode, &$items) {
   if (empty($items)) {
+    // Check if we have reference related  to current entity in the database.
+    // Runs in case if there was deleted unique relation.
+    $results = db_select('ting_reference', 'tr')
+      ->fields('tr')
+      ->condition('nid', $entity->nid, '=')
+      ->execute()
+      ->fetchAll();
+
+    // If in database left record - delete this.
+    if (!empty($results)) {
+      foreach ($results as $relation) {
+        db_delete('ting_reference')
+          ->condition('nid', $relation->nid, '=')
+          ->execute();
+      }
+    }
+
     return;
   }
 
   // Get the entity's id.
   $entity_ids = entity_extract_ids($entity_type, $entity);
   $entity_id = array_shift($entity_ids);
+  $settings = reset($items);
 
   $tids = ting_reference_get_materials($entity_id, $instance['widget']['type'], $items);
 
