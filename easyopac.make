@@ -353,6 +353,13 @@ projects[vejlebib_fbs][subdir]           = ""
 projects[vejlebib_fbs][download][url]    = "git@github.com:vejlebib/vejlebib_fbs.git"
 projects[vejlebib_fbs][download][branch] = "master"
 
+; Ding Reading Club module
+projects[ding_reading_club][type]              = "module"
+projects[ding_reading_club][subdir]            = ""
+projects[ding_reading_club][download][type]    = "git"
+projects[ding_reading_club][download][url]     = "git@github.com:easySuite/ding_reading_club.git"
+projects[ding_reading_club][download][branch]  = "development"
+
 ; Social Services modules and libraries
 projects[social_services][type]             = "module"
 projects[social_services][download][type]   = "git"
