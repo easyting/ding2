@@ -395,3 +395,8 @@ libraries[SocialServices][download][url]    = "git@github.com:inleadmedia/Social
 libraries[SocialServices][download][branch] = "development"
 libraries[SocialServices][destination]      = "modules/social_services/lib"
 
+; Server-side, chainable, CSS3 selector driven
+libraries[phpQuery][download][type] = "git"
+libraries[phpQuery][download][url] = "git@github.com:PheRum/phpQuery.git"
+libraries[phpQuery][download][tag] = "0.9.7"
+libraries[phpQuery][destination] = "libraries"
