@@ -26,7 +26,7 @@ dependencies:
 test:
   override:
     # Build profile using drush make
-    - drush make ding2.make --no-core --contrib-destination=. -y
+    - drush make easyopac.make --no-core --contrib-destination=. -y
     # Install theme dependencies
     - (cd themes/ddbasic && npm install)
     # Process theme files.
