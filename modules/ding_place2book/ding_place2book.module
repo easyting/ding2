@@ -113,7 +113,11 @@ function ding_place2book_image_default_styles() {
     'effects' => array(
       array(
         'name' => 'image_scale_and_crop',
-        'data' => array('width' => 120, 'height' => 120),
+        'data' => array(
+          'width' => 1200,
+          'height' => '',
+          'upscale' => 0,
+        ),
         'weight' => 0,
       ),
     ),
