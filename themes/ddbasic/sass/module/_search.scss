@@ -1371,3 +1371,14 @@ div[class^="collection-bg"] {
     }
   }
 }
+
+.page-search .search-results .ticket-info,
+.page-search .search-results .ticket-available {
+  display: none;
+}
+
+.page-search .search-results li h3,
+.page-search .search-results li strong,
+.page-search .search-results li em {
+  display: none;
+}
