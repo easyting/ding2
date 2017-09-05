@@ -40,8 +40,3 @@
   text-align: center;
   color: #884400;
 }
-
-.page-search .search-results .ticket-info,
-.page-search .search-results .ticket-available {
-  display: none;
-}
