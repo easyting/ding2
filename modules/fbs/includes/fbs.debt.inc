@@ -19,7 +19,9 @@ function fbs_debt_list($account) {
   $res = array();
 
   try {
-    $res = fbs_service()->Payment->getFees(fbs_service()->agencyId, fbs_patron_id($account), FALSE, FALSE);
+    // FBS API accepts query parameters as strings.
+    // Vars includepaid and includenonpayable parameters are sent as strings.
+    $res = fbs_service()->Payment->getFees(fbs_service()->agencyId, fbs_patron_id($account), 'false', 'true');
   }
   catch (Exception $e) {
     watchdog_exception('fbs', $e);
@@ -49,6 +51,7 @@ function fbs_debt_list($account) {
       'amount_paid' => 0,
       'invoice_number' => NULL,
       'type' => $fee->reasonMessage,
+      'payableByClient' => $fee->payableByClient,
     );
 
     if (!empty($fee->materials)) {

@@ -75,6 +75,7 @@ class DingProviderDebt extends DingEntityBase {
       'invoice_number',
       'type',
       'note',
+      'payableByClient',
     );
     $this->_populate($properties, $data);
   }
