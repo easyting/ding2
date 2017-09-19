@@ -30,20 +30,16 @@ function ting_proxy(data) {
 
   var ting_proxy = Drupal.settings.mkdru_ding.proxy_settings;
 
-  if (ting_proxy.length > 0 && ting_proxy.hostnames.length > 0) {
+  if (ting_proxy.hostnames !== undefined && ting_proxy.hostnames.length > 0) {
     for (var i = 0; i < ting_proxy.hostnames.length; i++) {
-      if (ting_proxy.hostnames[i].hostname === data.hostname && ting_proxy.hostnames[i].disable_prefix === 0) {
+      if (ting_proxy.hostnames[i].hostname === url.hostname && ting_proxy.hostnames[i].disable_prefix === 0) {
         var regexp = ting_proxy.hostnames[i].expression.regex;
         var replacement = ting_proxy.hostnames[i].expression.replacement;
-
-        url = ting_proxy.prefix + data.href;
+        url.href = ting_proxy.prefix + url + '&hostname=' + url.hostname;
 
         if (regexp.length > 0 && replacement.length > 0) {
-          url = url.replace(new RegExp(regexp), replacement);
+          url.href = url.replace(new RegExp(regexp), replacement);
         }
-      }
-      else {
-        url = data;
       }
     }
   }
