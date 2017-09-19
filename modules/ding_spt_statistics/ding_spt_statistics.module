@@ -196,8 +196,8 @@ function ding_spt_statistics_date_picker_form_submit($form, &$form_state) {
  * @param int $to
  *   Some date.
  *
- * @return string
- *   Themed table.
+ * @return array
+ *   Renderable array of the table.
  */
 function ding_spt_statistics_display($from = 0, $to = 0) {
   $header = array(
