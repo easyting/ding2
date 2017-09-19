@@ -201,3 +201,21 @@ function ting_proxy_rewrite_download_url($url, $proxy_url, $hostnames) {
 
   return $url;
 }
+
+/**
+ * Implements hook_spt_external_url_alter().
+ */
+function ting_proxy_spt_external_url_alter(&$callbacks) {
+  $callbacks[] = 'tingProxySPTUrlPreprocess';
+
+  $proxy_settings = variable_get('ting_proxy', array());
+
+  drupal_add_js(
+    array(
+      'spt' => array(
+        'proxy_settings' => $proxy_settings,
+      ),
+    ),
+    array('type' => 'setting'));
+  drupal_add_js(drupal_get_path('module', 'ting_proxy') . '/js/ting_proxy.js');
+}

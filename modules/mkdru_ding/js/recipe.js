@@ -19,32 +19,60 @@ Drupal.mkdruProcessExternalUrl = function (url) {
   return url;
 };
 
-/**
- * URL processing.
- * @param data
- * @returns {*}
- */
-function ting_proxy(data) {
-  var url = document.createElement("a");
-  url.href = data;
-
-  var ting_proxy = Drupal.settings.mkdru_ding.proxy_settings;
-
-  if (ting_proxy.hostnames !== undefined && ting_proxy.hostnames.length > 0) {
-    for (var i = 0; i < ting_proxy.hostnames.length; i++) {
-      if (ting_proxy.hostnames[i].hostname === url.hostname && ting_proxy.hostnames[i].disable_prefix === 0) {
-        var regexp = ting_proxy.hostnames[i].expression.regex;
-        var replacement = ting_proxy.hostnames[i].expression.replacement;
-        url.href = ting_proxy.prefix + url + '&hostname=' + url.hostname;
-
-        if (regexp.length > 0 && replacement.length > 0) {
-          url.href = url.replace(new RegExp(regexp), replacement);
-        }
-      }
+// Exec perl-like substitution regexes in the form: pattern/replacement/mode.
+function exec_sregex (regex_str, input_str) {
+  var regex_parts = ["", "", ""];
+  var i = 0;
+  for (var j=0; j<regex_str.length && i<3; j++) {
+    if (j>0 && regex_str.charAt(j) === '/' && regex_str.charAt(j-1) !== '\\') {
+      i++;
+    } else {
+      regex_parts[i] += regex_str.charAt(j);
     }
   }
+  var regex_obj = new RegExp(regex_parts[0], regex_parts[2]);
+  return input_str.replace(regex_obj, regex_parts[1]);
+}
 
-  return url;
+function get_var_value (expr_in, meta_data) {
+  // Strip ${ and }.
+  var expr = expr_in.substring(2, expr_in.length-1);
+  if (expr === "") {
+    return "";
+  }
+
+  // Extract name.
+  var var_name = expr.match(/^[^\[]+/)[0];
+  if (typeof meta_data[var_name] === "undefined") {
+    return "";
+  } else {
+    var var_value = meta_data[var_name][0];
+    if (var_name.length < expr.length) { // Possibly a regex
+     var_value = exec_sregex(
+      expr.substring(var_name.length+1, expr.length-1),
+      var_value);
+    }
+    return var_value;
+  }
+}
+
+// Prepares urls from recipes with expressions in the form:
+// ${variable-name[pattern/replacement/mode]}, [regex] is optional
+// eg. http://sever.com?title=${md-title[\s+//]} will strip all whitespaces.
+function prepare_url(url_recipe, meta_data) {
+  if (typeof url_recipe !== "string" || url_recipe.length === 0) {
+    return null;
+  }
+  if (typeof meta_data !== "object") {
+    return null;
+  }
+  try {
+    return url_recipe.replace(/\${[^}]*}/g, function(match) {
+      return get_var_value(match, meta_data);
+    });
+  } catch (e) {
+    return "Malformed URL recipe: " + e.message;
+  }
 }
 
 function choose_url(data, proxyPattern) {
