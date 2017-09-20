@@ -2063,14 +2063,13 @@ $promoted-nodes-button-text-4:             $white;
     background: #e8e8e8;
   }
 }
-
 .pane-ding-nodelist
 .ding_nodelist-minimal_display
 .minimal-item .minimal-title a {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 220px ;
+  max-width: 220px;
 
   @include small() {
     max-width: 12em;
