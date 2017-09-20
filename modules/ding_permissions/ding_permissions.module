@@ -518,6 +518,8 @@ function ding_permissions_secure_permissions($role) {
       'view scheduled content',
       'view the administration theme',
       'administer personalisation',
+      'configure nodelist',
+      'nodelist cache settings',
     ),
     'editor' => array(
       'access media browser',
@@ -915,6 +917,8 @@ function ding_permissions_secure_permissions($role) {
       'view scheduled content',
       'view the administration theme',
       'administer personalisation',
+      'configure nodelist',
+      'nodelist cache settings',
     ),
     'local editor' => array(
       'access media browser',

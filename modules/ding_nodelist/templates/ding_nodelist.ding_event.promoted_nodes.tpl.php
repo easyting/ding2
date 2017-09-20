@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Ding event promoted nodes template.
@@ -6,8 +7,6 @@
 $title = $item->title;
 $image_field = 'field_' . $item->type . '_list_image';
 $image_path = _ding_nodelist_get_image_path($item, $conf, $image_field);
-$lead = field_get_items('node', $item, 'field_ding_event_lead');
-$teaser = field_get_items('node', $item, 'field_ding_event_body');
 $event_date = _ding_nodelist_get_event_date($item);
 $event_date_formatted = _ding_nodelist_formated_ding_event_date($item);
 $library = field_view_field('node', $item, 'og_group_ref', 'default');
@@ -39,27 +38,17 @@ $classes = implode(" ", $classes);
   <div class="event-info">
     <h3><?php print l($title, 'node/' . $item->nid); ?></h3>
     <div class="item-body">
-      <?php
-      if (isset($lead[0]['safe_value'])) {
-        print strip_tags($lead[0]['safe_value']);
-      }
-      elseif (isset($teaser[0]['safe_value'])) {
-        print strip_tags($teaser[0]['safe_value']);
-      }
-      else {
-        print '';
-      }
-      ?>
+      <?php print $item->teaser_lead; ?>
     </div>
     <div class="item-date"><?php print $event_date_formatted; ?></div>
     <div>
-      <span class="library"><?php print drupal_render($library); ?></span>
+      <span class="library"><?php print $library[0]['#markup']; ?></span>
         <span class="item-price">
           <?php
           $fee_field = field_get_items('node', $item, 'field_ding_event_price');
           if (is_array($fee_field)) {
             $fee = current($fee_field);
-            print '&mdash; ' . $fee['value'] . ' ' . t('kr.');
+            print '&mdash; ' . $fee['value'] . ' ' . $currency;
           }
           else {
             print '&mdash; ' . t('Free');

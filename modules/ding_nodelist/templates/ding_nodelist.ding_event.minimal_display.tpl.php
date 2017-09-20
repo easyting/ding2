@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Minimal display event display template.

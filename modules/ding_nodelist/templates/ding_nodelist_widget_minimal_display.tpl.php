@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Minimal display list widget template.
@@ -31,15 +32,7 @@
       ?>
     </div>
     <?php if (!empty($links)): ?>
-      <div class="more-links">
-        <ul>
-          <?php foreach ($links as $key => $bottom) : ?>
-            <li>
-              <?php print l(t($bottom['text']), $bottom['links']); ?>
-            </li>
-          <?php endforeach; ?>
-        </ul>
-      </div>
+      <?php print theme('_more_links', array('links' => $links)); ?>
     <?php endif; ?>
   </div>
 <?php endif; ?>

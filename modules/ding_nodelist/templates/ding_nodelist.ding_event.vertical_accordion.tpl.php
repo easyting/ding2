@@ -1,15 +1,17 @@
 <?php
+
 /**
  * @file
  * Ding event image and text template.
- * Avaialable fields are:
+ *
+ * Available fields are:
  * ding_content_tags
  * field_address
  * field_ding_body
  * field_list_image
  * field_main_image
  * field_materials
- * group_audience
+ * group_audience.
  */
 
 $image_field = 'field_' . $item->type . '_list_image';
@@ -23,7 +25,7 @@ $background_image_style = $image ? ' style="background-image: url(\'' . image_st
 <div class="item event va-slice"<?php print $background_image_style; ?>>
   <div class="va-title">
     <div class="event-time">
-      <div class="event-day"><?php print t(date('D', $event_date));?></div>
+      <div class="event-day"><?php print t('@event_date', array('@event_date' => date('D', $event_date))); ?></div>
       <div class="event-date"><?php print format_date($event_date, 'day_only'); ?></div>
       <div class="event-month"><?php print format_date($event_date, 'short_month_only'); ?></div>
     </div>
@@ -42,14 +44,14 @@ $background_image_style = $image ? ' style="background-image: url(\'' . image_st
         </div>
         <div class="event-details">
           <span class="event-library">
-            <?php print drupal_render($library); ?>
+            <?php print $library[0]['#markup']; ?>
           </span>
           <span class="event-fee">
             <?php
               $fee_field = field_get_items('node', $item, 'field_ding_event_price');
               if (is_array($fee_field)) {
                 $fee = current($fee_field);
-                print '&mdash; ' . $fee['value'] . ' ' . t('kr.');
+                print '&mdash; ' . $fee['value'] . ' ' . $currency;
               }
               else {
                 print '&mdash; ' . t('Free');

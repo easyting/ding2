@@ -25,9 +25,11 @@ function ding_nodelist_settings_form() {
   // Options as defined by panels/plugins/cache/simple.inc
   $options = drupal_map_assoc(
     array(
-      15, 30, 60, 120, 180, 240, 300, 600, 900, 1200, 1800, 3600,
+      0, 15, 30, 60, 120, 180, 240, 300, 600, 900, 1200, 1800, 3600,
       7200, 14400, 28800, 43200, 86400, 172800, 259200, 345600, 604800),
     'format_interval');
+  $options[0] = '<' . t('none') . '>';
+
   $form['ding_nodelist_cache_default_time'] = array(
     '#type' => 'select',
     '#options' => $options,
@@ -96,7 +98,7 @@ function ding_nodelist_templates_form($form, &$form_state) {
     $widgets = _ding_nodelist_get_widget_types();
     $form['templates'][$template_name]['widget'] = array(
       '#type' => 'select',
-      '#empty_option' => t('- select -'),
+      '#empty_value' => '',
       '#required' => FALSE,
       '#default_value' => isset($template['widget']) ? $template['widget'] : '',
       '#options' => $widgets,

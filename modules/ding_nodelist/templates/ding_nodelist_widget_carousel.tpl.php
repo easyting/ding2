@@ -1,11 +1,13 @@
 <?php
+
 /**
  * @file
  * Carousel list widget template.
+ *
  * Variables are:
  * $items - rendered items (HTML)
  * $conf - list configuration with:
- *  - classes - widget-specific CSS classes
+ *  - classes - widget-specific CSS classes.
  */
 ?>
 <?php if ($items): ?>
@@ -29,15 +31,7 @@
     </div>
     <div class="pagination"></div>
     <?php if (!empty($links)): ?>
-      <div class="more-links">
-        <ul>
-          <?php foreach ($links as $key => $bottom) : ?>
-            <li>
-              <?php print l(t($bottom['text']), $bottom['links']); ?>
-            </li>
-          <?php endforeach; ?>
-        </ul>
-      </div>
+      <?php print theme('_more_links', array('links' => $links)); ?>
     <?php endif; ?>
   </div>
 <?php endif; ?>

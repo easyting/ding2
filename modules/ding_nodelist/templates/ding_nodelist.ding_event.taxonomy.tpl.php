@@ -1,22 +1,9 @@
 <?php
+
 /**
  * @file
  * Template file for taxonomy-like layout.
- */
-
-$title = $item->title;
-$category = field_view_field('node', $item, 'field_ding_event_category', 'default');
-$price = field_view_field('node', $item, 'field_ding_event_price', 'default');
-$image_field = 'field_' . $item->type . '_list_image';
-$image = _ding_nodelist_get_dams_image_info($item, $image_field);
-$event_date = _ding_nodelist_get_event_date($item);
-$event_time = _ding_nodelist_get_event_time($item);
-$library = field_view_field('node', $item, 'og_group_ref', 'default');
-$library = drupal_render($library);
-$lead = field_get_items('node', $item, 'field_ding_event_lead');
-$teaser = field_get_items('node', $item, 'field_ding_event_body');
-
-/**
+ *
  * Available variables:
  *
  * $title
@@ -30,6 +17,16 @@ $teaser = field_get_items('node', $item, 'field_ding_event_body');
  * $author
  *   Node author name.
  */
+
+$title = $item->title;
+$category = field_view_field('node', $item, 'field_ding_event_category', 'default');
+$price = field_view_field('node', $item, 'field_ding_event_price', 'default');
+$image_field = 'field_' . $item->type . '_list_image';
+$image = _ding_nodelist_get_dams_image_info($item, $image_field);
+$event_date = _ding_nodelist_get_event_date($item);
+$event_time = _ding_nodelist_get_event_time($item);
+$library = field_view_field('node', $item, 'og_group_ref', 'default');
+$back_image = l($image ? theme('image_style', array_merge($image, array('style_name' => $conf['image_style']))) : '', 'node/' . $item->nid, array('html' => TRUE));
 ?>
 
 <?php if (isset($item->has_header)): ?>
@@ -55,28 +52,15 @@ $teaser = field_get_items('node', $item, 'field_ding_event_body');
 <div class="item">
   <?php if (!empty($image)): ?>
     <div class="item-list-image">
-      <a href="<?php print url('node/' . $item->nid); ?>">
-        <?php print $image ? theme('image_style', array_merge($image, array('style_name' => $conf['image_style']))) : ''; ?>
-      </a>
+      <?php print $back_image; ?>
     </div>
   <?php endif ?>
   <div class="item-details">
     <h2 class="item-title"><?php print l($title, 'node/' . $item->nid); ?></h2>
     <div class="item-body">
-      <?php
-      // @todo: Move logic from templates.
-      if (isset($lead[0]['safe_value'])) {
-        print strip_tags($lead[0]['safe_value']);
-      }
-      elseif (isset($teaser[0]['safe_value'])) {
-        print strip_tags($teaser[0]['safe_value']);
-      }
-      else {
-        print '';
-      }
-      ?>
+      <?php print $item->teaser_lead; ?>
     </div>
-    <span class="item-library"><?php print $library; ?></span>
+    <span class="item-library"><?php print $library[0]['#markup']; ?></span>
     <div class="item-date"><?php print $event_time; ?></div>
     <div class="item-price">
       <?php
@@ -84,7 +68,7 @@ $teaser = field_get_items('node', $item, 'field_ding_event_body');
       if (is_array($fee_field)) {
         // @todo: Move logic from templates.
         $fee = current($fee_field);
-        print $fee['value'] . ' ' . t('kr.');
+        print $fee['value'] . ' ' . $currency;
       }
       else {
         print t('Free');
@@ -92,9 +76,7 @@ $teaser = field_get_items('node', $item, 'field_ding_event_body');
       ?>
     </div>
     <div class="event-arrow-link">
-      <a href="<?php print url('node/' . $item->nid); ?>">
-        <i class="icon-chevron-right"></i>
-      </a>
+      <?php print l('<i class="icon-chevron-right"></i>', 'node/' . $item->nid, array('html' => TRUE)); ?>
     </div>
   </div>
 </div>

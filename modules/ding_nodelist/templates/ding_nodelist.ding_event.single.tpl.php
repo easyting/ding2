@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Ding event single item template.
@@ -15,8 +16,7 @@ $event_date = _ding_nodelist_get_event_date($item);
 $event_date_formatted = _ding_nodelist_formated_ding_event_date($item);
 $library = field_view_field('node', $item, 'og_group_ref', 'default');
 $price = field_view_field('node', $item, 'field_ding_event_price', 'default');
-$lead = field_get_items('node', $item, 'field_ding_event_lead');
-$teaser = field_get_items('node', $item, 'field_ding_event_body');
+$back_image = l($image ? theme('image_style', array_merge($image, array('style_name' => $conf['image_style']))) : '', 'node/' . $item->nid, array('html' => TRUE));
 
 $classes = array();
 $classes[] = "item";
@@ -33,11 +33,10 @@ $classes = implode(" ", $classes);
   <?php endif; ?>
   <div class="event-info">
     <div class="event-image">
-      <a
-        href="<?php print url('node/' . $item->nid); ?>"><?php print $image ? theme('image_style', array_merge($image, array('style_name' => $conf['image_style']))) : ''; ?></a>
+      <?php print $back_image; ?>
     </div>
     <div class="event-time">
-      <div class="event-day"><?php print t(date('D', $event_date)); ?></div>
+      <div class="event-day"><?php print t('@event_date', array('@event_date' => date('D', $event_date))); ?></div>
       <div
         class="event-date"><?php print format_date($event_date, 'day_only'); ?></div>
       <div
@@ -46,18 +45,18 @@ $classes = implode(" ", $classes);
     <div class="article-info">
       <div class="label"><?php print drupal_render($category); ?></div>
       <div class="node">
-        <h3 class="node-title"><a
-            href="<?php print url('node/' . $item->nid); ?>"><?php print $item->title; ?></a>
+        <h3 class="node-title">
+          <?php print l($item->title, 'node/' . $item->nid); ?>
         </h3>
         <div class="item-date"><?php print $event_date_formatted; ?></div>
         <div>
-          <span class="library"><?php print drupal_render($library); ?></span>
+          <span class="library"><?php print $library[0]['#markup']; ?></span>
         <span class="item-price">
           <?php
           $fee_field = field_get_items('node', $item, 'field_ding_event_price');
           if (is_array($fee_field)) {
             $fee = current($fee_field);
-            print '&mdash; ' . $fee['value'] . ' ' . t('kr.');
+            print '&mdash; ' . $fee['value'] . ' ' . $currency;
           }
           else {
             print '&mdash; ' . t('Free');
@@ -66,17 +65,7 @@ $classes = implode(" ", $classes);
         </span>
         </div>
         <p>
-          <?php
-          if (isset($lead[0]['safe_value'])) {
-            print strip_tags($lead[0]['safe_value']);
-          }
-          elseif (isset($teaser[0]['safe_value'])) {
-            print strip_tags($teaser[0]['safe_value']);
-          }
-          else {
-            print '';
-          }
-          ?>
+          <?php print $item->teaser_lead; ?>
         </p>
         <div class="more">
           <?php print l(t('More'), 'node/' . $item->nid); ?>

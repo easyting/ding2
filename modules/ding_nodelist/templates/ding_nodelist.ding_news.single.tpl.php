@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Ding news single item template.
@@ -7,8 +8,7 @@
 $image_field = 'field_' . $item->type . '_list_image';
 $image = _ding_nodelist_get_dams_image_info($item, $image_field);
 $category = field_view_field('node', $item, 'field_ding_news_category', 'teaser');
-$lead = field_get_items('node', $item, 'field_ding_news_lead');
-$teaser = field_get_items('node', $item, 'field_ding_news_body');
+$back_image = l($image ? theme('image_style', array_merge($image, array('style_name' => $conf['image_style']))) : '', 'node/' . $item->nid, array('html' => TRUE));
 
 $classes = array();
 $classes[] = "item";
@@ -26,27 +26,16 @@ $classes = implode(" ", $classes);
 
   <div class="event-info">
     <div class="article_image">
-      <a
-        href="<?php print url('node/' . $item->nid); ?>"><?php print $image ? theme('image_style', array_merge($image, array('style_name' => $conf['image_style']))) : ''; ?></a>
+      <?php print $back_image; ?>
     </div>
     <div class="article-info">
       <div class="label"><?php print drupal_render($category); ?></div>
       <div class="node">
-        <h3 class="node-title"><a
-            href="<?php print url('node/' . $item->nid); ?>"><?php print $item->title; ?></a>
+        <h3 class="node-title">
+            <?php print l($item->title, 'node/' . $item->nid); ?>
         </h3>
         <p>
-          <?php
-          if (isset($lead[0]['safe_value'])) {
-            print strip_tags($lead[0]['safe_value']);
-          }
-          elseif (isset($teaser[0]['safe_value'])) {
-            print strip_tags($teaser[0]['safe_value']);
-          }
-          else {
-            print '';
-          }
-          ?>
+          <?php print $item->teaser_lead; ?>
         </p>
         <div class="more">
           <?php print l(t('More'), 'node/' . $item->nid); ?>

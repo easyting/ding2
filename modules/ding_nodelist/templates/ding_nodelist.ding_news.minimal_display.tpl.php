@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Minimal display news display template.

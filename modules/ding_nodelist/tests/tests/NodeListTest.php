@@ -1,97 +1,107 @@
 <?php
 
+/**
+ * Class NodeListTest.
+ */
 class NodeListTest extends PHPUnit_Extensions_Selenium2TestCase {
+
+  /**
+   * @var abstractedPage
+   */
   protected $abstractedPage;
+
+  /**
+   * @var config
+   */
   protected $config;
 
-  protected function setUp() {
-  $this->abstractedPage = new DINGTestPageAbstraction($this);
-  $this->config = new DINGTestConfig();
-
-  $this->setBrowser($this->config->getBrowser());
-  $this->setBrowserUrl($this->config->getUrl());
-  }
   /**
    * Test Ding NodeList as admin.
    */
   public function testNodeList() {
-    $test = $this; // Workaround for anonymous function scopes in PHP < v5.4.
-    $session = $this->prepareSession(); // Make the session available.
-    // get
+    // Workaround for anonymous function scopes in PHP < v5.4.
+    $test = $this;
+    // Make the session available.
+    $session = $this->prepareSession();
+    // get.
     $this->url("/");
-    // clickElement
+    // clickElement.
     $this->abstractedPage->userLogin($this->config->getUser(), $this->config->getPass());
-    // get
+    // get.
     $this->url("/" . "/admin/modules");
-    // setElementText
+    // setElementText.
     $element = $this->byId("edit-module-filter-name");
     $element->click();
     $element->value("ding nodelist");
-    // setElementSelected
+    // setElementSelected.
     $element = $this->byId("edit-modules-artesis-ding-nodelist-enable");
     if (!$element->selected()) {
       $element->click();
       $this->byId("edit-submit")->click();
     }
-    // clickElement
+    // clickElement.
     sleep(5);
     $element = $this->byId("edit-module-filter-name");
     $element->click();
     $element->clear();
     $element->value("Ding Ipe ");
-    // setElementSelected
+    // setElementSelected.
     $element = $this->byId("edit-modules-ding-ding-ipe-filter-enable");
     if (!$element->selected()) {
       $element->click();
       $this->byId("edit-submit")->click();
     }
-    // clickElement
+    // clickElement.
     $this->url("/" . "/admin/config");
-    // clickElement
+    // clickElement.
     sleep(5);
     $this->byLinkText("IPE pane filter settings")->click();
-    // clickElement
+    // clickElement.
     sleep(5);
     $this->byLinkText("IPE PANE FILTER")->click();
-    // setElementSelected
+    // setElementSelected.
     $element = $this->byId("edit-ding-ipe-filter-table-ding-item-list-value");
     if (!$element->selected()) {
       $element->click();
     }
-    // setElementSelected
+    // setElementSelected.
     $element = $this->byId("edit-ding-ipe-filter-table-ding-nodelist-value");
     if (!$element->selected()) {
       $element->click();
     }
-    // clickElement
+    // clickElement.
     $this->byId("edit-actions-submit")->click();
-    // clickElement
+    // clickElement.
     sleep(5);
     $this->url("/");
     $this->byId("panels-ipe-customize-page")->click();
     sleep(5);
-    // clickElement
-    //add nodelist with IPE module
+    // clickElement.
+    // Add nodelist with IPE module.
     $this->byLinkText("Add")->click();
     sleep(5);
-    // clickElement
+    // clickElement.
     $this->byLinkText("Nodelist")->click();
-    // setElementSelected
+    // setElementSelected.
     sleep(5);
     $element = $this->byXPath("//select[@id='edit-widget-type']//option[6]");
     if (!$element->selected()) {
       $element->click();
     }
     sleep(5);
-    // setElementSelected
+    // setElementSelected.
     $element = $this->byXPath("//select[@id='edit-limit']//option[7]");
     if (!$element->selected()) {
       $element->click();
     }
-    // clickElement
+    // clickElement.
     $this->byId("edit-return")->click();
-    // clickElement
+    // clickElement.
     $this->byId("panels-ipe-save")->click();
+
+    /**
+     * The commented code can simulate automatic addition of nodelist pane on panel page.
+     */
     // get
     // add nodelist with panel
     /*  $this->url("/"."/admin/structure/pages/nojs/operation/page-ding_frontpage/handlers/page_ding_frontpage_panel_context/content");
@@ -138,15 +148,27 @@ class NodeListTest extends PHPUnit_Extensions_Selenium2TestCase {
     sleep(5);
     // clickElement
     $this->url("/");*/
-    // assertElementPresent
-    //Verifying if nodelist exist in frontpage
+
+    // Verifying if nodelist exist in frontpage.
+    // assertElementPresent.
     try {
       $boolean = ($test->byCssSelector("div.panel-pane.pane-ding-nodelist") instanceof \PHPUnit_Extensions_Selenium2TestCase_Element);
     }
     catch (\Exception $e) {
-      $boolean = false;
+      $boolean = FALSE;
     }
     $test->assertTrue($boolean);
     sleep(5);
+  }
+
+  /**
+   * Create the stack fixture.
+   */
+  protected function setUp() {
+    $this->abstractedPage = new DINGTestPageAbstraction($this);
+    $this->config = new DINGTestConfig();
+
+    $this->setBrowser($this->config->getBrowser());
+    $this->setBrowserUrl($this->config->getUrl());
   }
 }

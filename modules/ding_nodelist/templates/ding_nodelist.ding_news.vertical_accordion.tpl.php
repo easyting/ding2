@@ -1,15 +1,17 @@
 <?php
+
 /**
  * @file
  * Ding event image and text template.
- * Avaialable fields are:
+ *
+ * Available fields are:
  * ding_content_tags
  * field_address
  * field_ding_body
  * field_list_image
  * field_main_image
  * field_materials
- * group_audience
+ * group_audience.
  */
 $image_field = 'field_' . $item->type . '_list_image';
 $image = _ding_nodelist_get_dams_image_info($item, $image_field);

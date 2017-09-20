@@ -1,7 +1,9 @@
 <?php
+
 /**
  * @file
  * Slider list widget template.
+ *
  * Variables are:
  * $items - node items (objects)
  * $conf - list configuration with:
@@ -17,11 +19,7 @@
         <h2 class="ding_nodelist-title"><?php print $conf['title']; ?></h2>
       <?php endif; ?>
       <?php if (!empty($links)): ?>
-        <?php foreach ($links as $key => $bottom) : ?>
-          <span>
-            <?php print l(t($bottom['text']), $bottom['links']); ?>
-          </span>
-        <?php endforeach; ?>
+        <?php print theme('_more_links', array('links' => $links)); ?>
       <?php endif; ?>
     </div>
     <ul class="ding_nodelist-items">
