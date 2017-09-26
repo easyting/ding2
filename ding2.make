@@ -232,6 +232,9 @@ projects[metatag][version] = "1.21"
 projects[mmeu][subdir] = "contrib"
 projects[mmeu][version] = "1.0"
 
+projects[mkdru][subdir] = "contrib"
+projects[mkdru][version] "1.7"
+
 projects[module_filter][subdir] = "contrib"
 projects[module_filter][version] = "1.8"
 
@@ -538,6 +541,16 @@ libraries[jquery.imagesloaded][download][url] = https://github.com/desandro/imag
 libraries[jquery.imagesloaded][directory_name] = "jquery.imagesloaded"
 libraries[jquery.imagesloaded][destination] = "libraries"
 
+libraries[pz2][download][type] = "get"
+libraries[pz2][download][url] =  http://ftp.indexdata.dk/pub/pazpar2/pazpar2-1.12.5.tar.gz
+libraries[pz2][directory_name] = "pz2"
+libraries[pz2][destination] = "libraries"
+
+libraries[jsrender][download][type] = "get"
+libraries[jsrender][download][url] =  https://github.com//BorisMoore/jsrender/archive/master.zip
+libraries[jsrender][directory_name] = "jsrender"
+libraries[jsrender][destination] = "libraries"
+
 ; easyDDB contribution modules
 projects[extlink][version]                  = "1.18"
 projects[extlink][subdir]                   = "contrib"
@@ -593,4 +606,3 @@ projects[domain_variable][version]          = "1.1"
 
 projects[domain_views][subdir]              = "contrib"
 projects[domain_views][version]             = "1.5"
-
