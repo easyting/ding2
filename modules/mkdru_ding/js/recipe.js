@@ -20,38 +20,6 @@ Drupal.mkdruProcessExternalUrl = function (url) {
   return url;
 };
 
-/**
- * URL processing.
- * @param data
- * @returns {*}
- */
-function ting_proxy(data) {
-  var url = document.createElement("a");
-  url.href = data;
-
-  var ting_proxy = Drupal.settings.mkdru_ding.proxy_settings;
-
-  if (ting_proxy.length > 0 && ting_proxy.hostnames.length > 0) {
-    for (var i = 0; i < ting_proxy.hostnames.length; i++) {
-      if (ting_proxy.hostnames[i].hostname === data.hostname && ting_proxy.hostnames[i].disable_prefix === 0) {
-        var regexp = ting_proxy.hostnames[i].expression.regex;
-        var replacement = ting_proxy.hostnames[i].expression.replacement;
-
-        url = ting_proxy.prefix + data.href;
-
-        if (regexp.length > 0 && replacement.length > 0) {
-          url = url.replace(new RegExp(regexp), replacement);
-        }
-      }
-      else {
-        url = data;
-      }
-    }
-  }
-
-  return url;
-}
-
 // Exec perl-like substitution regexes in the form: pattern/replacement/mode.
 function exec_sregex (regex_str, input_str) {
   var regex_parts = ["", "", ""];

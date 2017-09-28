@@ -69,3 +69,23 @@ function ding_spt_statistics_schema() {
 
   return $schema;
 }
+
+/**
+ * Implements hook_install().
+ */
+function ding_spt_statistics_install() {
+  db_update('system')
+    ->fields(array('weight' => 999))
+    ->condition('name', 'ding_spt_statistics')
+    ->execute();
+}
+
+/**
+ * Ensure that this module runs last.
+ */
+function ding_spt_statistics_update_7001() {
+  db_update('system')
+    ->fields(array('weight' => 999))
+    ->condition('name', 'ding_spt_statistics')
+    ->execute();
+}
