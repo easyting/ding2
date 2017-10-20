@@ -59,6 +59,8 @@
 .field-name-ting-details-tracks,
 .field-name-ting-details-genre {
   .ting-material-detail {
+    display: inline-block;
+    margin-right: 5px;
     &::after {
       content: ', ';
     }
