@@ -129,9 +129,11 @@ function ddbasic_preprocess__node__ding_event(&$variables) {
 
   $price = field_get_items('node', $variables['node'], 'field_ding_event_price');
   if (!empty($price)) {
+    $variables['raw_price'] = $price[0]['value'];
     $variables['event_price'] = $price[0]['value'] . ' kr.';
   }
   else {
+    $variables['raw_price'] = '';
     $variables['event_price'] = t('Free');
   }
 
@@ -187,6 +189,11 @@ function ddbasic_preprocess__node__ding_event(&$variables) {
 
     case 'full':
       if (!empty($date)) {
+        // Add event start date to variables.
+        $variables['start_date'] = $variables['node']->field_ding_event_date[LANGUAGE_NONE][0]['value'];
+        // Add event end date to variables.
+        $variables['end_date'] = $variables['node']->field_ding_event_date[LANGUAGE_NONE][0]['value2'];
+
         array_push($variables['classes_array'], 'node-full');
 
         // Add event time to variables. A render array is created based on the

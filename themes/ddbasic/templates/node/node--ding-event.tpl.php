@@ -12,7 +12,8 @@
  *   given element.
  * - $user_picture: The node author's picture from user-picture.tpl.php.
  * - $date: Formatted creation date. Preprocess functions can reformat it by
- *   calling format_date() with the desired parameters on the $created variable.
+ *   calling format_date() with the desired parameters on the $created
+ *   variable.
  * - $name: Themed username of node author output from theme_username().
  * - $node_url: Direct url of the current node.
  * - $display_submitted: Whether submission information should be displayed.
@@ -66,9 +67,11 @@
  * - $logged_in: Flags true when the current user is a logged-in member.
  * - $is_admin: Flags true when the current user is an administrator.
  *
- * Field variables: for each field instance attached to the node a corresponding
+ * Field variables: for each field instance attached to the node a
+ *   corresponding
  * variable is defined, e.g. $node->body becomes $body. When needing to access
- * a field's raw values, developers/themers are strongly encouraged to use these
+ * a field's raw values, developers/themers are strongly encouraged to use
+ *   these
  * variables. Otherwise they will have to explicitly specify the desired field
  * language, e.g. $node->body['en'], thus overriding any language negotiation
  * rule that was previously applied.
@@ -82,7 +85,8 @@
  *   as relevant for the event node
  * - $event_date: Event date or period
  * - $event_time: Event time or time-span
- * - $event_price: Event price with 'kr.' suffix - if no price is set $event_price equals 'Free'
+ * - $event_price: Event price with 'kr.' suffix - if no price is set
+ *   $event_price equals 'Free'
  * - $book_button: Link to event-signup or event-tickets
  * - $share_button: Share links for Facebook, Twitter and email
  *
@@ -90,46 +94,71 @@
  * @see template_preprocess_node()
  * @see template_process()
  */
+?>
+<div itemscope itemtype="http://schema.org/Event">
+    <article class="<?php print $classes; ?>"<?php print $attributes; ?>>
+        <div class="inner">
+            <div class="left">
+              <?php print render($content['group_left']['field_ding_event_title_image']); ?>
+                <h2><?php print t('Information about the event'); ?></h2>
+              <?php if ($alt_location_is_set): ?>
+                  <span itemprop="location"><?php print render($content['group_left']['field_ding_event_location']); ?></span>
+              <?php else: ?>
+                  <span itemprop="location"><?php print render($content['group_left']['og_group_ref']); ?></span>
+              <?php endif; ?>
 
- ?>
-<article class="<?php print $classes; ?>"<?php print $attributes; ?>>
-  <div class="inner">
-    <div class="left">
-      <?php print render($content['group_left']['field_ding_event_title_image']); ?>
-      <h2><?php print t('Information about the event'); ?></h2>
-      <?php if ($alt_location_is_set): ?>
-        <?php print render($content['group_left']['field_ding_event_location']); ?>
-      <?php else: ?>
-        <?php print render($content['group_left']['og_group_ref']); ?>
-      <?php endif; ?>
-      <!-- insert time-field markup -->
-      <div class="field field-name-field-ding-event-target field-label-inline clearfix">
-        <div class="field-label"><?php print t('Time'); ?></div>
-        <div class="field-items">
-          <div class="field-item even"><?php print $event_time; ?></div>
-        </div>
-      </div>
-      <!-- insert price-field markup -->
-      <div class="field field-name-field-ding-event-price field-label-inline clearfix">
-        <div class="field-label"><?php print t('Price'); ?></div>
-        <div class="field-items">
-          <div class="field-item even"><?php print $event_price; ?></div>
-        </div>
-      </div>
-      <?php print render($content['group_left']); ?>
-      <?php
-        if (!empty($book_button)):
-          print $book_button;
-        endif;
-      ?>
-    </div>
-    <div class="right">
-      <?php print render($content['field_ding_event_category']); ?>
-      <h1><?php print $title; ?></h1>
-      <?php print render($content['group_right']['field_ding_event_date']);?>
-      <?php print render($share_button); ?>
-      <?php print render($content['group_right']);?>
+                <meta itemprop="startDate" datetime="<?php print $start_date ?>"
+                      content="<?php print $start_date ?>">
+                <meta itemprop="endDate" datetime="<?php print $end_date ?>"
+                      content="<?php print $end_date ?>">
+                <meta itemprop="duration"
+                      date="<?php print $content['group_right']['field_ding_event_date'][0]['#markup'] ?>"
+                      content="<?php print $content['group_right']['field_ding_event_date'][0]['#markup'] ?>">
+                <meta itemprop="attendee"
+                      content="<?php print $content['group_left']['field_ding_event_target'][0]['#markup'] ?>">
+                <!-- insert time-field markup -->
+                <div class="field field-name-field-ding-event-target field-label-inline clearfix">
+                    <div class="field-label"><?php print t('Time'); ?></div>
+                    <div class="field-items">
+                        <div class="field-item even"><?php print $event_time; ?></div>
+                    </div>
+                </div>
+                <!-- insert price-field markup -->
+                <div class="field field-name-field-ding-event-price field-label-inline clearfix"
+                     itemscope itemtype="http://schema.org/Offer">
+                    <div class="field-label"><?php print t('Price'); ?></div>
+                    <div class="field-items">
+                        <div class="field-item even" itemprop="price"
+                             content="<?php print $raw_price; ?>"><?php print $event_price; ?></div>
+                    </div>
+                </div>
 
-    </div>
-  </div>
-</article>
+              <?php print render($content['group_left']); ?>
+                
+              <?php if (!empty($content['field_ding_event_rooms'])) : ?>
+                <?php print render($content['field_ding_event_rooms']); ?>
+              <?php endif; ?>
+
+              <?php if (isset($content['field_ding_event_subscriptions'])): ?>
+                  <div><?php print render($content['field_ding_event_subscriptions']); ?></div>
+              <?php endif; ?>
+
+              <?php
+              if (!empty($book_button)):
+                print $book_button;
+              endif;
+              ?>
+            </div>
+
+            <div class="right">
+              <?php print render($content['field_ding_event_category']); ?>
+                <h1 itemprop="name"><?php print $title; ?></h1>
+              <?php print render($content['group_right']['field_ding_event_date']); ?>
+              <?php print render($share_button); ?>
+                <span itemprop="description">
+          <?php print render($content['group_right']); ?>
+        </span>
+
+            </div>
+        </div>
+    </article>
