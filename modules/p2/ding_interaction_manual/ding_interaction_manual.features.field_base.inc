@@ -13,7 +13,7 @@ function ding_interaction_manual_field_default_field_bases() {
   // Exported field_base: 'field_ding_interaction_access'
   $field_bases['field_ding_interaction_access'] = array(
     'active' => 1,
-    'cardinality' => -1,
+    'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_ding_interaction_access',
@@ -27,6 +27,7 @@ function ding_interaction_manual_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
+        'none' => 'No access check',
         'provider' => 'Is provider',
         'anonymous' => 'Is Anonymous',
       ),

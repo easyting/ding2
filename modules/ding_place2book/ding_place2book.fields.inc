@@ -222,13 +222,13 @@ function ding_place2book_field_widget_form(&$form, &$form_state, $field, $instan
           '#type' => 'textfield',
           '#default_value' => !empty($price) ? $price->value : '',
         );
-        $sale_begin_at = !empty($price->sale_begin_at) ? date('Y-m-d H:i:s', strtotime($price->sale_begin_at)) : date('Y-m-d H:i:s');
+        $sale_begin_at = !empty($price->sale_begin_at) ? date('Y-m-d H:i:s', strtotime($price->sale_begin_at)) : '';
         $element['place2book']['prices_wrapper']['prices'][$key]['sale_begin_at'] = array(
           '#type' => 'date_popup',
           '#default_value' => $sale_begin_at,
         );
 
-        $sale_end_at = !empty($price->sale_end_at) ? date('Y-m-d H:i:s', strtotime($price->sale_end_at)) : date('Y-m-d H:i:s');
+        $sale_end_at = !empty($price->sale_end_at) ? date('Y-m-d H:i:s', strtotime($price->sale_end_at)) : '';
         $element['place2book']['prices_wrapper']['prices'][$key]['sale_end_at'] = array(
           '#type' => 'date_popup',
           '#default_value' => $sale_end_at,
@@ -318,9 +318,8 @@ function ding_place2book_widget_validate($form, &$form_state) {
     if (!$place2book['passive'] && isset($place2book['prices_wrapper']['prices'])) {
       $prices = $place2book['prices_wrapper']['prices'];
       $prices = array_filter($prices, function ($i) {
-        return !empty($i['name']) && !empty($i['value']);
+        return !empty($i['name']) && (!empty($i['value']) || $i['value'] === '0');
       });
-
       if (empty($prices)) {
         form_set_error('field_place2book][und][place2book][prices_wrapper][prices', t('At least one price should exist.'));
       }
@@ -488,12 +487,25 @@ function _ding_place2book_create_p2b_entities($entity, array $settings) {
     }
 
     foreach ($prices as $price) {
-      if (empty($price['name']) || empty($price['value'])) {
+      if (empty($price['name']) || (empty($price['value']) && $price['value'] !== '0')) {
         continue;
       }
 
-      $sale_begin = format_date(strtotime($price['sale_begin_at']), 'custom', 'Y-m-d\TH:i:sO', date_default_timezone());
-      $sale_end = format_date(strtotime($price['sale_end_at']), 'custom', 'Y-m-d\TH:i:sO', date_default_timezone());
+      $sale_begin = NULL;
+      if ($price['sale_begin_at']) {
+        $sale_begin = format_date(strtotime($price['sale_begin_at']), 'custom', 'Y-m-d\TH:i:sO', date_default_timezone());
+      }
+      else {
+        $sale_begin = date('Y-m-d\TH:i:sO');
+      }
+      $sale_end = NULL;
+      if ($price['sale_end_at']) {
+        $sale_end = format_date(strtotime($price['sale_end_at']), 'custom', 'Y-m-d\TH:i:sO', date_default_timezone());
+      }
+      else {
+        $sale_end = $event->begin_at;
+      }
+
       $data = array(
         'name' => $price['name'],
         'value' => $price['value'],
@@ -565,12 +577,25 @@ function _ding_place2book_update_p2b_entities($entity, array $settings) {
     }
 
     foreach ($prices as $key => $price) {
-      if (empty($price['name']) || empty($price['value'])) {
+      if (empty($price['name']) || (empty($price['value']) && $price['value'] !== '0')) {
         continue;
       }
 
-      $sale_begin = format_date(strtotime($price['sale_begin_at']), 'custom', 'Y-m-d\TH:i:sO', date_default_timezone());
-      $sale_end = format_date(strtotime($price['sale_end_at']), 'custom', 'Y-m-d\TH:i:sO', date_default_timezone());
+      $sale_begin = NULL;
+      if ($price['sale_begin_at']) {
+        $sale_begin = format_date(strtotime($price['sale_begin_at']), 'custom', 'Y-m-d\TH:i:sO', date_default_timezone());
+      }
+      else {
+        $sale_begin = date('Y-m-d\TH:i:sO');
+      }
+      $sale_end = NULL;
+      if ($price['sale_end_at']) {
+        $sale_end = format_date(strtotime($price['sale_end_at']), 'custom', 'Y-m-d\TH:i:sO', date_default_timezone());
+      }
+      else {
+        $sale_end = $event->begin_at;
+      }
+
       $data = array(
         'name' => $price['name'],
         'value' => $price['value'],

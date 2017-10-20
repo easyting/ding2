@@ -14,23 +14,14 @@ profiler_v2('ding2');
  *
  * Allows the profile to alter the site configuration form.
  */
-if (!function_exists("system_form_install_configure_form_alter")) {
-  function system_form_install_configure_form_alter(&$form, $form_state) {
-    $form['site_information']['site_name']['#default_value'] = 'ding2';
-  }
-}
+function ding2_form_install_configure_form_alter(&$form, $form_state) {
+  $form['site_information']['site_name']['#default_value'] = $_SERVER['SERVER_NAME'];
 
-/**
- * Implements hook_form_alter().
- *
- * Select the current install profile by default.
- */
-if (!function_exists("system_form_install_select_profile_form_alter")) {
-  function system_form_install_select_profile_form_alter(&$form, $form_state) {
-    foreach ($form['profile'] as $key => $element) {
-      $form['profile'][$key]['#value'] = 'ding2';
-    }
-  }
+  $form['server_settings']['site_default_country']['#default_value'] = 'DK';
+  $form['server_settings']['date_default_timezone']['#default_value'] = 'Europe/Copenhagen';
+  // Remove the timezone-detect class to stop auto detection (which guesses
+  // Berlin, not Copenhagen).
+  unset($form['server_settings']['date_default_timezone']['#attributes']);
 }
 
 /**
@@ -220,7 +211,6 @@ function ding2_add_settings(&$install_state) {
     'ting_material_details',
     'ding_base',
     'ding_user_frontend',
-    'ding_path_alias',
     'ding_content',
     'ding_page',
     'ding_frontend',
@@ -318,6 +308,7 @@ function ding2_module_selection_form($form, &$form_state) {
   // Available providers.
   $providers = array(
     'fbs' => 'FBS',
+    'alma' => 'Alma',
     'connie' => 'Connie (for testing without a library system)',
   );
 
@@ -669,6 +660,7 @@ function ding2_module_enable(&$install_state) {
   $modules = variable_get('ding_module_selected', array());
   $modules[] = 'l10n_update';
   $modules[] = 'ting_infomedia';
+  $modules[] = 'ding_eresource';
 
   $operations = ding2_module_list_as_operations($modules);
 

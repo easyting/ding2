@@ -42,10 +42,13 @@ projects[ctools][patch][] = "https://www.drupal.org/files/issues/ctools-readd_ac
 projects[date][subdir] = "contrib"
 projects[date][version] = "2.8"
 
-; Patch to fix empty order_id. See https://drupal.org/node/2107389
 projects[dibs][subdir] = "contrib"
 projects[dibs][version] = "1.0"
+; Patch to fix empty order_id. See https://drupal.org/node/2107389
 projects[dibs][patch][] = "http://drupal.org/files/dibs-2107389-2.patch"
+; Patch make dibs_split_payments payment_transaction_id a NOT NULL database field.
+; https://www.drupal.org/node/2812891
+projects[dibs][patch][] = "https://www.drupal.org/files/issues/mysql_5.7_compatibility-2812891-2.patch"
 
 projects[diff][subdir] = "contrib"
 projects[diff][version] = "3.2"
@@ -103,7 +106,7 @@ projects[field_group][subdir] = "contrib"
 projects[field_group][version] = "1.5"
 
 projects[file_entity][subdir] = "contrib"
-projects[file_entity][version] = "2.0-alpha3"
+projects[file_entity][version] = "2.0-beta3"
 
 projects[flag][subdir] = "contrib"
 projects[flag][version] = "2.2"
@@ -179,7 +182,16 @@ projects[i18n][subdir] = "contrib"
 projects[i18n][version] = "1.11"
 
 projects[manualcrop][subdir] = "contrib"
-projects[manualcrop][version] = "1.5"
+projects[manualcrop][version] = "1.6"
+; Fix loading of updated JavaScript library.
+; https://www.drupal.org/node/2836970
+projects[manualcrop][patch][] = "https://www.drupal.org/files/issues/manualcrop-imgareaselect_library_version_arguments-2836970-14-d7.patch"
+; Fix crop display when the same file is used in multiple fields
+; https://www.drupal.org/node/2503175
+projects[manualcrop][patch][] = "https://www.drupal.org/files/issues/manualcrop-duplicatepreview-2503175-30.patch"
+; Fix horizontal alignment of preview and buttons.
+; https://www.drupal.org/node/2874825
+projects[manualcrop][patch][] = "https://www.drupal.org/files/issues/manualcrop_media-widget-alignment-2874825-2.patch"
 
 projects[mailsystem][subdir] = "contrib"
 projects[mailsystem][version] = "2.34"
@@ -187,14 +199,8 @@ projects[mailsystem][version] = "2.34"
 projects[maintenance_mode_api][subdir] = "contrib"
 projects[maintenance_mode_api][version] = "1.0-beta1"
 
-; This version of media is tested to work with both images and videos.
-projects[media][type] = "module"
 projects[media][subdir] = "contrib"
-projects[media][download][type] = "git"
-projects[media][download][url] = "http://git.drupal.org/project/media.git"
-projects[media][download][revision] = "c3cda2b"
-; Fixed issue where "insert" fails, see https://www.drupal.org/node/2184475.
-projects[media][patch][] = "https://www.drupal.org/files/issues/media_popup_trigger_some_js-2184475-6.patch"
+projects[media][version] = "2.0"
 
 projects[media_vimeo][subdir] = "contrib"
 projects[media_vimeo][version] = "2.0-rc1"
@@ -221,6 +227,9 @@ projects[menu_position][version] = "1.1"
 
 projects[message][subdir] = "contrib"
 projects[message][version] = "1.10"
+; Patch messages to make message id a NOT NULL database field.
+; https://www.drupal.org/node/2051751
+projects[message][patch][0] = "https://www.drupal.org/files/message-primary_nullable-2051751-7.patch"
 
 projects[metatag][subdir] = "contrib"
 projects[metatag][version] = "1.21"
@@ -383,7 +392,7 @@ projects[virtual_field][subdir] = "contrib"
 projects[virtual_field][version] = "1.2"
 
 projects[views][subdir] = "contrib"
-projects[views][version] = "3.16"
+projects[views][version] = "3.17"
 
 projects[views_bulk_operations][subdir] = "contrib"
 projects[views_bulk_operations][version] = "3.3"
@@ -492,7 +501,7 @@ libraries[zen-grids][download][tag] = "1.4"
 libraries[zen-grids][destination] = "libraries"
 
 libraries[jquery.imgareaselect][download][type] = "get"
-libraries[jquery.imgareaselect][download][url] =  http://odyniec.net/projects/imgareaselect/jquery.imgareaselect-0.9.10.zip
+libraries[jquery.imgareaselect][download][url] =  https://github.com/odyniec/imgareaselect/archive/v0.9.11-rc.1.tar.gz
 libraries[jquery.imgareaselect][directory_name] = "jquery.imgareaselect"
 libraries[jquery.imgareaselect][destination] = "libraries"
 
@@ -500,3 +509,18 @@ libraries[jquery.imagesloaded][download][type] = "get"
 libraries[jquery.imagesloaded][download][url] = https://github.com/desandro/imagesloaded/archive/v2.1.2.tar.gz
 libraries[jquery.imagesloaded][directory_name] = "jquery.imagesloaded"
 libraries[jquery.imagesloaded][destination] = "libraries"
+
+libraries[slick][download][type] = "get"
+libraries[slick][download][url] = https://github.com/kenwheeler/slick/archive/1.6.0.zip
+libraries[slick][directory_name] = "slick"
+libraries[slick][destination] = "libraries"
+
+libraries[html5shiv][download][type] = "get"
+libraries[html5shiv][download][url] = https://github.com/aFarkas/html5shiv/archive/3.7.3.zip
+libraries[html5shiv][directory_name] = "html5shiv"
+libraries[html5shiv][destination] = "libraries"
+
+libraries[masonry][download][type] = "get"
+libraries[masonry][download][url] = https://github.com/desandro/masonry/archive/v4.1.1.zip
+libraries[masonry][directory_name] = "masonry"
+libraries[masonry][destination] = "libraries"
