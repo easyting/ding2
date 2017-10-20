@@ -26,6 +26,8 @@ a.cross:hover {
 /* Page search results
    ========================================================================== */
 .page-search-meta {
+  /* Hide header search form on the meta search page.
+  =========================================================================== git*/
   /* Form styles
    ========================================================================== */
   /* Results styles
@@ -34,6 +36,9 @@ a.cross:hover {
    ========================================================================== */
   /* Facets styles
    ========================================================================== */
+}
+.page-search-meta .header-wrapper .header-inner > section .search {
+  display: none;
 }
 .page-search-meta .pane-search-form .pane-title {
   font-size: 200%;
