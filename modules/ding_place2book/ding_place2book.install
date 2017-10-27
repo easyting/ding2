@@ -39,11 +39,19 @@ function ding_place2book_field_schema($field) {
 }
 
 /**
- * Implements hook_update_N().
- *
- * Adds defaults for each existing event.
+ * Update ticket_type in all existing place2book-settings to 'Adgang'.
  */
-function ding_place2book_update_7001(&$sandbox) {
+function ding_place2book_update_7001() {
+  $num_upd = db_update('ding_place2book')
+    ->fields(array('ticket_type' => 'Adgang'))
+    ->execute();
+}
+
+/**
+ * Adds defaults for each existing event, deletes the old place2book field and
+ * migrates old settings to new variables.
+ */
+function ding_place2book_update_7002(&$sandbox) {
   $query = new EntityFieldQuery();
   $result = $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'ding_event')
@@ -68,11 +76,6 @@ function ding_place2book_update_7001(&$sandbox) {
   $ding_place2book = variable_get('ding_place2book', array());
   $ding_place2book_event_nodes = variable_get('ding_place2book_event_nodes', array());
 
-  // Copy to current settings.
-  $ding_place2book_settings = variable_get('$ding_place2book_settings', array());
-  $ding_place2book_settings['token'] = $ding_place2book['api_key'];
-  variable_set('ding_place2book_settings', $ding_place2book_settings);
-
   variable_set('ding_p2b_default_kultunaut_export', $ding_place2book_event_nodes['defaults']['kultunaut_export']);
   variable_set('ding_p2b_default_passive', $ding_place2book_event_nodes['defaults']['passive']);
   variable_set('ding_p2b_default_synchronize', $ding_place2book_event_nodes['defaults']['maintain_copy']);
@@ -87,6 +90,6 @@ function ding_place2book_update_7001(&$sandbox) {
 /**
  * Enable migration module for existing sites.
  */
-function ding_place2book_update_7002() {
+function ding_place2book_update_7003() {
   module_enable(array('ding_place2book_migrate'));
 }

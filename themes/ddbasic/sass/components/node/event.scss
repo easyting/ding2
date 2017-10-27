@@ -233,7 +233,8 @@
           }
         }
 
-        .button {
+        .button,
+        .ding-place2book-order a {
           @include span-columns(3 of 5);
           margin: 20px 0;
           color: $white;
@@ -305,32 +306,6 @@
         }
       }
     }
-    .field-name-field-place2book-tickets {
-      position: relative;
-      width: 100%;
-      float: left;
-    }
-    .place2book-tickets-label {
-      @include font('base-bold');
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100px;
-
-      // Tablet
-      @include media($tablet) {
-        @include span-columns(2 of 5);
-      }
-    }
-    .place2book-tickets-info {
-      width: 100%;
-      padding-left: 100px;
-
-      // Tablet
-      @include media($tablet) {
-        padding-left: getColumn(2 of 5);
-      }
-    }
     .field-name-field-ding-event-files {
       @include span-columns(6 of 8);
       margin: 0 0 30px;
@@ -390,4 +365,8 @@
       margin: 20px 0;
     }
   }
+}
+
+.ding-place2book-order a {
+  @extend %button;
 }

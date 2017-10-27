@@ -235,7 +235,6 @@ function ding_event_field_group_info() {
       1 => 'field_ding_event_target',
       2 => 'field_ding_event_title_image',
       3 => 'og_group_ref',
-      4 => 'field_place2book_tickets',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -269,7 +268,6 @@ function ding_event_field_group_info() {
       0 => 'field_ding_event_date',
       1 => 'field_ding_event_lead',
       2 => 'field_ding_event_tags',
-      3 => 'field_place2book',
     ),
     'format_type' => 'div',
     'format_settings' => array(
