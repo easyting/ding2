@@ -36,15 +36,7 @@ function ding_christmas_login_popup($ajax) {
   );
   $form = 'user_login';
   if ($ajax) {
-    ctools_include('ajax');
-    ctools_include('modal');
-    $commands = ctools_modal_form_wrapper($form, $form_state);
-
-    if ($form_state['executed']) {
-      $commands = array();
-      $commands[] = ctools_modal_command_dismiss();
-      $commands[] = ctools_ajax_command_redirect('ding-christmas-calendar');
-    }
+    $commands[] = ajax_command_ding_user_authenticate('');
     print ajax_render($commands);
     drupal_exit();
   }
