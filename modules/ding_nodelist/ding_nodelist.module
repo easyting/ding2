@@ -1622,35 +1622,37 @@ function _ding_nodelist_get_dams_image_info($node, $image_field) {
     if ($image_field == 'field_ding_news_list_image') {
       $title_image = field_get_items('node', $node, 'field_ding_news_title_image');
 
-      if ($list_image[0]['fid'] == $title_image[0]['fid']) {
+      if (isset($list_image[0]['fid']) && $list_image[0]['fid'] == $title_image[0]['fid']) {
         $file_entity = file_load($title_image[0]['fid']);
-        $img = file_copy($file_entity, 'public://list_image/news', FILE_EXISTS_REPLACE);
-        // Returning new image into nodelist.
-        $list_image = array(
-          '0' => (array) $img,
-        );
+        if (!empty($file_entity)) {
+          $img = file_copy($file_entity, 'public://list_image/news', FILE_EXISTS_REPLACE);
+          // Returning new image into nodelist.
+          $list_image = array(
+            '0' => (array) $img,
+          );
 
-        // Updating image field values.
-        $fid = $img->fid;
-        $alt = $img->field_file_image_alt_text[LANGUAGE_NONE][0]['value'];
-        $title = $img->field_file_image_title_text[LANGUAGE_NONE][0]['value'];
+          // Updating image field values.
+          $fid = $img->fid;
+          $alt = $img->field_file_image_alt_text[LANGUAGE_NONE][0]['value'];
+          $title = $img->field_file_image_title_text[LANGUAGE_NONE][0]['value'];
 
-        $node_wrapper = entity_metadata_wrapper('node', $node);
-        $node_wrapper->field_ding_news_list_image->set(
-          array('fid' => $fid, 'alt' => $alt, 'title' => $title)
-        );
-        $node_wrapper->save();
+          $node_wrapper = entity_metadata_wrapper('node', $node);
+          $node_wrapper->field_ding_news_list_image->set(
+            array('fid' => $fid, 'alt' => $alt, 'title' => $title)
+          );
+          $node_wrapper->save();
 
-        // Updating 'manualcrop' table with new 'fid'.
-        db_update('manualcrop')
-          ->fields(
-            array(
-              'fid' => $img->fid,
+          // Updating 'manualcrop' table with new 'fid'.
+          db_update('manualcrop')
+            ->fields(
+              array(
+                'fid' => $img->fid,
+              )
             )
-          )
-          ->condition('fid', $title_image[0]['fid'], '=')
-          ->condition('style_name', 'ding_list_large', '=')
-          ->execute();
+            ->condition('fid', $title_image[0]['fid'], '=')
+            ->condition('style_name', 'ding_list_large', '=')
+            ->execute();
+        }
       }
     }
   }

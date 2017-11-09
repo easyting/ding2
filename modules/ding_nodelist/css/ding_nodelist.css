@@ -225,6 +225,24 @@
   height: 400px;
   overflow: hidden;
 }
+.ding_nodelist-slider ul li {
+  list-style: none;
+}
+.ding_nodelist-slider ul li .library {
+  float: left;
+  clear: left;
+}
+.ding_nodelist-slider ul li .library .field-label {
+  display: none;
+}
+.ding_nodelist-slider ul li .library .field-item a {
+  display: inline-block;
+}
+.ding_nodelist-slider ul li .item-price {
+  display: inline-block;
+  clear: left;
+  padding-left: 5px;
+}
 .ding_nodelist-slider .legend {
   float: left;
   width: 300px;
@@ -831,7 +849,50 @@ fieldset legend {
 .ding_nodelist-taxonomy .item:nth-child(odd) {
   background-color: #dadada;
 }
-.ding_nodelist-taxonomy .event-list-leaf ~ .item .item-list-image {
+.ding_nodelist-taxonomy .event-list-leaf {
+  background: #ccc;
+  padding: 10px;
+}
+.ding_nodelist-taxonomy .event-list-leaf .event-list-date-wrapper {
+  display: inline-block;
+  font-size: 75%;
+  margin-right: 10px;
+  min-width: 65px;
+  text-align: center;
+  vertical-align: top;
+}
+.ding_nodelist-taxonomy .event-list-leaf .event-list-date-wrapper .event-list-day {
+  line-height: 16.8px;
+  background-color: #4d898e;
+  color: #ffffff;
+  display: block;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.ding_nodelist-taxonomy .event-list-leaf .event-list-date-wrapper .event-list-inner-wrapper {
+  background: #fff;
+}
+.ding_nodelist-taxonomy .event-list-leaf .event-list-date-wrapper .event-list-date {
+  display: block;
+  font-size: 130%;
+  padding-top: 5px;
+  margin-bottom: -10px;
+}
+.ding_nodelist-taxonomy .event-list-leaf .event-list-date-wrapper .event-list-month {
+  display: inline-block;
+  font-size: 75%;
+  min-width: 65px;
+  text-align: center;
+  vertical-align: top;
+}
+.ding_nodelist-taxonomy .event-list-leaf .event-list-fulldate {
+  color: rgba(0, 0, 0, 0.7);
+  display: inline-block;
+  font-size: 130%;
+  font-weight: normal;
+  margin-top: 17px;
+}
+.ding_nodelist-taxonomy .event-list-leaf ~ .item .item-list-image,
+.ding_nodelist-taxonomy .event-list-leaf ~ .item .item-library .field-label {
   display: none;
 }
 .ding_nodelist-taxonomy .event-list-leaf ~ .item .item-details {
@@ -843,6 +904,7 @@ fieldset legend {
 .ding_nodelist-taxonomy .event-list-leaf ~ .item .item-title {
   font-size: 110%;
   margin-right: 25px;
+  margin-bottom: 5px;
 }
 .ding_nodelist-taxonomy .event-list-leaf ~ .item .item-body {
   display: none;
@@ -853,6 +915,7 @@ fieldset legend {
   color: rgba(0, 0, 0, 0.7);
   display: inline-block;
   margin-right: 5px;
+  float: left;
 }
 .ding_nodelist-taxonomy .event-list-leaf ~ .item .event-arrow-link {
   display: inline-block;
@@ -886,6 +949,7 @@ fieldset legend {
 }
 .ding_nodelist-taxonomy .item .item-title {
   font-size: 120%;
+  margin-bottom: 5px;
 }
 .ding_nodelist-taxonomy .item .item-title a {
   font-weight: 700;
@@ -920,6 +984,7 @@ fieldset legend {
 }
 .ding_nodelist-taxonomy .item .news-link {
   float: right;
+  margin-top: 30px;
 }
 .ding_nodelist-taxonomy .item .item-body {
   margin-top: 1em;
@@ -989,6 +1054,24 @@ fieldset legend {
   }
 }
 
+.ding_nodelist-rolltab {
+  border: none;
+  background: inherit;
+}
+.ding_nodelist-rolltab #ding_nodelist-rolltab {
+  border: none;
+  background: inherit;
+}
+.ding_nodelist-rolltab #ding_nodelist-rolltab ul {
+  border: none;
+  border-radius: initial;
+}
+.ding_nodelist-rolltab #ding_nodelist-rolltab ul li {
+  border-left: none;
+  border-right: none;
+  border-radius: initial;
+}
+
 /* Tabroll tabs navigation
    ========================================================================== */
 .ding_nodelist-rolltab-select-tabs {
@@ -1002,20 +1085,9 @@ fieldset legend {
 }
 /* Tabroll tabs
    ========================================================================== */
-.ding_nodelist-rolltab {
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  border: none;
-  background: transparent;
-}
-
 .ding_nodelist-rolltab-wrapper {
   position: relative;
   overflow: hidden;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
 }
 .ding_nodelist-rolltab-wrapper span.no-image {
   min-height: 295px;
@@ -1065,16 +1137,8 @@ fieldset legend {
   z-index: 1;
   width: 25%;
   height: 100%;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  border: none;
-  background: transparent;
   position: absolute;
-  top: 1;
-}
-.ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav .ui-state-default {
-  border: none;
+  top: 0;
 }
 .ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li {
   background: #fff;
@@ -1084,26 +1148,23 @@ fieldset legend {
   white-space: normal;
   margin: 0px;
   padding: 0px;
-  height: 19.60%;
-  border-top: 1px solid #ddd !important;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
+  height: 20%;
+  border-top: 1px solid #ccc;
 }
 .ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li:hover {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #00caff;
 }
-.ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li:hover a {
+.ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li a {
   cursor: pointer;
 }
-.ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li:hover a:hover {
-  background: #4d898f;
+.ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li a:hover {
+  background: #00caff;
 }
-.ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li:hover a span {
+.ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li a:hover span {
   color: #fff;
 }
 .ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li:first-child {
-  border-top: none !important;
+  border-top: none;
 }
 .ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li.ui-tabs-selected {
   background: rgba(0, 0, 0, 0.6);
@@ -1544,6 +1605,9 @@ fieldset legend {
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .nb-library a:hover {
   opacity: 1;
 }
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item .nb-library .field-label {
+  display: none;
+}
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item h3 a {
   color: #fff;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
@@ -1707,6 +1771,20 @@ fieldset legend {
 
 .ding_nodelist-promoted_nodes .more-links {
   margin-top: 20px;
+}
+.ding_nodelist-promoted_nodes .library .field-label {
+  display: none;
+}
+.ding_nodelist-promoted_nodes .library .field-item {
+  display: inline-block;
+}
+.ding_nodelist-promoted_nodes .library .field-label-inline {
+  display: inline-block;
+  float: left;
+}
+.ding_nodelist-promoted_nodes .item-price {
+  display: inline-block;
+  clear: left;
 }
 
 .ding_nodelist-node_blocks .more-links {
