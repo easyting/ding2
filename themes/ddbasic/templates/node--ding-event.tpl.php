@@ -133,6 +133,12 @@
     <?php if (isset($content['field_ding_event_subscriptions'])): ?>
         <div><?php print render($content['field_ding_event_subscriptions']); ?></div>
     <?php endif; ?>
+
+    <?php
+    if (!empty($book_button)):
+      print $book_button;
+    endif;
+    ?>
   </div>
   <div class="event-content">
     <?php if (isset($content['field_ding_event_title_image'])) : ?>
@@ -153,6 +159,7 @@
       hide($content['field_ding_event_target']);
       hide($content['field_ding_event_price']);
       hide($content['field_place2book_tickets']);
+      hide($content['field_ding_event_ticket_link']);
 
       // Hide fields that will be displayed as panel panes instead.
       hide($content['comments']);
