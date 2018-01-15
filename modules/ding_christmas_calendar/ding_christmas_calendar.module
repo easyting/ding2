@@ -230,7 +230,7 @@ function ding_christmas_calendar_generate_content($quiz_id, $mobile = FALSE) {
  */
 function ding_christmas_calendar_generate_url($quiz, DateTime $current, $question) {
   $quiz_result = quiz_take_quiz($quiz);
-  if (!$quiz_result) {
+  if (!$quiz_result && !user_is_anonymous()) {
     $quiz_result = entity_create('quiz_result', array(
       'nid' => $quiz->nid,
       'vid' => $quiz->vid,
