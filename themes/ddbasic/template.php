@@ -67,7 +67,7 @@ function ddbasic_preprocess_html(&$vars) {
   libraries_load('jquery.imagesloaded');
   libraries_load('html5shiv');
   libraries_load('masonry');
-
+  libraries_load('slick');
 }
 
 /**
