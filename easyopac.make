@@ -429,7 +429,7 @@ projects[thisted_event_import][type]             = "module"
 projects[thisted_event_import][subdir]           = ""
 projects[thisted_event_import][download][type]   = "git"
 projects[thisted_event_import][download][url]    = "git@github.com:easySuite/thisted_event_import.git"
-projects[thisted_event_import][download][branch] = "develop"
+projects[thisted_event_import][download][branch] = "development"
 
 projects[vejlebib_fbs][type]             = "module"
 projects[vejlebib_fbs][download][type]   = "git"
