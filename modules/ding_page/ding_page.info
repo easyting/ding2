@@ -27,7 +27,6 @@ dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = text
 dependencies[] = ting_reference
-dependencies[] = ting_reference_advanced
 dependencies[] = uuid
 dependencies[] = virtual_field
 features[ctools][] = field_group:field_group:1
