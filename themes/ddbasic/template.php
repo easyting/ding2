@@ -67,6 +67,7 @@ function ddbasic_preprocess_html(&$vars) {
   libraries_load('jquery.imagesloaded');
   libraries_load('html5shiv');
   libraries_load('masonry');
+  libraries_load('slick');
 
 }
 
@@ -127,7 +128,9 @@ function ddbasic_preprocess_panels_pane(&$vars) {
     }
     else {
       // OG menu.
-      $vars['content']['#theme_wrappers'] = array('menu_tree__sub_menu');
+      if (is_array($vars['content'])) {
+        $vars['content']['#theme_wrappers'] = array('menu_tree__sub_menu');
+      }
     }
   }
 

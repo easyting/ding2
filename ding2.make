@@ -58,6 +58,12 @@ projects[dibs][patch][] = "https://www.drupal.org/files/issues/mysql_5.7_compati
 projects[diff][subdir] = "contrib"
 projects[diff][version] = "3.3"
 
+projects[ding_sections][type]             = "module"
+projects[ding_sections][subdir]           = ""
+projects[ding_sections][download][type]   = "git"
+projects[ding_sections][download][url]    = "git@github.com:easySuite/ding_sections.git"
+projects[ding_sections][download][branch] = "development"
+
 ; The patch ensures that file upload patch is created on file upload. It normally
 ; created on settings form save, but as we use feature this do not work.
 ; See https://www.drupal.org/node/2410241
