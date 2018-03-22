@@ -6,17 +6,11 @@
 #  profiles/ding2/modules/ding_nodelist/ding_nodelist.admin.inc: n/a
 #  profiles/ding2/modules/ding_nodelist/ding_nodelist.module: n/a
 #  profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.carousel.tpl.php: n/a
-#  profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.single.tpl.php: n/a
-#  profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.slider.tpl.php: n/a
 #  profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_news.carousel.tpl.php: n/a
-#  profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_news.single.tpl.php: n/a
-#  profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_news.slider.tpl.php: n/a
 #  profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_news.text.tpl.php: n/a
 #  profiles/ding2/modules/ding_nodelist/plugins/content_types/ding_nodelist.inc: n/a
 #  profiles/ding2/modules/ding_nodelist/ding_nodelist.info: n/a
-#  profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.horizontal_accordion.tpl.php: n/a
 #  profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.taxonomy.tpl.php: n/a
-#  profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.vertical_accordion.tpl.php: n/a
 #
 #, fuzzy
 msgid ""
@@ -391,16 +385,8 @@ msgstr ""
 msgid "Horizontal accordion"
 msgstr ""
 
-#: profiles/ding2/modules/ding_nodelist/ding_nodelist.module:2147
-msgid "Vertical accordion"
-msgstr ""
-
 #: profiles/ding2/modules/ding_nodelist/ding_nodelist.module:2148
 msgid "Slider"
-msgstr ""
-
-#: profiles/ding2/modules/ding_nodelist/ding_nodelist.module:2149
-msgid "Taxonomy like"
 msgstr ""
 
 #: profiles/ding2/modules/ding_nodelist/ding_nodelist.module:2383
@@ -432,7 +418,7 @@ msgid "Manage content templates."
 msgstr ""
 
 #: profiles/ding2/modules/ding_nodelist/ding_nodelist.info:0
-msgid "easyDDB Nodelist"
+msgid "easyOPAC Nodelist"
 msgstr ""
 
 #: profiles/ding2/modules/ding_nodelist/ding_nodelist.info:0
@@ -440,7 +426,7 @@ msgid "Module for creating lists."
 msgstr ""
 
 #: profiles/ding2/modules/ding_nodelist/ding_nodelist.info:0
-msgid "easyDDB"
+msgid "easyOPAC"
 msgstr ""
 
 #: profiles/ding2/modules/ding_nodelist/plugins/content_types/ding_nodelist.inc:12
@@ -451,15 +437,15 @@ msgstr ""
 msgid "Allows to create highliy customizeable list of contents"
 msgstr ""
 
-#: profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.carousel.tpl.php:38 profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.image_text.tpl.php:45 profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.single.tpl.php:42 profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.slider.tpl.php:30 profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.taxonomy.tpl.php:59 profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.vaccordion.tpl.php:56
+#: profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.carousel.tpl.php:38 profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.image_text.tpl.php:45 profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.single.tpl.php:42 profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.slider.tpl.php:30 profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.taxonomy.tpl.php:59
 msgid "kr."
 msgstr ""
 
-#: profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.carousel.tpl.php:41 profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.image_text.tpl.php:48 profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.single.tpl.php:45 profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.slider.tpl.php:33 profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.taxonomy.tpl.php:62 profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.vaccordion.tpl.php:59
+#: profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.carousel.tpl.php:41 profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.image_text.tpl.php:48 profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.single.tpl.php:45 profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.slider.tpl.php:33 profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.taxonomy.tpl.php:62
 msgid "Free"
 msgstr ""
 
-#: profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.image_text.tpl.php:33 profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.vaccordion.tpl.php:44
+#: profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.image_text.tpl.php:33
 msgid "Time:"
 msgstr ""
 

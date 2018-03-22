@@ -39,17 +39,16 @@ $back_image = l($image ? theme('image_style', array_merge($image, array('style_n
       <?php print $back_image; ?>
     </div>
   <?php endif ?>
-  <div class="item-details">
+  <div class="item-details news">
     <h2 class="item-title"><?php print l($title, 'node/' . $item->nid); ?></h2>
     <div class="item-byline">
       <div class="label"><?php print drupal_render($category); ?></div>
-      <div class="date"><?php print render($date); ?></div>
       <div class="author"><?php print $author; ?></div>
     </div>
     <div class="item-body">
       <?php print $item->teaser_lead; ?>
     </div>
-    <div class="news-link">
+    <div class="news-link more-link">
       <?php print l(t('Read more'), 'node/' . $item->nid); ?>
     </div>
   </div>

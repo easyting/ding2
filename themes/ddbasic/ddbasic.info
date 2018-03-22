@@ -13,6 +13,7 @@
   stylesheets[all][] = sass_css/base/table.css
 
   stylesheets[all][] = sass_css/components/class.css
+  stylesheets[all][] = sass_css/components/ding_nodelist.css
   stylesheets[all][] = sass_css/components/field.css
   stylesheets[all][] = sass_css/components/footer.css
   stylesheets[all][] = sass_css/components/header.css

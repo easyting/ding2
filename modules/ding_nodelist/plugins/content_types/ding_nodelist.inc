@@ -72,7 +72,8 @@ function ding_nodelist_content_type_render($subtype, array $conf, array $args, $
   }
 
   // Load default CSS.
-  drupal_add_css(drupal_get_path('module', 'ding_nodelist') . '/css/ding_nodelist.css', 'file');
+  $uri = 'public://nodelist_colored_css/ding_nodelist.css';
+  drupal_add_css($uri, 'file');
 
   // Fetch content IDs.
   $nids = _ding_nodelist_get_custom_list_nodes($conf);
@@ -83,6 +84,10 @@ function ding_nodelist_content_type_render($subtype, array $conf, array $args, $
   $only_custom_content = (($custom_content == TRUE) && ($dynamic_content == FALSE));
   if (!$only_custom_content) {
     $nids = array_merge($nids, _ding_nodelist_get_dynamic_list_nodes($conf));
+  }
+  // Limit items on widgets.
+  if ($conf['limit']) {
+    $nids = array_slice($nids, 0, $conf['limit']);
   }
 
   // Load items by their IDs.
@@ -184,16 +189,9 @@ function ding_nodelist_content_type_admin_info($subtype, $conf, $context = NULL)
  * Ctools plugin callback for settings form.
  */
 function ding_nodelist_content_type_edit_form($form, &$form_state) {
-  global $_ding_nodelist_ipe_mode;
   form_load_include($form_state, 'inc', 'ding_nodelist', 'plugins/content_types/ding_nodelist');
 
   drupal_add_css(drupal_get_path('module', 'ding_nodelist') . '/css/ding_nodelist-admin.css', 'file');
-
-  // Tell to load additional CSS to make edit form look normally
-  // in case of IPE.
-  if (strpos($form_state['form_info']['path'], '/ipe/')) {
-    $_ding_nodelist_ipe_mode = TRUE;
-  }
 
   // Cache the form for correct workflow.
   $form_state['cache'] = TRUE;
@@ -438,12 +436,7 @@ function _ding_nodelist_content_type_form_save(&$form_state, $rebuild = FALSE) {
   $form_state['conf']['content_filter_date'] = $form_state['values']['content_filter_date'];
   $form_state['conf']['content_types'] = $form_state['values']['content_types'];
 
-  $limit = 0;
-  if ($form_state['conf']['dynamic_switch'] || $form_state['conf']['list_type'] === 'all') {
-    $limit = $form_state['values']['limit'];
-  }
-
-  $form_state['conf']['limit'] = $limit;
+  $form_state['conf']['limit'] = $form_state['values']['limit'];
   $form_state['conf']['more_links'] = !empty($form_state['values']['more_links']) ? $form_state['values']['more_links'] : array();
   $form_state['conf']['override_title_text'] = $form_state['values']['override_title_text'];
   $form_state['conf']['selected_nodes'] = !empty($form_state['values']['selected_nodes']) && $form_state['conf']['nodes_switch'] ? $form_state['values']['selected_nodes'] : array();
@@ -455,10 +448,6 @@ function _ding_nodelist_content_type_form_save(&$form_state, $rebuild = FALSE) {
 
   if ($form_state['values']['widget_type'] == DING_NODELIST_WIDGET_PROMOTED_NODES) {
     $form_state['conf']['limit'] = 4;
-  }
-
-  if ($form_state['values']['widget_type'] == 'node_blocks') {
-    $form_state['conf']['limit'] = 8;
   }
 
   // @todo
@@ -484,7 +473,6 @@ function _ding_nodelist_content_type_form_save(&$form_state, $rebuild = FALSE) {
 function _ding_nodelist_simple_cache_save(&$form_state) {
   // Save cache settings.
   $pane_cache = &$form_state['pane']->cache;
-  $pane_cache['method'] = 'simple';
   $pane_cache['settings'] = array(
     // Defaults the setting for users w/o cache access to 30 minutes.
     'lifetime' => user_access('nodelist cache settings') && isset($form_state['values']['lifetime']) ? $form_state['values']['lifetime'] : variable_get('ding_nodelist_cache_default_time', DING_NODELIST_CACHE_LIFETIME),
@@ -573,18 +561,6 @@ function _ding_nodelist_plugin_widget_section(&$form, $node_type, $conf, $defaul
     '#prefix' => '<div id="ding_nodelist-item-template">',
     '#suffix' => '</div></div>',
   );
-
-  $autoscrolling_widgets = array(DING_NODELIST_WIDGET_CAROUSEL, DING_NODELIST_WIDGET_HOR_ACCORDION);
-  if (in_array($widget_type, $autoscrolling_widgets)) {
-    $generic_autoscroll_delay = variable_get('ding_nodelist_' . $widget_type . '_delay', $default_conf['autoscroll_delay']);
-    $form['ding_nodelist_wrapper']['widget_dependent']['autoscroll_delay'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Delay (miliseconds)'),
-      '#default_value' => !empty($conf['autoscroll_delay']) ? $conf['autoscroll_delay'] : $generic_autoscroll_delay,
-      '#description' => t('Time in milliseconds an item will be shown before switching to the next one'),
-      '#size' => 4,
-    );
-  }
 
   // Make title appear only on some widgets.
   $widgets_with_title = _ding_nodelist_widgets_with_titles();
@@ -952,9 +928,6 @@ function _ding_nodelist_plugin_various_section(&$form, $node_type, $conf, $defau
         ),
         array(
           'select[name=widget_type]' => array('value' => 'promoted_nodes'),
-        ),
-        array(
-          'select[name=widget_type]' => array('value' => 'node_blocks'),
         ),
       ),
       'visible' => array(

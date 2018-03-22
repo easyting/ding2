@@ -7,6 +7,9 @@
 $title = $item->title;
 $image_field = 'field_' . $item->type . '_list_image';
 $image_path = _ding_nodelist_get_image_path($item, $conf, $image_field);
+$image = _ding_nodelist_get_dams_image_info($item, $image_field);
+$lead = field_get_items('node', $item, 'field_ding_event_lead');
+$teaser = field_get_items('node', $item, 'field_ding_event_body');
 $event_date = _ding_nodelist_get_event_date($item);
 $event_date_formatted = _ding_nodelist_formated_ding_event_date($item);
 $library = field_view_field('node', $item, 'og_group_ref', 'default');
@@ -21,10 +24,10 @@ $classes[] = (isset($item->has_video) ? 'has-video' : NULL);
 $classes = implode(" ", $classes);
 ?>
 <div
-  class="<?php print $classes; ?>"
+  class="<?php print $classes; ?> nb-image"
   <?php if (!empty($image_path)): ?>
     <?php if ($condition): ?>
-      style="background: url(<?php print $image_path; ?>);"
+      style="background-image: url(<?php print $image_path; ?>);"
     <?php endif; ?>
   <?php endif; ?>
 >
@@ -35,9 +38,14 @@ $classes = implode(" ", $classes);
       <div class="close-media"><i class="icon-cross"></i></div>
     </div>
   <?php endif; ?>
+  <?php if (!empty($image_path)): ?>
+    <?php if (!$condition): ?>
+      <div class="nb-image" style="background-image:url(<?php print $image_path; ?>);"></div>
+    <?php endif; ?>
+  <?php endif; ?>
   <div class="event-info">
     <h3><?php print l($title, 'node/' . $item->nid); ?></h3>
-    <div class="item-body">
+    <div class="item-event-body">
       <?php print $item->teaser_lead; ?>
     </div>
     <div class="item-date"><?php print $event_date_formatted; ?></div>
@@ -66,6 +74,5 @@ $classes = implode(" ", $classes);
         <div class='play round'><i class='icon-play'></i></div>
       </div>
     <?php endif; ?>
-
   </div>
 </div>

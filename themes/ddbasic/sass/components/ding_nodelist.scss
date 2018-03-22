@@ -1,0 +1,1019 @@
+@import "../base";
+/* Colors variables
+   ========================================================================== */
+
+$grey-transparent-bg: rgba(0, 0, 0, 0.7);
+$orange: #ea6621;
+$green_light: #b9c650;
+$blue: #008abe;
+$purple: #a34da4;
+$marine: #47cfd1;
+
+$label-bg: url('../../../../modules/ding_nodelist/images/p.png');
+
+.ding_nodelist-col-full {
+  width: 100%;
+}
+// All nodelists
+//==========================================================================
+.ding_nodelist {
+  overflow: hidden;
+
+  h3 a {
+    font-family: FaktPro-SemiBold, sans-serif;
+  }
+
+  span,
+  p {
+    font-family: FaktPro-Normal, sans-serif;
+  }
+
+  .node > p {
+    margin: 10px 0;
+  }
+
+  .node-title {
+    text-decoration: underline;
+
+    a {
+      color: $white;
+    }
+  }
+
+  .more {
+    display: none;
+  }
+
+  // Event timestamp
+  .event-time {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 49;
+    padding: 0 0 5px;
+    width: 60px;
+    background-color: $white;
+    text-align: center;
+
+    // Event day
+    .event-day {
+      background: $color-text-link;
+      color: $white;
+      margin-bottom: 5px;
+      font-size: 80%;
+      line-height: 1.4;
+
+      a {
+        color: $white;
+      }
+
+      a:hover {
+        text-decoration: none;
+      }
+    }
+
+    // Day
+    .event-date,
+    .event-month {
+      line-height: 1;
+    }
+
+    .event-date {
+      font-size: 120%;
+    }
+    .event-month {
+      font-size: 80%;
+    }
+
+  }
+
+  // Event label
+  .event-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 68px;
+    background-image: $label-bg;
+    color: $white;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+  }
+
+  .label-wrapper {
+    margin: 10px 0;
+  }
+
+  // More link
+  .more {
+    a {
+      color: $white;
+      display: block;
+      text-align: right;
+      text-decoration: none;
+      font-size: 120%;
+    }
+  }
+
+  // Text wrapper
+  .article-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 49;
+    width: 100%;
+  }
+
+  .more-links {
+    float: right;
+    display: block;
+    margin-top: 10px;
+
+    ul {
+      margin: 0;
+    }
+
+    li {
+      list-style: none;
+      display: inline-block;
+      margin-left: 10px;
+    }
+  }
+}
+
+// Ding nodelist carousel
+//==========================================================================
+.ding_nodelist-carousel {
+  position: relative;
+  height: 391px;
+  overflow: inherit;
+
+  .label-wrapper a,
+  .field-name-field-ding-event-category {
+    margin-left: 10px;
+    color: $color-standard-text;
+  }
+
+  .item {
+    position: relative;
+    height: 391px;
+
+    .node {
+      padding-left: 10px;
+      min-height: 120px;
+
+      p {
+        font-size: 100%;
+        color: $white;
+      }
+
+      .library .field-label {
+        display: none;
+      }
+    }
+
+    .article-info {
+      background-image: -webkit-linear-gradient(transparent 0%, $grey-transparent-bg 60%);
+      height: auto;
+
+      a.label-info,
+      .library a,
+      .item-price {
+        color: $color-text-link;
+      }
+    }
+
+    .item-date {
+      color: $white;
+    }
+  }
+
+  h2 {
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    z-index: 49;
+    color: $white;
+  }
+
+  // Next / Previous buttons
+  .next-prev {
+    display: none;
+    position: relative;
+    top: 10px;
+    left: 0;
+
+    span {
+      display: none;
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .next {
+      left: 40px;
+    }
+
+    .prev,
+    .next {
+      position: absolute;
+      top: 10px;
+
+      &:hover {
+        border-radius: 50px;
+        background-color: $grey-medium;
+        text-decoration: none;
+
+        &:after {
+          color: $grey-medium;
+        }
+      }
+
+      &:after {
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        line-height: 20px;
+        text-align: center;
+        font-family: 'icomoon';
+      }
+    }
+  }
+
+  // Pagination
+  .pagination {
+    right: 10px;
+    top: 10px;
+    position: absolute;
+
+    a {
+      border-radius: 50px;
+      background-color: $grey-medium;
+      display: block;
+      float: left;
+      width: 25px;
+      height: 25px;
+      color: $white;
+      text-align: center;
+      text-decoration: none;
+      margin-left: 5px;
+      line-height: 2;
+    }
+
+    // Active
+    .selected {
+      background-color: $color-text-link;
+      color: $white;
+    }
+  }
+
+  h3 {
+    margin: 3px 0;
+    padding: 0;
+    text-align: left;
+
+    a {
+      margin-right: 10px;
+      color: $white;
+    }
+  }
+
+  .article_image,
+  .event-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    a {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .field-type-image {
+    margin: 0 auto;
+  }
+
+  .article_image img,
+  .event-image img {
+    display: none;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+
+    @include media($mobile) {
+      display: none;
+    }
+  }
+
+  .article_image .field-label,
+  .event-image .field-label {
+    display: none;
+  }
+}
+
+.nl-link .more-links {
+  float: right;
+  margin-top: 10px;
+
+  li {
+    list-style: none;
+    display: inline-block;
+    margin-left: 10px;
+  }
+}
+
+/* Tabroll tabs
+   ========================================================================== */
+.ding_nodelist-rolltab {
+  border: none;
+
+  .ding_nodelist-rolltab-select-tabs {
+    display: none;
+  }
+
+  &.ui-widget-content {
+    background: transparent;
+  }
+
+  .ding_nodelist-items {
+    border: none;
+  }
+
+  .ding_nodelist-rolltab-wrapper,
+  #ding_nodelist-rolltab,
+  ul.ui-tabs-nav,
+  li.ui-tabs-nav-item {
+    border: none;
+  }
+
+  .ding_nodelist-rolltab-wrapper {
+    ul.ui-tabs-nav,
+    li.ui-tabs-nav-item {
+      background: transparent;
+
+      a {
+        padding-left: 0;
+
+        @include media($tablet) {
+          white-space: nowrap;
+          width: 6em;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        @include media($mobile) {
+          width: auto;
+        }
+      }
+
+      &.ui-state-default {
+        @include media($mobile) {
+          background: transparent;
+          border: none;
+        }
+      }
+
+      span {
+        color: $charcoal-opacity-dark;
+        font-size: 100%;
+
+        &:hover {
+          border-bottom: solid 3px $color-text-link;
+          padding-bottom: 5px;
+          color: $color-standard-text;
+        }
+      }
+
+      &.ui-state-active {
+        span {
+          border-bottom: solid 3px $color-text-link;
+          padding-bottom: 5px;
+          color: $color-standard-text;
+        }
+
+      }
+    }
+
+    .ui-tabs-nav {
+      margin-bottom: 10px;
+    }
+
+    .ui-tabs,
+    div.ui-tabs-panel {
+      padding: 0;
+    }
+
+    div.image {
+      span.no-image {
+        background-color: $white;
+        width: 100%;
+      }
+    }
+
+    .info p {
+      margin-right: 10px !important;
+    }
+  }
+}
+
+// Promoted nodes
+//==========================================================================
+.ding_nodelist-promoted_nodes {
+  width: inherit;
+
+  .more-links {
+    margin-right: 12px;
+  }
+
+  .first-row,
+  .last-row {
+    display: block;
+    height: 300px;
+  }
+
+  .first-row {
+    margin-bottom: 20px;
+  }
+
+  .ding_nodelist-pn-item {
+    padding: 5px;
+    position: relative;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+
+    .item-body,
+    .item-event-body {
+      opacity: 0;
+      color: $white;
+      height: 0;
+      @include transition(opacity $speed $ease);
+      position: absolute;
+    }
+
+    h3 {
+      font-size: 120%;
+      margin-bottom: 10px;
+
+      @include media($mobile) {
+        font-size: 100%;
+      }
+
+      a {
+        opacity: 1;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        transition: opacity 0.2s;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+
+    .item-date,
+    .item-price {
+      font-size: 100%;
+
+      @include media($mobile) {
+        font-size: 100%;
+      }
+    }
+
+    .library,
+    .read-more a {
+      display: none;
+    }
+  }
+
+  .read-more {
+    a {
+      display: inline-block;
+      height: 45px;
+      line-height: 45px;
+      padding: 0 45px;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .last-right-block,
+  .first-left-block {
+    color: $white;
+    height: 300px;
+    @include span-columns(3 of 4.5);
+    padding: 0;
+    margin-right: 0;
+    position: relative;
+
+    .item-body,
+    .item-event-body {
+      z-index: -1;
+    }
+
+    .field-name-field-ding-news-category a {
+      display: block;
+      color: $color-text;
+    }
+
+    h3 a {
+      color: $white;
+      font-family: FaktPro-SemiBold, sans-serif;
+      font-size: 100%;
+    }
+
+    &:hover {
+      .news-info,
+      .event-info,
+      .page-info {
+        padding-top: 30px;
+        position: absolute;
+        margin-top: -10px;
+        height: 100%;
+        z-index: 1;
+
+        @include media($tablet, $mobile) {
+          background-color: transparent;
+          background-image: -webkit-linear-gradient(transparent 0%, $grey-transparent-bg 100%);
+          height: auto;
+        }
+      }
+
+      .ding_nodelist-pn-item:after {
+        background-color: $black-overlay;
+        content: ' ';
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        z-index: 0;
+      }
+
+      .item-body,
+      .item-event-body {
+        opacity: 1;
+        z-index: 1;
+
+        @include media($tablet, $mobile) {
+          opacity: 0;
+          height: 0;
+        }
+      }
+
+      .item-event-body {
+        margin-top: 45px;
+        height: auto;
+      }
+    }
+
+    .news-info,
+    .event-info,
+    .page-info {
+      @include transition(height $speed $ease);
+      background-color: transparent;
+      background-image: -webkit-linear-gradient(transparent 0%, $grey-transparent-bg 100%);
+      font-size: 100%;
+      line-height: 24px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      padding-bottom: 25px;
+      padding-left: 10px;
+    }
+
+    .item-event-body {
+      height: 0;
+    }
+
+    @include media($mobile) {
+      @include span-columns(3 of 3);
+      clear: both;
+      height: 100%;
+      padding: 0;
+    }
+  }
+
+  .last-left-block,
+  .first-right-block {
+    @include media($mobile) {
+      margin-left: 0;
+      margin: 0;
+
+      .news-info,
+      .event-info,
+      .page-info {
+        line-height: 24px;
+        position: absolute;
+        bottom: 0px;
+        left: 10px;;
+        width: 100%;
+      }
+
+      img {
+        height: 100%;
+      }
+    }
+  }
+
+  .last-right-block,
+  .first-right-block {
+    margin-left: 20px;
+
+    @include media($mobile) {
+      margin-left: 0;
+      margin: 0;
+
+      img {
+        height: 100%;
+      }
+    }
+  }
+
+  .last-left-block,
+  .first-right-block {
+    color: $grey-dark;
+    height: 220px;
+    @include span-columns(3 of 9);
+    margin-right: 0;
+    position: relative;
+
+    .ding_nodelist-pn-item {
+      padding: 0;
+      position: relative;
+
+      img {
+        height: 200px;
+        @include media($mobile) {
+          height: 100%;
+        }
+      }
+
+      .news-info {
+        margin-top: 10px;
+      }
+
+      .item-body,
+      .item-event-body {
+        top: 10px;
+        margin-left: 0;
+        z-index: 1;
+        padding: 5px;
+        position: absolute;
+      }
+
+      &:hover {
+        .news-info,
+        .event-info,
+        .page-info {
+          &::after {
+            background-color: $black-overlay;
+            width: 100%;
+            content: ".";
+            position: absolute;
+            height: 200px;
+            width: 100%;
+            top: 0;
+            @include media($notebook) {
+              height: 216px;
+            }
+
+            @include media($tablet, $mobile) {
+              background-color: transparent;
+              width: 100%;
+              content: "";
+            }
+          }
+        }
+
+        .item-body,
+        .item-event-body {
+          opacity: 1;
+
+          @include media($tablet, $mobile) {
+            opacity: 0;
+            height: 0;
+          }
+        }
+      }
+    }
+
+    h3 {
+      margin-bottom: 5px;
+      margin-top: 5px;
+      a {
+        color: $color-text;
+      }
+    }
+
+    a.label {
+      margin: 0;
+      color: $grey-dark;
+    }
+
+    @include media($mobile) {
+      @include span-columns(3 of 3);
+      clear: both;
+      height: 300px;
+    }
+  }
+
+  .ding_nodelist-pn-item {
+    height: 100%;
+    .nb-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center center;
+    }
+  }
+
+  @include media($mobile) {
+    .ding_nodelist-pn-item {
+      h3 a {
+        font-family: FaktPro-SemiBold, sans-serif;
+        font-size: 100%;
+        line-height: 24px;
+        color: $white;
+      }
+
+      .item-date {
+        color: $white-opacity-dark;
+        font-size: 100%;
+      }
+
+      .field-name-field-ding-news-category a {
+        display: block;
+        color: $color-text;
+        font-size: 100%;
+      }
+    }
+  }
+}
+
+// Nodes blocks
+//==========================================================================
+.ding_nodelist-node_blocks {
+  margin-right: -10px;
+  width: inherit;
+  overflow: initial;
+
+  .ding_nodelist-items {
+    .nb-item {
+      float: left;
+      width: 31%;
+      margin: 0 2% 2% 0;
+      height: 100%;
+      display: block;
+      position: relative;
+      padding: 0 $box-padding 10px $box-padding;
+
+      .inner {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        padding: $box-padding $box-padding 10px $box-padding;
+      }
+
+      .background {
+        @include transition(
+            min-height $speed*3 $ease
+        );
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: $grey;
+        .button {
+          @include transition(opacity $speed $ease);
+          position: absolute;
+          right: 15px;
+          bottom: 15px;
+          width: 156px;
+          padding: 20px 15px 14px 15px;
+          opacity: 0;
+
+          // Mobile
+          @include media($mobile) {
+            display: none;
+          }
+        }
+      }
+
+      .news-text {
+        position: relative;
+        z-index: 1;
+      }
+
+      &.has-image {
+        .inner {
+          padding: 0 $box-padding 10px $box-padding;
+        }
+        .news-text {
+          padding-top: 215px;
+
+          // Mobile
+          @include media($mobile) {
+            padding-top: 15px;
+          }
+        }
+      }
+
+      .info-top {
+        color: $charcoal-opacity-dark;
+        > div {
+          float: left;
+          width: 100%;
+        }
+        a {
+          position: static;
+        }
+      }
+
+      .title-and-lead {
+        float: left;
+        @include transition(
+            min-height $speed $ease
+        );
+        min-height: 61px;
+        max-height: 85px;
+        .title {
+          min-height: 24px;
+          margin-bottom: 10px;
+        }
+        .field-item {
+          color: $color-standard-text;
+        }
+      }
+
+      .info-bottom {
+        a {
+          position: static;
+        }
+      }
+
+      .button {
+        opacity: 0;
+        a {
+          color: $color-text;
+          position: static;
+        }
+      }
+
+      .library {
+        .field-item {
+          width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+      .field-name-field-ding-news-lead {
+        position: relative;
+        padding: 0;
+        color: $color-text;
+      }
+
+      a {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        color: $color-text-link;
+      }
+
+      &:nth-child(4) {
+        clear: both;
+      }
+
+      &:nth-child(1),
+      &:nth-child(2),
+      &:nth-child(3),
+      &:nth-child(4),
+      &:nth-child(5),
+      &:nth-child(6) {
+        @include span-columns(3 of 9.3);
+      }
+
+      @include media($mobile) {
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3),
+        &:nth-child(4),
+        &:nth-child(5),
+        &:nth-child(6),
+        &:nth-child(7),
+        &:nth-child(8) {
+          @include span-columns(3 of 3);
+          clear: both;
+          margin-top: 10px;
+        }
+      }
+
+      .nb-image {
+        position: absolute;
+        z-index: 1;
+        left: 0;
+
+        &:after {
+          display: none;
+        }
+
+        &.ding-news-list-image {
+          width: 100%;
+          height: 200px;
+          overflow: hidden;
+          background-size: cover;
+          background-position: center center;
+        }
+
+        @include media($notebook) {
+          height: auto;
+          min-height: auto;
+          background: transparent;
+        }
+
+        @include media($tablet) {
+          height: auto;
+          min-height: auto;
+          background: transparent;
+        }
+
+        @include media($mobile) {
+          display: none;
+        }
+      }
+
+      &:hover {
+        .background {
+          @include transition(
+              width $speed $hover-delay $ease,
+              background-color $speed $ease,
+              box-shadow $speed $ease
+          );
+          width: 115%;
+          background-color: $white;
+          box-shadow: $box-shadow;
+
+          // Tablet
+          @include media($tablet) {
+            width: 110%;
+          }
+
+          // Mobile
+          @include media($mobile) {
+            width: 100%;
+            background-color: $grey;
+            box-shadow: none;
+          }
+        }
+        .button {
+          @include transition(
+              opacity $speed $hover-delay $ease,
+              background-color $speed $ease,
+              color $speed $ease
+          );
+          opacity: 1;
+        }
+        .title-and-lead {
+          @include transition(
+              min-height $speed $hover-delay $ease
+          );
+          min-height: 118px;
+        }
+        .field-name-field-ding-event-lead {
+          @include transition(
+              opacity $speed $hover-delay $ease
+          );
+          opacity: 1;
+        }
+      }
+
+      &.is-hovered {
+        z-index: 2;
+      }
+    }
+  }
+
+  .more-links {
+    margin-right: 25px;
+    float: left;
+    clear: left;
+  }
+}

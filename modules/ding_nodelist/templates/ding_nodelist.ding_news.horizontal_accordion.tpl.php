@@ -25,6 +25,11 @@ $slide_image = l($image ? theme('image_style', array_merge($image, array('style_
         <div class="category">
           <?php print drupal_render($category); ?>
         </div>
+        <div class="teaser">
+          <p>
+            <?php print $item->teaser_lead; ?>
+          </p>
+       </div>
       </div>
     </div>
   </div>

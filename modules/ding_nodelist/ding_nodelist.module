@@ -7,17 +7,10 @@
 
 include_once 'ding_nodelist.features.inc';
 
-define('DING_NODELIST_WIDGET_LIST', 'simple');
-define('DING_NODELIST_WIDGET_SINGLE', 'single');
 define('DING_NODELIST_WIDGET_CAROUSEL', 'carousel');
-define('DING_NODELIST_WIDGET_HOR_ACCORDION', 'horizontal_accordion');
-define('DING_NODELIST_WIDGET_VER_ACCORDION', 'vertical_accordion');
-define('DING_NODELIST_WIDGET_SLIDER', 'slider');
-define('DING_NODELIST_WIDGET_TAXONOMY_LIKE', 'taxonomy');
 define('DING_NODELIST_WIDGET_ROLLTAB', 'rolltab');
 define('DING_NODELIST_WIDGET_PROMOTED_NODES', 'promoted_nodes');
 define('DING_NODELIST_WIDGET_NODE_BLOCKS', 'node_blocks');
-define('DING_NODELIST_WIDGET_MINIMAL_DISPLAY', 'minimal_display');
 
 define('DING_NODELIST_COL_FULL', 'full');
 define('DING_NODELIST_COL_HALF', 'half');
@@ -121,13 +114,7 @@ function ding_nodelist_ajax_render_alter(&$commands = array()) {
   // of telling Drupal the order of CSS files in order to
   // cascade styles properly. See the link.
   // @link http://drupal.org/node/561858#comment-3171846
-  global $_ding_nodelist_ipe_mode, $_ding_nodelist_ipe_redirect;
-
-  if ($_ding_nodelist_ipe_mode) {
-    $path = drupal_get_path('module', 'ding_nodelist') . "/css/ipe.css";
-    $styles = '<style type="text/css" media="all">@import url("' . $path . '");</style>';
-    $commands[] = ajax_command_append('head', $styles);
-  }
+  global $_ding_nodelist_ipe_redirect;
 
   if ($_ding_nodelist_ipe_redirect) {
     ctools_include('ajax');
@@ -619,49 +606,9 @@ function ding_nodelist_theme() {
         'conf' => NULL,
       ),
     ),
-    '_ding_nodelist_widget_single' => array(
-      'path' => $path,
-      'template' => 'ding_nodelist_widget_single',
-      'variables' => array(
-        'items' => NULL,
-        'template' => NULL,
-        'links' => NULL,
-        'conf' => NULL,
-      ),
-    ),
-    '_ding_nodelist_widget_horizontal_accordion' => array(
-      'path' => $path,
-      'template' => 'ding_nodelist_widget_horizontal_accordion',
-      'variables' => array(
-        'items' => NULL,
-        'template' => NULL,
-        'links' => NULL,
-        'conf' => NULL,
-      ),
-    ),
-    '_ding_nodelist_widget_vertical_accordion' => array(
-      'path' => $path,
-      'template' => 'ding_nodelist_widget_vertical_accordion',
-      'variables' => array(
-        'items' => NULL,
-        'template' => NULL,
-        'links' => NULL,
-        'conf' => NULL,
-      ),
-    ),
     '_ding_nodelist_widget_carousel' => array(
       'path' => $path,
       'template' => 'ding_nodelist_widget_carousel',
-      'variables' => array(
-        'items' => NULL,
-        'template' => NULL,
-        'links' => NULL,
-        'conf' => NULL,
-      ),
-    ),
-    '_ding_nodelist_widget_slider' => array(
-      'path' => $path,
-      'template' => 'ding_nodelist_widget_slider',
       'variables' => array(
         'items' => NULL,
         'template' => NULL,
@@ -702,16 +649,6 @@ function ding_nodelist_theme() {
     '_ding_nodelist_widget_node_blocks' => array(
       'path' => $path,
       'template' => 'ding_nodelist_widget_node_blocks',
-      'variables' => array(
-        'items' => NULL,
-        'template' => NULL,
-        'links' => NULL,
-        'conf' => NULL,
-      ),
-    ),
-    '_ding_nodelist_widget_minimal_display' => array(
-      'path' => $path,
-      'template' => 'ding_nodelist_widget_minimal_display',
       'variables' => array(
         'items' => NULL,
         'template' => NULL,
@@ -976,31 +913,16 @@ function _ding_nodelist_add_js($widget, $autoscroll_delay = NULL, $unique_id = N
       drupal_add_js($mod_path . '/js/carousel.js', 'file');
       break;
 
-    case DING_NODELIST_WIDGET_SLIDER:
-      drupal_add_js($mod_path . '/js/jquery.newsTicker.min.js', 'file');
-      drupal_add_js(array('ding_nodelist' => array($unique_id => $autoscroll_delay)), 'setting');
-      drupal_add_js($mod_path . '/js/slider.js', 'file');
-      break;
-
-    case DING_NODELIST_WIDGET_HOR_ACCORDION:
-      drupal_add_js($mod_path . '/js/jquery.easing.1.3.js', 'file');
-      drupal_add_js($mod_path . '/js/jquery.zaccordion.min.js', 'file');
-      drupal_add_js(array('ding_nodelist' => array($unique_id => $autoscroll_delay)), 'setting');
-      drupal_add_js($mod_path . '/js/haccordion.js', 'file');
-      break;
-
-    case DING_NODELIST_WIDGET_VER_ACCORDION:
-      drupal_add_js($mod_path . '/js/jquery.easing.1.3.js', 'file');
-      drupal_add_js($mod_path . '/js/jquery.vaccordion.js', 'file');
-      drupal_add_js(array('ding_nodelist' => array($unique_id => $autoscroll_delay)), 'setting');
-      drupal_add_js($mod_path . '/js/vaccordion.js', 'file');
-      break;
-
     case DING_NODELIST_WIDGET_ROLLTAB:
       drupal_add_library('system', 'ui.tabs');
       drupal_add_js($mod_path . '/js/jquery-ui-tabs-rotate.js');
       drupal_add_js(array('ding_nodelist' => array($unique_id => $autoscroll_delay)), 'setting');
       drupal_add_js($mod_path . '/js/rolltab.js', 'file');
+      break;
+
+      case DING_NODELIST_WIDGET_NODE_BLOCKS:
+      drupal_add_library('system', 'ui.tabs');
+      drupal_add_js(array('ding_nodelist' => array($unique_id => $autoscroll_delay)), 'setting');
       break;
   }
 }
@@ -1017,23 +939,17 @@ function _ding_nodelist_add_js($widget, $autoscroll_delay = NULL, $unique_id = N
 function _ding_nodelist_init_image_style($widget) {
   // Init image_styles for region.
   switch ($widget) {
-    case DING_NODELIST_WIDGET_HOR_ACCORDION:
-      return 'ding_nodelist_medium_reused';
-
     case DING_NODELIST_WIDGET_CAROUSEL:
-    case DING_NODELIST_WIDGET_SINGLE:
-    case DING_NODELIST_WIDGET_VER_ACCORDION:
-      return 'ding_nodelist_medium_reused';
+      return 'ding_tabroll_large';
 
-    case DING_NODELIST_WIDGET_TAXONOMY_LIKE:
-    case DING_NODELIST_WIDGET_SLIDER:
-      return 'ding_nodelist_mini_reused';
+    case DING_NODELIST_WIDGET_NODE_BLOCKS:
+      return 'ding_panorama_list_large';
 
     case DING_NODELIST_WIDGET_ROLLTAB:
-      return 'ding_tabroll_large_reused';
+      return 'ding_tabroll_large';
 
     case DING_NODELIST_WIDGET_PROMOTED_NODES:
-      return 'ding_nodelist_pn_large_reused';
+      return 'ding_panorama_list_large_wide';
 
     default:
       return '';
@@ -1148,11 +1064,6 @@ function _ding_nodelist_get_templates($include_hidden = TRUE, $content_type = NU
  *   Array of node IDs.
  */
 function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
-  // Do not fetch anything if custom content already did for single item widget.
-  if (!empty($conf['custom_content']) && $conf['widget_type'] == DING_NODELIST_WIDGET_SINGLE) {
-    return array();
-  }
-
   // Support for slave-master DB servers.
   $query = db_select('node', 'n', array('target' => 'slave'))->fields('n', array('nid'));
   $content_types = array();
@@ -1219,11 +1130,8 @@ function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
     }
   }
 
-  // Limit to 1 for single node widget.
-  if ($conf['widget_type'] == DING_NODELIST_WIDGET_SINGLE) {
-    $query->range(0, 1);
-  }
-  elseif ($conf['limit']) {
+  // Add limit for list nodes.
+  if ($conf['limit']) {
     $query->range(0, $conf['limit']);
   }
 
@@ -1250,10 +1158,6 @@ function _ding_nodelist_get_custom_list_nodes(&$conf = array()) {
     }
     // Sort the nodes according to their weight.
     ksort($nodes);
-    $conf['custom_content'] = TRUE;
-    if ($conf['widget_type'] == DING_NODELIST_WIDGET_SINGLE) {
-      return array_slice($nodes, 0, 1);
-    }
   }
 
   return $nodes;
@@ -1325,7 +1229,7 @@ function _ding_nodelist_sort_nodes($nodes = array(), $conf = array()) {
  *
  * @param array $event_nodes
  *   An array containing:
- *     Associative arrays which themselves contain single elements of:
+ *     Associative arrays which themselves contain elements of:
  *     - date: Is the key of the element.
  *     - event: An event object as value of the element.
  * @param array $sorting_order
@@ -1459,16 +1363,10 @@ function _ding_nodelist_is_valid_link($link = '') {
  */
 function _ding_nodelist_get_widget_human_name($machine_name) {
   $widgets = array(
-    DING_NODELIST_WIDGET_SINGLE => t('Single item'),
     DING_NODELIST_WIDGET_CAROUSEL => t('Carousel'),
-    DING_NODELIST_WIDGET_HOR_ACCORDION => t('Horizontal accordion'),
-    DING_NODELIST_WIDGET_VER_ACCORDION => t('Vertical accordion'),
-    DING_NODELIST_WIDGET_SLIDER => t('Slider'),
-    DING_NODELIST_WIDGET_TAXONOMY_LIKE => t('Taxonomy like'),
     DING_NODELIST_WIDGET_ROLLTAB => t('Rolltab'),
     DING_NODELIST_WIDGET_PROMOTED_NODES => t('Promoted nodes'),
     DING_NODELIST_WIDGET_NODE_BLOCKS => t('Nodes in blocks'),
-    DING_NODELIST_WIDGET_MINIMAL_DISPLAY => t('Minimal display'),
   );
   return $widgets[$machine_name];
 }
@@ -1487,16 +1385,10 @@ function _ding_nodelist_get_widget_human_name($machine_name) {
  */
 function _ding_nodelist_get_widget_types($content_types = '') {
   $widgets = array(
-    DING_NODELIST_WIDGET_SINGLE => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_SINGLE),
     DING_NODELIST_WIDGET_CAROUSEL => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_CAROUSEL),
-    DING_NODELIST_WIDGET_HOR_ACCORDION => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_HOR_ACCORDION),
-    DING_NODELIST_WIDGET_VER_ACCORDION => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_VER_ACCORDION),
-    DING_NODELIST_WIDGET_SLIDER => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_SLIDER),
-    DING_NODELIST_WIDGET_TAXONOMY_LIKE => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_TAXONOMY_LIKE),
     DING_NODELIST_WIDGET_ROLLTAB => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_ROLLTAB),
     DING_NODELIST_WIDGET_PROMOTED_NODES => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_PROMOTED_NODES),
     DING_NODELIST_WIDGET_NODE_BLOCKS => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_NODE_BLOCKS),
-    DING_NODELIST_WIDGET_MINIMAL_DISPLAY => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_MINIMAL_DISPLAY),
   );
 
   // Fetch only widgets that have templates configured.
@@ -1589,6 +1481,64 @@ function _ding_nodelist_get_event_time($event_node) {
 }
 
 /**
+ * Return formatted time for events of the same day.
+ *
+ * @param object $event_node
+ *   Event node object.
+ *
+ * @return string
+ */
+function _ding_nodelist_format_event_time($event_node) {
+  $event_date = field_get_items('node', $event_node, 'field_ding_event_date');
+
+  $start = new DateTime($event_date[0]['value'], new DateTimeZone('UTC'));
+  $end = new DateTime($event_date[0]['value2'], new DateTimeZone('UTC'));
+
+  $start_timestamp = $start->getTimestamp();
+  $start_string = format_date($start_timestamp, 'ding_time_only');
+
+  if ($start->diff($end)->days > 0) {
+    $result = $start_string;
+  }
+  elseif (format_date($start_timestamp, 'ding_time_only') == '0:00') {
+    $result = t('All day');
+  }
+  else {
+    $end_string = format_date($end->getTimestamp(), 'ding_time_only');
+    $result = t('!start - !end', array('!start' => $start_string, '!end' => $end_string));
+  }
+
+  return $result;
+}
+
+/**
+ * Format event dates as period of time.
+ *
+ * @param stdClass $event_node
+ *   Ding event node.
+ *
+ * @return string
+ *   Formatted event date period.
+ */
+function _ding_nodelist_format_event_date($event_node) {
+  $event_date = field_get_items('node', $event_node, 'field_ding_event_date');
+
+  $start = new DateTime($event_date[0]['value'], new DateTimeZone('UTC'));
+  $end = new DateTime($event_date[0]['value2'], new DateTimeZone('UTC'));
+
+  $start_timestamp = $start->getTimestamp();
+  $start_string = format_date($start_timestamp, 'custom', 'd.m.y');
+
+  $result = $start_string;
+  if ($start->diff($end)->days > 0) {
+    $end_string = format_date($end->getTimestamp(),  'custom', 'd.m.y');
+    $result = t('!start - !end', array('!start' => $start_string, '!end' => $end_string));
+  }
+
+  return $result;
+}
+
+/**
  * Get formatted ding_event_date field value.
  *
  * @param object $event_node
@@ -1618,11 +1568,10 @@ function _ding_nodelist_formated_ding_event_date($event_node) {
 function _ding_nodelist_get_dams_image_info($node, $image_field) {
   $list_image = field_get_items('node', $node, $image_field);
 
-  if (!empty($list_image)) {
+  if (empty($list_image)) {
     if ($image_field == 'field_ding_news_list_image') {
       $title_image = field_get_items('node', $node, 'field_ding_news_title_image');
-
-      if (isset($list_image[0]['fid']) && $list_image[0]['fid'] == $title_image[0]['fid']) {
+      if (!isset($list_image[0]['fid'])) {
         $file_entity = file_load($title_image[0]['fid']);
         if (!empty($file_entity)) {
           $img = file_copy($file_entity, 'public://list_image/news', FILE_EXISTS_REPLACE);
@@ -1754,6 +1703,7 @@ function _ding_nodelist_striptags($nodes) {
       $body_field = 'field_' . $node->type . '_body';
       foreach ($node->{$body_field} as $lng => $body) {
         $nodes[$n]->{$body_field}[$lng][0]['value'] = preg_replace('/<[^>]+>/i', '', $body[0]['value']);
+        $nodes[$n]->{$body_field}[$lng][0]['value'] = preg_replace('/\[(.*)\]/i', '', $body[0]['value']);
       }
     }
     else {
@@ -1761,6 +1711,7 @@ function _ding_nodelist_striptags($nodes) {
         $body_field = 'field_' . $event_node->type . '_body';
         foreach ($event_node->{$body_field} as $lng => $body) {
           $nodes[$n][$event_date]->{$body_field}[$lng][0]['value'] = preg_replace('/<[^>]+>/i', '', $body[0]['value']);
+          $nodes[$n][$event_date]->{$body_field}[$lng][0]['value'] = preg_replace('/\[(.*)\]/i', '', $body[0]['value']);
         }
       }
     }
@@ -1775,18 +1726,13 @@ function _ding_nodelist_striptags($nodes) {
  *   List of widgets with titles.
  */
 function _ding_nodelist_widgets_with_titles() {
-  // For more info search ".ding_nodelist-title" in core.css file.
-  // Without title: horizontal_accordion, single.
+  // For more info search ".pane-title" in core.css file.
   return array(
     DING_NODELIST_WIDGET_CAROUSEL,
     DING_NODELIST_WIDGET_LIST,
-    DING_NODELIST_WIDGET_SLIDER,
-    DING_NODELIST_WIDGET_TAXONOMY_LIKE,
-    DING_NODELIST_WIDGET_VER_ACCORDION,
     DING_NODELIST_WIDGET_ROLLTAB,
     DING_NODELIST_WIDGET_PROMOTED_NODES,
     DING_NODELIST_WIDGET_NODE_BLOCKS,
-    DING_NODELIST_WIDGET_MINIMAL_DISPLAY,
   );
 }
 
@@ -1798,12 +1744,7 @@ function _ding_nodelist_widgets_with_titles() {
  */
 function _ding_nodelist_widgets_content_trim() {
   return array(
-    DING_NODELIST_WIDGET_SINGLE,
     DING_NODELIST_WIDGET_CAROUSEL,
-    DING_NODELIST_WIDGET_HOR_ACCORDION,
-    DING_NODELIST_WIDGET_VER_ACCORDION,
-    DING_NODELIST_WIDGET_SLIDER,
-    DING_NODELIST_WIDGET_TAXONOMY_LIKE,
     DING_NODELIST_WIDGET_ROLLTAB,
     DING_NODELIST_WIDGET_PROMOTED_NODES,
     DING_NODELIST_WIDGET_NODE_BLOCKS,
@@ -1867,11 +1808,11 @@ function ding_nodelist_preprocess(&$variables, $hook) {
         $lead = field_get_items("node", $item, "field_{$item->type}_lead");
         $teaser = field_get_items("node", $item, "field_{$item->type}_body");
 
-        if (isset($lead[0]['safe_value'])) {
-          $output = strip_tags($lead[0]['safe_value']);
+        if (isset($lead[0]['value'])) {
+          $output = strip_tags($lead[0]['value']);
         }
-        elseif (isset($teaser[0]['safe_value'])) {
-          $output = strip_tags($teaser[0]['safe_value']);
+        elseif (isset($teaser[0]['value'])) {
+          $output = strip_tags($teaser[0]['value']);
         }
 
         $items[$key]->teaser_lead = $output;
@@ -1885,4 +1826,37 @@ function ding_nodelist_preprocess(&$variables, $hook) {
     $currency = variable_get('ding_event_currency_type', 'Kr');
     $variables['currency'] = $currency;
   }
+}
+
+/**
+ * Implements hook_form_system_theme_settings_alter().
+ */
+function ding_nodelist_form_system_theme_settings_alter(&$form, &$form_state) {
+  $form['#submit'][] = "_ding_nodelist_process_css_colors";
+}
+
+/**
+ * Function for rewriting colors of ding_nodelist css file.
+ */
+function _ding_nodelist_process_css_colors() {
+  // Create public directory for keeping rewritten styles.
+  $folder_path = 'public://nodelist_colored_css';
+  file_prepare_directory($folder_path, FILE_CREATE_DIRECTORY);
+
+  // Getting theme information.
+  $theme = 'ddbasic';
+  $info = color_get_info($theme);
+  $palette = color_get_palette($theme);
+
+  // Setting paths.
+  $paths['target'] = 'public://nodelist_colored_css/';
+  $paths['source'] = drupal_get_path('module', 'ding_nodelist') . '/css/ding_nodelist.css';
+  $paths['files'] = $paths['map'] = array();
+
+  // Loading ding_nodelist css file content.
+  $style = drupal_load_stylesheet($paths['source'], TRUE);
+  // Rewriting default styles to match current theme color palette.
+  $style = _color_rewrite_stylesheet($theme, $info, $paths, $palette, $style);
+  // Save new css data into file.
+  file_unmanaged_save_data($style, 'public://nodelist_colored_css/ding_nodelist.css', FILE_EXISTS_REPLACE);
 }

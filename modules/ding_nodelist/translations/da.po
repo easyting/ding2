@@ -6,18 +6,13 @@
 #  ding_nodelist.admin.inc: n/a
 #  ding_nodelist.module: n/a
 #  templates/ding_nodelist.ding_event.carousel.tpl.php: n/a
-#  templates/ding_nodelist.ding_event.single.tpl.php: n/a
 #  templates/ding_nodelist.ding_event.slider.tpl.php: n/a
 #  templates/ding_nodelist.ding_news.carousel.tpl.php: n/a
-#  templates/ding_nodelist.ding_news.single.tpl.php: n/a
 #  templates/ding_nodelist.ding_news.slider.tpl.php: n/a
 #  templates/ding_nodelist.ding_news.text.tpl.php: n/a
 #  plugins/content_types/ding_nodelist.inc: n/a
 #  ding_nodelist.info: n/a
-#  templates/ding_nodelist.ding_event.horizontal_accordion.tpl.php: n/a
-#  templates/ding_nodelist.ding_event.vertical_accordion.tpl.php: n/a
 #  templates/ding_nodelist.ding_news.haccordion.tpl.php: n/a
-#  templates/ding_nodelist.ding_news.vertical_accordion.tpl.php: n/a
 #
 msgid ""
 msgstr ""
@@ -153,10 +148,6 @@ msgstr "Listetype"
 #: profiles/ding2/modules/ding_nodelist/ding_nodelist.module:288
 msgid "- Select -"
 msgstr "- Vælg -"
-
-#: profiles/ding2/modules/ding_nodelist/ding_nodelist.module:289
-msgid "If single item selected, only the first item will be rendered"
-msgstr "Vælg hvordan din liste skal se ud."
 
 #: profiles/ding2/modules/ding_nodelist/ding_nodelist.module:310
 msgid "Delay (miliseconds)"
@@ -413,10 +404,6 @@ msgstr "Ingen information"
 msgid "Invalid term(s)."
 msgstr ""
 
-#: profiles/ding2/modules/ding_nodelist/ding_nodelist.module:2144
-msgid "Single item"
-msgstr "Enkeltstående"
-
 #: profiles/ding2/modules/ding_nodelist/ding_nodelist.module:2145
 msgid "Carousel"
 msgstr "Karrusel"
@@ -425,17 +412,9 @@ msgstr "Karrusel"
 msgid "Horizontal accordion"
 msgstr "Vandret akkordeon"
 
-#: profiles/ding2/modules/ding_nodelist/ding_nodelist.module:2147
-msgid "Vertical accordion"
-msgstr "Lodret akkordeon"
-
 #: profiles/ding2/modules/ding_nodelist/ding_nodelist.module:2148
 msgid "Slider"
 msgstr "Rullebånd"
-
-#: profiles/ding2/modules/ding_nodelist/ding_nodelist.module:2149
-msgid "Taxonomy like"
-msgstr "Liste"
 
 #: profiles/ding2/modules/ding_nodelist/ding_nodelist.module:2383
 msgid "Show only day."
@@ -466,7 +445,7 @@ msgid "Manage content templates."
 msgstr "Administrer indholdsskabeloner."
 
 #: profiles/ding2/modules/ding_nodelist/ding_nodelist.info:0
-msgid "easyDDB Nodelist"
+msgid "easyOPAC Nodelist"
 msgstr ""
 
 #: profiles/ding2/modules/ding_nodelist/ding_nodelist.info:0
@@ -474,7 +453,7 @@ msgid "Module for creating lists."
 msgstr "Modul til at lave indholdslister."
 
 #: profiles/ding2/modules/ding_nodelist/ding_nodelist.info:0
-msgid "easyDDB"
+msgid "easyOPAC"
 msgstr ""
 
 #: profiles/ding2/modules/ding_nodelist/plugins/content_types/ding_nodelist.inc:12
@@ -490,7 +469,6 @@ msgstr "Gør det muligt at lave yderst tilpassede lister af indhold"
 #: profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.single.tpl.php:42
 #: profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.slider.tpl.php:30
 #: profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.taxonomy.tpl.php:59
-#: profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.vaccordion.tpl.php:56
 msgid "kr."
 msgstr ""
 
@@ -499,12 +477,10 @@ msgstr ""
 #: profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.single.tpl.php:45
 #: profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.slider.tpl.php:33
 #: profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.taxonomy.tpl.php:62
-#: profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.vaccordion.tpl.php:59
 msgid "Free"
 msgstr "Gratis"
 
 #: profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.image_text.tpl.php:33
-#: profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.vaccordion.tpl.php:44
 msgid "Time:"
 msgstr "Tid"
 

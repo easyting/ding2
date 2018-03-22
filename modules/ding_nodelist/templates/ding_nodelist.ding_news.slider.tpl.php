@@ -5,7 +5,7 @@
  * Ding news slider template.
  */
 
-$category = field_view_field('node', $item, 'field_ding_news_category', 'teaser');
+$category = field_view_field('node', $item, 'field_ding_news_category', array('label' => 'hidden', 'type' => 'taxonomy_term_reference_link'));
 ?>
 <li class="item">
   <div class="category">

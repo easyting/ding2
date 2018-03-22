@@ -57,9 +57,6 @@ $back_image = l($image ? theme('image_style', array_merge($image, array('style_n
   <?php endif ?>
   <div class="item-details">
     <h2 class="item-title"><?php print l($title, 'node/' . $item->nid); ?></h2>
-    <div class="item-body">
-      <?php print $item->teaser_lead; ?>
-    </div>
     <span class="item-library"><?php print $library[0]['#markup']; ?></span>
     <div class="item-date"><?php print $event_time; ?></div>
     <div class="item-price">
@@ -74,6 +71,9 @@ $back_image = l($image ? theme('image_style', array_merge($image, array('style_n
         print t('Free');
       }
       ?>
+    </div>
+    <div class="item-body">
+      <span><?php print $item->teaser_lead; ?></span>
     </div>
     <div class="event-arrow-link">
       <?php print l('<i class="icon-chevron-right"></i>', 'node/' . $item->nid, array('html' => TRUE)); ?>

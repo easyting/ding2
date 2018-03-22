@@ -13,10 +13,10 @@
  */
 ?>
 <?php if ($items): ?>
+  <?php if (!empty($conf['title'])): ?>
+    <h2 class="pane-title"><?php print $conf['title']; ?></h2>
+  <?php endif; ?>
   <div class="<?php print $conf['classes'] ?>">
-    <?php if (!empty($conf['title'])): ?>
-      <h2 class="ding_nodelist-title"><?php print $conf['title']; ?></h2>
-    <?php endif; ?>
     <div class="ding_nodelist-items">
       <div class="ding_nodelist-pn-items">
         <?php
