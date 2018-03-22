@@ -30,5 +30,5 @@
   </div>
   <?php if (!empty($links)): ?>
      <div class="nl-link"> <?php print theme('_more_links', array('links' => $links)); ?> </div>
-    <?php endif; ?>
+  <?php endif; ?>
 <?php endif; ?>

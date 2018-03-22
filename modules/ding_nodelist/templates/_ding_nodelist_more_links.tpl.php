@@ -9,7 +9,7 @@
   <ul>
     <?php foreach ($links as $key => $link) : ?>
       <li>
-        <div class="more-link"> <?php print l(t($link['text']), $link['links']); ?></div>
+        <div class="more-link"> <?php print l(t('@morelink',array('@morelink' => $link['text'])), $link['links']); ?></div>
       </li>
     <?php endforeach; ?>
   </ul>

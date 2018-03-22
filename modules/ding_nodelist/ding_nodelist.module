@@ -920,7 +920,7 @@ function _ding_nodelist_add_js($widget, $autoscroll_delay = NULL, $unique_id = N
       drupal_add_js($mod_path . '/js/rolltab.js', 'file');
       break;
 
-      case DING_NODELIST_WIDGET_NODE_BLOCKS:
+    case DING_NODELIST_WIDGET_NODE_BLOCKS:
       drupal_add_library('system', 'ui.tabs');
       drupal_add_js(array('ding_nodelist' => array($unique_id => $autoscroll_delay)), 'setting');
       break;
@@ -1468,7 +1468,10 @@ function _ding_nodelist_get_event_time($event_node) {
   $end = format_date($raw_end, 'ding_time_only');
 
   if ($raw_start != $raw_end) {
-    $result = t('!start to !end', array('!start' => $start, '!end' => $end));
+    $result = t('!start to !end', array(
+      '!start' => $start,
+      '!end' => $end,
+    ));
   }
   elseif ($start == "0:00") {
     $result = t('All day');
@@ -1487,6 +1490,7 @@ function _ding_nodelist_get_event_time($event_node) {
  *   Event node object.
  *
  * @return string
+ *   Formatted event time period.
  */
 function _ding_nodelist_format_event_time($event_node) {
   $event_date = field_get_items('node', $event_node, 'field_ding_event_date');
@@ -1514,7 +1518,7 @@ function _ding_nodelist_format_event_time($event_node) {
 /**
  * Format event dates as period of time.
  *
- * @param stdClass $event_node
+ * @param object $event_node
  *   Ding event node.
  *
  * @return string
@@ -1531,8 +1535,11 @@ function _ding_nodelist_format_event_date($event_node) {
 
   $result = $start_string;
   if ($start->diff($end)->days > 0) {
-    $end_string = format_date($end->getTimestamp(),  'custom', 'd.m.y');
-    $result = t('!start - !end', array('!start' => $start_string, '!end' => $end_string));
+    $end_string = format_date($end->getTimestamp(), 'custom', 'd.m.y');
+    $result = t('!start - !end', array(
+      '!start' => $start_string,
+      '!end' => $end_string,
+    ));
   }
 
   return $result;
