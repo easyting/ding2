@@ -1,13 +1,12 @@
 /**
  * @file
  */
-
 (function ($) {
   "use strict";
   Drupal.behaviors.ding_dams = {
     attach: function (context) {
 
-      $('#media-tabs-wrapper > ul > li').click(function() {
+      $('#media-tabs-wrapper').find('ul > li').click(function() {
         var ele = $(this);
         ele.parent('ul').find('li').removeClass('active');
 
@@ -77,5 +76,21 @@
       $('[href="#media-tab-youtube"]').click();
       window.location.hash = '';
     }
+
+    Drupal.theme.prototype.dams_modal = function () {
+        var html = '';
+        html += '<div id="ctools-modal" class="popups-box">';
+        html += '  <div class="ctools-modal-content ctools-modal-dams-modal-content">';
+        html += '      <div class="modal-header">';
+        html += '        <a class="close close-messages-button" href="#">';
+        html += '        </a>';
+        html += '        <span id="modal-title" class="modal-title">&nbsp;</span>';
+        html += '      </div>';
+        html += '    <div class="modal-scroll"><div id="modal-content" class="modal-content popups-body"></div></div>';
+        html += '  </div>';
+        html += '</div>';
+        return html;
+    };
+
   });
 })(jQuery);
