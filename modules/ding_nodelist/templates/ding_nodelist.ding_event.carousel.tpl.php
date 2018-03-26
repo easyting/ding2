@@ -38,14 +38,14 @@ if (!empty($image['path'])) {
         <span class="library"><?php print $library[0]['#markup']; ?></span>
         <span class="item-price">
           <?php
-          $fee_field = field_get_items('node', $item, 'field_ding_event_price');
-          if (is_array($fee_field)) {
-            $fee = current($fee_field);
-            print '&mdash; ' . $fee['value'] . ' ' . $currency;
-          }
-          else {
-            print '&mdash; ' . t('Free');
-          }
+            $fee_field = field_get_items('node', $item, 'field_ding_event_price');
+            if (is_array($fee_field)) {
+              $fee = current($fee_field);
+              print '&mdash; ' . $fee['value'] . ' ' . $currency;
+            }
+            else {
+              print '&mdash; ' . t('Free');
+            }
           ?>
         </span>
       </div>

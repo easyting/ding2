@@ -38,7 +38,7 @@ if ($item->created < $item->changed) {
         <div class="info-top">
           <?php print drupal_render($category); ?>
         </div>
-        <div class="title-and-lead" style="">
+        <div class="title-and-lead">
           <h3 class="title"><?php print $item->title; ?></h3>
           <?php print drupal_render($lead); ?>
         </div>

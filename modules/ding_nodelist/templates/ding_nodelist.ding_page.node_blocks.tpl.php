@@ -20,7 +20,7 @@ $library = field_view_field('node', $item, 'ding_page_group_ref', array('label' 
       <div class="button"><?php print l(t('Read more'), 'node/' . $item->nid); ?></div>
     </div>
     <div class="event-text">
-      <div class="title-and-lead" style="">
+      <div class="title-and-lead">
         <h3 class="title"><?php print l($item->title, 'node/' . $item->nid); ?></h3>
         <?php print drupal_render($lead); ?>
       </div>

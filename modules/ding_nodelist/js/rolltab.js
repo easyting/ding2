@@ -34,6 +34,14 @@
       });
     }
 
+    // Add mouseover event to select tabs options.
+    $('.ui-tabs-nav-item', rolltab).mouseover(function(e) {
+      e.preventDefault();
+      rolltab.tabs({event: "mouseover"}).tabs('rotate', 0);
+      tab_selected = true;
+      return false;
+    });
+
     // Add click event on selected tab to redirect user to selected tab node.
     $(".ui-tabs-nav-item span").click(function () {
       window.location.href = $(this).attr('datasrc');

@@ -596,29 +596,9 @@ function ding_nodelist_theme() {
       'render element' => 'form',
     ),
     // Widget templates.
-    '_ding_nodelist_widget_simple' => array(
-      'path' => $path,
-      'template' => 'ding_nodelist_widget_simple',
-      'variables' => array(
-        'items' => NULL,
-        'template' => NULL,
-        'links' => NULL,
-        'conf' => NULL,
-      ),
-    ),
     '_ding_nodelist_widget_carousel' => array(
       'path' => $path,
       'template' => 'ding_nodelist_widget_carousel',
-      'variables' => array(
-        'items' => NULL,
-        'template' => NULL,
-        'links' => NULL,
-        'conf' => NULL,
-      ),
-    ),
-    '_ding_nodelist_widget_taxonomy' => array(
-      'path' => $path,
-      'template' => 'ding_nodelist_widget_taxonomy',
       'variables' => array(
         'items' => NULL,
         'template' => NULL,
@@ -1833,37 +1813,4 @@ function ding_nodelist_preprocess(&$variables, $hook) {
     $currency = variable_get('ding_event_currency_type', 'Kr');
     $variables['currency'] = $currency;
   }
-}
-
-/**
- * Implements hook_form_system_theme_settings_alter().
- */
-function ding_nodelist_form_system_theme_settings_alter(&$form, &$form_state) {
-  $form['#submit'][] = "_ding_nodelist_process_css_colors";
-}
-
-/**
- * Function for rewriting colors of ding_nodelist css file.
- */
-function _ding_nodelist_process_css_colors() {
-  // Create public directory for keeping rewritten styles.
-  $folder_path = 'public://nodelist_colored_css';
-  file_prepare_directory($folder_path, FILE_CREATE_DIRECTORY);
-
-  // Getting theme information.
-  $theme = 'ddbasic';
-  $info = color_get_info($theme);
-  $palette = color_get_palette($theme);
-
-  // Setting paths.
-  $paths['target'] = 'public://nodelist_colored_css/';
-  $paths['source'] = drupal_get_path('module', 'ding_nodelist') . '/css/ding_nodelist.css';
-  $paths['files'] = $paths['map'] = array();
-
-  // Loading ding_nodelist css file content.
-  $style = drupal_load_stylesheet($paths['source'], TRUE);
-  // Rewriting default styles to match current theme color palette.
-  $style = _color_rewrite_stylesheet($theme, $info, $paths, $palette, $style);
-  // Save new css data into file.
-  file_unmanaged_save_data($style, 'public://nodelist_colored_css/ding_nodelist.css', FILE_EXISTS_REPLACE);
 }

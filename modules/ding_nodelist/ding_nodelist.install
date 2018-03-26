@@ -124,9 +124,6 @@ function ding_nodelist_install() {
     );
     db_insert('ding_nodelist_templates')->fields($fields)->execute();
   }
-
-  // Create new "colored" css on module install.
-  _ding_nodelist_process_css_colors();
 }
 
 /**
@@ -260,13 +257,6 @@ function ding_nodelist_update_7005() {
         ->execute();
     }
   }
-}
-
-/**
- * Creating rewritten css file in order to match current site's color palette.
- */
-function ding_nodelist_update_7006() {
-  _ding_nodelist_process_css_colors();
 }
 
 /**

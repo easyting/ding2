@@ -35,7 +35,7 @@ if (!empty($image['path'])) {
           <?php print drupal_render($category); ?>
         </div>
         <div class="date"><?php print $event_date; ?></div>
-        <div class="title-and-lead" style="">
+        <div class="title-and-lead">
           <h3
               class="title"><?php print $item->title; ?></h3>
           <?php print drupal_render($lead); ?>
@@ -47,14 +47,14 @@ if (!empty($image['path'])) {
           <div class="date-time"><?php print $event_hours; ?></div>
           <div class="price">
             <?php
-            $fee_field = field_get_items('node', $item, 'field_ding_event_price');
-            if (is_array($fee_field)) {
-              $fee = current($fee_field);
-              print $fee['value'] . ' ' . $currency;
-            }
-            else {
-              print t('Free');
-            }
+              $fee_field = field_get_items('node', $item, 'field_ding_event_price');
+              if (is_array($fee_field)) {
+                $fee = current($fee_field);
+                print $fee['value'] . ' ' . $currency;
+              }
+              else {
+                print t('Free');
+              }
             ?>
           </div>
         </div>
