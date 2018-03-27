@@ -100,7 +100,6 @@
           markup = a.outerHTML;
           break;
       }
-      Drupal.media.filter.ensure_tagmap();
 
       Drupal.settings.tagmap[macro] = markup;
 

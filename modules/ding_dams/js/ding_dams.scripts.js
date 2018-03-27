@@ -14,15 +14,6 @@
           ele.addClass('active');
         }
 
-        // Remove selection of previously selected item(s).
-        $('.media-item').removeClass('selected');
-        // Hide the Edit and Track buttons when switching tabs
-        // since these buttons are added on every tab when a
-        // media image is selected.
-        $('.form-actions a#edit-media-button').hide();
-        $('.form-actions a#track-media-button').hide();
-      });
-
       // Catch the click on a media item
       $('.media-item', context).bind('click', function () {
         // Remove selection from any selected item.
