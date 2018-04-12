@@ -920,7 +920,7 @@ function _ding_nodelist_init_image_style($widget) {
   // Init image_styles for region.
   switch ($widget) {
     case DING_NODELIST_WIDGET_CAROUSEL:
-      return 'ding_nodelist_large';
+      return 'ding_tabroll_large';
 
     case DING_NODELIST_WIDGET_NODE_BLOCKS:
       return 'ding_panorama_list_large';
