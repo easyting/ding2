@@ -562,6 +562,18 @@ function _ding_nodelist_plugin_widget_section(&$form, $node_type, $conf, $defaul
     '#suffix' => '</div></div>',
   );
 
+  $autoscrolling_widgets = array(DING_NODELIST_WIDGET_CAROUSEL);
+  if (in_array($widget_type, $autoscrolling_widgets)) {
+    $generic_autoscroll_delay = variable_get('ding_nodelist_' . $widget_type . '_delay', $default_conf['autoscroll_delay']);
+    $form['ding_nodelist_wrapper']['widget_dependent']['autoscroll_delay'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Delay (miliseconds)'),
+      '#default_value' => !empty($conf['autoscroll_delay']) ? $conf['autoscroll_delay'] : $generic_autoscroll_delay,
+      '#description' => t('Time in milliseconds an item will be shown before switching to the next one'),
+      '#size' => 4,
+    );
+  }
+
   // Make title appear only on some widgets.
   $widgets_with_title = _ding_nodelist_widgets_with_titles();
   if (in_array($widget_type, $widgets_with_title)) {
